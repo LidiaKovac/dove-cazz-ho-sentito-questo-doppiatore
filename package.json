@@ -1,0 +1,27 @@
+{
+  "name": "dove-cazz-ho-sentito-questo-doppiatore",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node ./"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-list-endpoints": "^7.1.0",
+    "js-levenshtein": "^1.1.6",
+    "moment": "^2.30.1",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
+    "puppeteer": "^22.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
