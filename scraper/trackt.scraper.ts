@@ -14,8 +14,7 @@ export class Trakt {
     return page;
   }
   static async scrapeByUsername(username: string) {
-    
-    const page =await this.initBrowser()
+    const page = await this.initBrowser();
     await page.goto(`https://trakt.tv/users/${username}/progress`);
     const cards = await page.$$(".posters");
     const works: TraktCard[] = [];
@@ -58,20 +57,19 @@ export class Trakt {
             "#p-lang-btn a[hreflang='it']",
             (a) => a.href.split("/").slice(-1)[0]
           );
-          +(await newPage.close());
+          (await newPage.close());
         } else {
           const langDropdown = await currPage.$("#p-lang-btn");
           await langDropdown?.click();
-          const hasIt = await currPage.$("#p-lang-btn a[hreflang='it']")
-          if(hasIt) {
+          const hasIt = await currPage.$("#p-lang-btn a[hreflang='it']");
+          if (hasIt) {
+            slug = await currPage.$eval(
+              "#p-lang-btn a[hreflang='it']",
+              (a) => a.href.split("/").slice(-1)[0]
+            );
+          } else {
 
-              slug = await currPage.$eval(
-                  "#p-lang-btn a[hreflang='it']",
-                  (a) => a.href.split("/").slice(-1)[0]
-                );
-            } else {
-                
-            }
+          }
         }
 
         await delay(500);
@@ -80,7 +78,7 @@ export class Trakt {
         if (work) {
           currWork._id = work._id;
         }
-        works.push(currWork)
+        works.push(currWork);
         await currPage.close();
       }
     }
