@@ -16,14 +16,17 @@ export const connectToDB = async () => {
 // TODO: importa trakt.tv account
 
 const app = express();
+const PORT = process.env.port || 3001
 cron.schedule("00 23 * * *", async () => {
   await connectToDB();
   await launchWorker();
 });
-app.listen(process.env.port || 3001);
+app.listen(PORT, () => console.log("Oky Dokey"));
 
 // (async () => {
+//   await connectToDB();
+
 //   //  const movies =  await Letterboxd.scrapeByUsername("emilyreed85")
-//   // const movies = await Trakt.scrapeByUsername("pinotman")
+//   const movies = await Trakt.scrapeByUsername("pinotman")
 //   //  console.log(movies)
 // })();
