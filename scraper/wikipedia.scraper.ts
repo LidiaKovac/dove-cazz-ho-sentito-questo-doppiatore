@@ -21,10 +21,10 @@ export class Wikipedia {
   static async pageExists(page: Page) {
     const p = await page.$(".mw-search-createlink");
     if (p) {
-        const text = await page.$eval(".mw-search-createlink i", (p) =>
-            p.innerText.includes("does not exist")
-    );
-    console.log(p);
+      const text = await page.$eval(".mw-search-createlink i", (p) =>
+        p.innerText.includes("does not exist")
+      );
+      console.log(p);
       return text;
     } else return false;
   }
@@ -35,7 +35,7 @@ export class Wikipedia {
       return "";
     }
     const h1 = await page.$eval("h1", (h1) => h1.innerText);
-    if (h1 === "Search results") {
+    if (h1 === "Search results" && !h1.includes("disambiguation")) {
       console.log("Più di una pagina trovata");
       const pageExists = await this.pageExists(page);
       if (!pageExists) {
@@ -61,7 +61,7 @@ export class Wikipedia {
       const newPage = await browser.newPage();
       await newPage.goto(res);
       //   slug = await this.getitalianSlug(newPage)
-      await delay(500)
+      await delay(500);
       slug = await this.scrapePage(browser, newPage);
       return slug;
     }
