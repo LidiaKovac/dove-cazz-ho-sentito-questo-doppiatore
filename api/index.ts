@@ -4,7 +4,7 @@ import { connectToDB } from "..";
 import { launchWorker } from "../worker";
 const app = express();
 const PORT = process.env.port || 3001;
-cron.schedule("10 23 * * *", async () => {
+cron.schedule("35 23 * * *", async () => {
   console.log("Cron job starting...");
   await connectToDB();
   await launchWorker();
