@@ -35,6 +35,9 @@ export class Wikipedia {
       return "";
     }
     const h1 = await page.$eval("h1", (h1) => h1.innerText);
+    // if(h1.includes("Search results")) {
+    //   await this.getitalianSlug(page)
+    // }
     if (h1 === "Search results" && !h1.includes("disambiguation")) {
       console.log("Più di una pagina trovata");
       const pageExists = await this.pageExists(page);
@@ -54,17 +57,18 @@ export class Wikipedia {
     }
     if (h1.includes("disambiguation")) {
       console.log("pagina di disambiguazione");
+
       const res = await page.$$eval(
         ":is(h2:has(#Television), h3:has(#Film_and_television)) ~ ul li a",
         (a) => a.map((link) => link.href)
       );
-      const show = res.find((r) => r.toLowerCase().includes("show"));
+      const show = res.find((r) => r.toLowerCase().includes("tv") && r.toLowerCase().includes("series") );
       if (show) {
-        const newPage = await browser.newPage();
-        await newPage.goto(show);
+        const showPage = await browser.newPage();
+        await showPage.goto(show);
         //   slug = await this.getitalianSlug(newPage)
         await delay(500);
-        slug = await this.scrapePage(browser, newPage);
+        slug = await this.scrapePage(browser, showPage);
         return slug;
       }
     }
@@ -73,7 +77,7 @@ export class Wikipedia {
   }
   static async searchQuery(browser: Browser, query: string) {
     const page = await browser.newPage();
-    await page.goto("https://en.wikipedia.org");
+    await page.goto("https://it.wikipedia.org");
     const toggle = await page.$(".search-toggle");
     toggle!.click();
     const input = await page.$(".cdx-text-input__input");

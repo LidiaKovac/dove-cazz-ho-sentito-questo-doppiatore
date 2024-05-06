@@ -32,6 +32,7 @@ export class Trakt {
         });
         if (movie) {
           currWork._id = movie._id;
+          works.push(movie);
         } else {
           const currPage = await Wikipedia.searchQuery(this.browser, title);
 
@@ -48,6 +49,7 @@ export class Trakt {
         }
       }
       this.browser.close();
+      return works;
     } catch (error) {
       console.log(error);
     }

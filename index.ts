@@ -15,12 +15,3 @@ export const connectToDB = async () => {
 // TODO: importa letterboxd account
 // TODO: importa trakt.tv account
 
-
-
-(async () => {
-  await connectToDB();
-
-  //  const movies =  await Letterboxd.scrapeByUsername("emilyreed85")
-  const movies = await Trakt.scrapeByUsername("pinotman")
-  //  console.log(movies)
-})();

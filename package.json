@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node ./",
+    "dev": "ts-node ./api",
     "build": "tsc",
     "start": "node ./dist/api"
   },
