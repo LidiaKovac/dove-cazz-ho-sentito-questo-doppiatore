@@ -54,16 +54,19 @@ export class Wikipedia {
     }
     if (h1.includes("disambiguation")) {
       console.log("pagina di disambiguazione");
-      const res = await page.$eval(
+      const res = await page.$$eval(
         ":is(h2:has(#Television), h3:has(#Film_and_television)) ~ ul li a",
-        (a) => a.href
+        (a) => a.map((link) => link.href)
       );
-      const newPage = await browser.newPage();
-      await newPage.goto(res);
-      //   slug = await this.getitalianSlug(newPage)
-      await delay(500);
-      slug = await this.scrapePage(browser, newPage);
-      return slug;
+      const show = res.find((r) => r.toLowerCase().includes("show"));
+      if (show) {
+        const newPage = await browser.newPage();
+        await newPage.goto(show);
+        //   slug = await this.getitalianSlug(newPage)
+        await delay(500);
+        slug = await this.scrapePage(browser, newPage);
+        return slug;
+      }
     }
     slug = await this.getitalianSlug(page);
     return slug;
