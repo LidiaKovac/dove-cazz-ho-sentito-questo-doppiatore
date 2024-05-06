@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import { Scraper } from "./scraper";
+import cron from "node-cron";
 import "dotenv/config";
-import express from "express"
+import express from "express";
 import { Letterboxd } from "./scraper/letterboxd.scraper";
 import { Trakt } from "./scraper/trackt.scraper";
 import { launchWorker } from "./worker";
@@ -14,13 +15,15 @@ export const connectToDB = async () => {
 // TODO: importa letterboxd account
 // TODO: importa trakt.tv account
 
-const app = express()
-app.listen(process.env.port || 3001);
-
-(async () => {
+const app = express();
+cron.schedule("00 23 * * *", async () => {
   await connectToDB();
   await launchWorker();
-  //  const movies =  await Letterboxd.scrapeByUsername("emilyreed85")
-  // const movies = await Trakt.scrapeByUsername("pinotman")
-  //  console.log(movies)
-})();
+});
+app.listen(process.env.port || 3001);
+
+// (async () => {
+//   //  const movies =  await Letterboxd.scrapeByUsername("emilyreed85")
+//   // const movies = await Trakt.scrapeByUsername("pinotman")
+//   //  console.log(movies)
+// })();
