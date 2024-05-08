@@ -1,0 +1,56 @@
+@import "./styles/colors";
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("assets/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+}
+
+app-root {
+  display: block;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+a {
+  color: $primary;
+}
+
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 120px;
+  height: 20px;
+  border-radius: 20px;
+  background: linear-gradient($accent 0 0) 0/0% no-repeat $primary;
+  animation: l2 2s infinite linear;
+}
+@keyframes l2 {
+  100% {
+    background-size: 110%;
+  }
+}
+
+
+.spinner {
+  display: inline-block;
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid $primary;
+  border-right-color: $accent;
+  animation: l2 1s infinite linear;
+}
+
+
+@keyframes l2 {to{transform: rotate(1turn)}}

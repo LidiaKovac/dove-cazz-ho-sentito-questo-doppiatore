@@ -1,0 +1,47 @@
+<h1>
+  Dove
+  <span>
+    cazzo
+    <img src="../../../assets/strike.png" />
+  </span>
+  hai sentito questo doppiatore?!
+</h1>
+<h2>
+  <span>
+    {{ title }}
+  </span>
+  &
+  <span>
+    {{ compareTo }}
+  </span>
+  — Doppiatori in comune
+</h2>
+<div class="compare__search">
+  <app-suggestion-input
+    dataSuggestionsVar="suggestionsOne"
+    placeholder="Inserisci serie"
+    name="showOneQuery"
+    [autocomplete]="'off'"
+  >
+  </app-suggestion-input>
+
+  <app-suggestion-input
+    name="showTwoQuery"
+    dataSuggestionsVar="suggestionsTwo"
+    placeholder="Inserisci serie"
+    [autocomplete]="'off'"
+  >
+  </app-suggestion-input>
+  <app-button [onClick]="navigateToComparison">Cerca</app-button>
+</div>
+<h2 *ngIf="!isLoading">({{ doppiatori.length }}) risultati:</h2>
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>
+<div class="compare__wrap" *ngIf="!isLoading; else loading">
+  <app-compare-card
+    *ngFor="let doppiatore of doppiatori"
+    [name]="doppiatore.name"
+    [characters]="doppiatore.characters"
+  ></app-compare-card>
+</div>

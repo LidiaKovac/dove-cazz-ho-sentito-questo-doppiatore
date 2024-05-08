@@ -1,0 +1,74 @@
+@import "/src/styles/colors";
+
+.alert {
+  background-color: transparentize(white, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  padding-top: 40px;
+  margin-block: 10px;
+  border-radius: 5px;
+  border: 1px solid;
+  overflow: hidden;
+  width: fit-content;
+
+  opacity: 1;
+  transition: 1s;
+
+  position: relative;
+
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    ion-icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &--info {
+    background-color: transparentize(white, 0.5);
+    border-color: white;
+    .close {
+      background-color: white;
+    }
+  }
+
+  &--alert {
+    background-color: transparentize($primary, 0.5);
+    color: white;
+    border-color: $primary;
+    .close {
+      background-color: $primary;
+    }
+  }
+
+  &--error {
+    background-color: transparentize(lighten($accent, 30), 0.4);
+    border-color: $accent;
+    .close {
+      background-color: $accent;
+    }
+  }
+
+  &__header {
+    padding: 5px;
+
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+.deleting {
+  opacity: 0;
+}
+
+
