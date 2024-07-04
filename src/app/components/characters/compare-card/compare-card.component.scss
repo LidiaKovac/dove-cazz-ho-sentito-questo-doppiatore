@@ -1,0 +1,19 @@
+@import "/src/styles/colors";
+
+.compare-card {
+  background-color: rgb(183, 212, 255, 0.5);
+  backdrop-filter: blur(4);
+  border: 1px solid $primary;
+  border-radius: 5px;
+  padding: 35px;
+  &__chars {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    > * {
+      flex: 1 0 250px;
+    }
+  }
+}

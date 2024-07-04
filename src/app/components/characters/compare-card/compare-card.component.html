@@ -1,0 +1,7 @@
+<div class="compare-card">
+  <h2>{{name}}</h2>
+  <div class="compare-card__chars">
+    <app-single-character-card *ngFor="let work of works" [name]="work.character" [img]="work.characterImg"
+      [work]="work.work"></app-single-character-card>
+  </div>
+</div>
