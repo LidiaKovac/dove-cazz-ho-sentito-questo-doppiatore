@@ -1,1 +1,5 @@
-<button>{{value}}</button>
+<button>
+    {{value}}
+<ng-content *ngIf="!value"></ng-content>
+
+</button>

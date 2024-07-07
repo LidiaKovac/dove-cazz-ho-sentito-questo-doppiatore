@@ -1,4 +1,5 @@
 @import "src/styles/colors";
+@import "src/styles/types";
 
 button {
   background-color: $primary;
@@ -6,10 +7,12 @@ button {
   padding: 16px 32px;
   border:none;
   border-radius: 5px;
-  font-size: 26px;
+  font-size: $text;
   box-shadow: 2px 2px 5px 0px rgb(0, 0, 0, 0.1);
   -webkit-box-shadow: 2px 2px 5px 0px rgb(0, 0, 0, 0.1);
   transition: 0.15s;
+  width: inherit;
+  cursor: pointer;
   &:hover {
     background-color: lighten($primary, 5%);
   }

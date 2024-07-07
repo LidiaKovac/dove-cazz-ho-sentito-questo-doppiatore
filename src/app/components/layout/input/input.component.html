@@ -1,1 +1,10 @@
-<input type="text" [attr.placeholder]="placeholder" [attr.defaultValue]="defaultValue">
+<input 
+[attr.type]="type" 
+[attr.placeholder]="placeholder" 
+[attr.defaultValue]="defaultValue" 
+[attr.name]="name"
+(keyup)="onChange($event)"
+(blur)="onBlur()"
+[(ngModel)]="ngModel"
+>
+<ng-content></ng-content>

@@ -1,0 +1,60 @@
+<div class="landing">
+  <div class="landing__wrap">
+    <img src="../../../assets/titolo-lg.png" alt="" />
+    <div class="landing__wrap-compare">
+      <p>Cerca due serie per scoprire quali doppiatori hanno in comune</p>
+
+      <app-input
+        name="showOneQuery"
+        placeholder="Inserisci serie"
+        [onChange]="getSuggestions"
+        [onBlur]="emptySuggestions"
+        [ngModel]="showOneQuery"
+      >
+        <div class="search__suggestions" *ngIf="suggestionsOne.length > 0">
+          <div
+            class="search__suggestion"
+            *ngFor="let sugg of suggestionsOne"
+            (click)="pickSuggestion($event, 'first')"
+          >
+            {{ sugg }}
+          </div>
+        </div>
+      </app-input>
+      <app-input name="Serie 2" placeholder="Inserisci serie"
+      [onChange]="getSuggestions"
+      [onBlur]="emptySuggestions"
+      [ngModel]="showTwoQuery"
+
+      >
+      <div
+      class="search__suggestion"
+      *ngFor="let sugg of suggestionsTwo"
+      (click)="pickSuggestion($event, 'second')"
+    >
+      {{ sugg }}
+    </div>
+    </app-input>
+      <app-button>Cerca</app-button>
+    </div>
+    <section *ngIf="isLogged; else notLogged">
+      <p>
+        Inserisci il nome della serie che stai guardando e scopri in quali serie
+        potresti averlo sentito:
+      </p>
+      <div class="landing__wrap-search">
+        <app-input name="Serie" placeholder="Inserisci un titolo"></app-input>
+        <app-button>Cerca</app-button>
+      </div>
+    </section>
+    <ng-template #notLogged>
+      <p>
+        Oppure <a routerLink="auth">effettua il login</a> per scoprire in quali
+        serie potresti aver sentito <i> quel </i> doppiatore
+      </p>
+    </ng-template>
+  </div>
+  <div class="landing__img">
+    <img src="../../../assets/foto.png" alt="" />
+  </div>
+</div>

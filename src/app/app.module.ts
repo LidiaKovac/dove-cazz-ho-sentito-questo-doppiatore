@@ -3,20 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InputComponent } from './components/layout/input/input.component';
-import { ButtonComponent } from './components/layout/button/button.component';
-import { CharacterModule } from './components/characters/character.module';
+import { CharacterModule } from './characters/character.module';
+import { AuthModule } from './auth/auth.module';
+import { LandingModule } from './landing/landing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    InputComponent,
-    ButtonComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CharacterModule
+    CharacterModule,
+    AuthModule,
+    LandingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
