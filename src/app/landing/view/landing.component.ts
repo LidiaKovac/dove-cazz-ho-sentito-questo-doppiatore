@@ -12,8 +12,10 @@ export class LandingComponent {
   isLogged!: boolean;
   showOneQuery: string = '';
   showTwoQuery: string = '';
+  watchListQuery: string = '';
   suggestionsOne: string[] = [];
   suggestionsTwo: string[] = [];
+  suggestionsWatchList: string[] = [];
   constructor(
     private authSrv: AuthService,
     private doppiatoriSrv: DoppiatoriService,
@@ -44,28 +46,39 @@ export class LandingComponent {
           .getSuggestions(this.showOneQuery)
           .subscribe((res) => (this.suggestionsOne = res));
       }
-    } else {
+    } else if(target.name === "showTwoQuery") {
       this.showTwoQuery = target.value;
       if (this.showTwoQuery.length % 3 && target.value.length > 3) {
         this.doppiatoriSrv
           .getSuggestions(this.showTwoQuery)
           .subscribe((res) => (this.suggestionsTwo = res));
       }
+    } else {
+      this.watchListQuery = target.value;
+      if (this.watchListQuery.length % 3 && target.value.length > 3) {
+        this.doppiatoriSrv
+          .getSuggestions(this.watchListQuery)
+          .subscribe((res) => (this.suggestionsWatchList = res));
+      }
     }
   };
 
-  emptySuggestions = () => {
-    // setTimeout(() => {
-    //   this.suggestions = [];
-    // }, 300);
+  emptySuggestions = (input:string) => {
+    setTimeout(() => {
+      if(input === "showOneQuery") this.suggestionsOne = [];
+      else if(input==="showTwoQuery") this.suggestionsTwo = []
+      else this.suggestionsWatchList = []
+    }, 300);
   };
 
   pickSuggestion({ target }: Event, input: string) {
     const targetAsDiv = target as HTMLDivElement;
     if (input == 'first') {
       this.showOneQuery = targetAsDiv.innerText;
-    } else {
+    } else if(input== "second") {
       this.showTwoQuery = targetAsDiv.innerText;
+    } else {
+      this.watchListQuery = targetAsDiv.innerText
     }
   }
 

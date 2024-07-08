@@ -3,39 +3,43 @@
     <img src="../../../assets/titolo-lg.png" alt="" />
     <div class="landing__wrap-compare">
       <p>Cerca due serie per scoprire quali doppiatori hanno in comune</p>
-
-      <app-input
-        name="showOneQuery"
-        placeholder="Inserisci serie"
-        [onChange]="getSuggestions"
-        [onBlur]="emptySuggestions"
-        [ngModel]="showOneQuery"
-      >
-        <div class="search__suggestions" *ngIf="suggestionsOne.length > 0">
-          <div
-            class="search__suggestion"
-            *ngFor="let sugg of suggestionsOne"
-            (click)="pickSuggestion($event, 'first')"
-          >
-            {{ sugg }}
+      <div class="landing__form">
+        <app-input
+          name="showOneQuery"
+          placeholder="Inserisci serie"
+          [onChange]="getSuggestions"
+          [onBlur]="emptySuggestions"
+          [ngModel]="showOneQuery"
+        >
+          <div class="search__suggestion" *ngIf="suggestionsOne.length > 0">
+            <div
+              class="search__suggestion--first"
+              *ngFor="let sugg of suggestionsOne"
+              (click)="pickSuggestion($event, 'first')"
+            >
+              {{ sugg }}
+            </div>
           </div>
-        </div>
-      </app-input>
-      <app-input name="Serie 2" placeholder="Inserisci serie"
-      [onChange]="getSuggestions"
-      [onBlur]="emptySuggestions"
-      [ngModel]="showTwoQuery"
-
-      >
-      <div
-      class="search__suggestion"
-      *ngFor="let sugg of suggestionsTwo"
-      (click)="pickSuggestion($event, 'second')"
-    >
-      {{ sugg }}
-    </div>
-    </app-input>
-      <app-button>Cerca</app-button>
+        </app-input>
+        <app-input
+          name="showTwoQuery"
+          placeholder="Inserisci serie"
+          [onChange]="getSuggestions"
+          [onBlur]="emptySuggestions"
+          [ngModel]="showTwoQuery"
+        >
+          <div class="search__suggestion" *ngIf="suggestionsTwo.length > 0">
+            <div
+              class="search__suggestion--second"
+              *ngFor="let sugg of suggestionsTwo"
+              (click)="pickSuggestion($event, 'second')"
+            >
+              {{ sugg }}
+            </div>
+          </div>
+        </app-input>
+        <app-button>Cerca</app-button>
+      </div>
     </div>
     <section *ngIf="isLogged; else notLogged">
       <p>
@@ -43,14 +47,33 @@
         potresti averlo sentito:
       </p>
       <div class="landing__wrap-search">
-        <app-input name="Serie" placeholder="Inserisci un titolo"></app-input>
+        <app-input
+          name="watchListQuery"
+          placeholder="Inserisci un titolo"
+          [onChange]="getSuggestions"
+          [onBlur]="emptySuggestions"
+          [ngModel]="watchListQuery"
+        >
+          <div
+            class="search__suggestion"
+            *ngIf="suggestionsWatchList.length > 0"
+          >
+            <div
+              class="search__suggestion--watchList"
+              *ngFor="let sugg of suggestionsWatchList"
+              (click)="pickSuggestion($event, 'watchlist')"
+            >
+              {{ sugg }}
+            </div>
+          </div>
+        </app-input>
         <app-button>Cerca</app-button>
       </div>
     </section>
     <ng-template #notLogged>
       <p>
-        Oppure <a routerLink="auth">effettua il login</a> per scoprire in quali
-        serie potresti aver sentito <i> quel </i> doppiatore
+        Oppure <a [routerLink]="['/auth']">effettua il login</a> per scoprire in
+        quali serie potresti aver sentito <i> quel </i> doppiatore
       </p>
     </ng-template>
   </div>

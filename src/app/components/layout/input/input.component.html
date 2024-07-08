@@ -4,7 +4,7 @@
 [attr.defaultValue]="defaultValue" 
 [attr.name]="name"
 (keyup)="onChange($event)"
-(blur)="onBlur()"
+(blur)="onBlur(name)"
 [(ngModel)]="ngModel"
 >
 <ng-content></ng-content>

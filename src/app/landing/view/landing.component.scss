@@ -1,5 +1,11 @@
 @import "src/styles/types";
 @import "src/styles/colors";
+@mixin multiple-lines {
+  flex-direction: column;
+  > * {
+    width: 100%;
+  }
+}
 :host {
   display: block;
   min-height: 100vh;
@@ -12,6 +18,10 @@
     justify-content: space-between;
     align-items: center;
 
+    @container (max-width: 900px) {
+      padding-inline: 5%;
+    }
+
     &__wrap {
       width: 60%;
 
@@ -21,36 +31,64 @@
       @container (max-width: 900px) {
         width: 100%;
       }
+      .landing__form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        @container (max-width: 1250px) {
+          @include multiple-lines;
+        }
+        @container (max-width: 700px) {
+          @include multiple-lines;
+        }
+        @container (min-width: 701px) and (max-width: 900px) {
+          flex-direction: unset;
+          > * {
+            width: unset;
+          }
+        }
+      }
+
       app-button {
-        margin-left: 10px;
+        // margin-left: 10px;
       }
       img {
         width: 70%;
+        @container (max-width: 700px) {
+          width: 100%;
+        }
       }
       p {
         width: 80%;
         font-size: $text;
         color: $textColor;
         line-height: 1.5;
+        @container (max-width: 700px) {
+          width: 100%;
+        }
       }
       app-input {
         position: relative;
+        // margin-left: 10px;
       }
-      .search__suggestions {
+      .search__suggestion {
         position: absolute;
-        &:matches([name='Serie 1']) {
-          left: 0;
-        }
-        width: 100%;
-        // min-height: 100px;
+        left: 0;
         background-color: rgb(255, 255, 255, 0.4);
-        border: 1px solid white;
         backdrop-filter: blur(5px);
+        border: 1px solid white;
         margin-top: 5px;
         box-shadow: 2px 2px 5px 0 rgb(0, 0, 0, 0.1);
         -webkit-box-shadow: 2px 2px 5px 0 rgb(0, 0, 0, 0.1);
-      
-        .search__suggestion {
+        &--first,
+        &--second,
+        &--watchList {
+          &:matches([name="Serie 1"]) {
+            left: 0;
+          }
+          width: 100%;
+          // min-height: 100px;
           padding: 10px 15px;
           transition: 0.2s;
           &:hover {

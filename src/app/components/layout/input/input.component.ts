@@ -32,7 +32,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: HTMLInputElement["type"] = "text"
   @Input() name!: HTMLInputElement["name"]
   @Input() onChange!: (e: Event) => void
-  @Input() onBlur!: () => void
+  @Input() onBlur!: (val: string) => void
   @Input() ngModel!: string
   value: any
 }
