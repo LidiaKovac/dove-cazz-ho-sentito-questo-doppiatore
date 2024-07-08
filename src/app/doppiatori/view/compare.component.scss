@@ -1,0 +1,41 @@
+@import "/src/styles/colors";
+
+:host {
+    display: block;
+    padding-inline: 50px;
+    padding-block: 20px;
+
+    h1 {
+        color: $primary;
+        span {
+            position: relative;
+            img {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+            }
+
+        }
+    }
+    h2 {
+        font-weight: normal;
+        span {
+            font-weight: bold;
+            color: $primary;
+        }
+    }
+    app-input {
+        position: relative;
+    }
+    .compare__wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 20px;
+        > * {
+            flex: 0 1 calc(50% - 20px);
+        }
+    }
+}

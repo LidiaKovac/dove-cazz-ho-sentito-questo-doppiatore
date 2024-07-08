@@ -1,0 +1,68 @@
+<h1>
+  Dove
+  <span>
+    cazzo
+    <img src="../../../assets/strike.png" />
+  </span>
+  hai sentito questo doppiatore?!
+</h1>
+<h2>
+  <span>
+    {{ title }}
+  </span>
+  &
+  <span>
+    {{ compareTo }}
+  </span>
+  — Doppiatori in comune
+</h2>
+<div class="compare__search">
+  <app-input
+    name="showOneQuery"
+    dataSuggestionsVar="suggestionsOne"
+    placeholder="Inserisci serie"
+    [onChange]="getSuggestions"
+    [onBlur]="emptySuggestions"
+    [ngModel]="showOneQuery"
+    [autocomplete]="'off'"
+  >
+    <div class="search__suggestion" *ngIf="suggestionsOne.length > 0">
+      <div
+        class="search__suggestion--first"
+        *ngFor="let sugg of suggestionsOne"
+        id="showOneQuery"
+        (click)="pickSuggestion($event)"
+      >
+        {{ sugg }}
+      </div>
+    </div>
+  </app-input>
+  <app-input
+    name="showTwoQuery"
+    dataSuggestionsVar="suggestionsTwo"
+    placeholder="Inserisci serie"
+    [onChange]="getSuggestions"
+    [onBlur]="emptySuggestions"
+    [ngModel]="showTwoQuery"
+    [autocomplete]="'off'"
+  >
+    <div class="search__suggestion" *ngIf="suggestionsTwo.length > 0">
+      <div
+        class="search__suggestion--second"
+        *ngFor="let sugg of suggestionsTwo"
+        id="showTwoQuery"
+        (click)="pickSuggestion($event)"
+      >
+        {{ sugg }}
+      </div>
+    </div>
+  </app-input>
+  <app-button [onClick]="navigateToComparison">Cerca</app-button>
+</div>
+<div class="compare__wrap">
+  <app-compare-card
+    *ngFor="let doppiatore of doppiatori"
+    [name]="doppiatore.name"
+    [works]="doppiatore.works"
+  ></app-compare-card>
+</div>

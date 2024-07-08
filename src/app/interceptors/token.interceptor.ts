@@ -30,7 +30,8 @@ export class TokenInterceptor implements HttpInterceptor {
     });
     
     return next.handle(clone).pipe(catchError((err:HttpErrorResponse) => {
-      if(err.status === 401 && !this.router.url.includes("landing")) {
+      const EXCLUDED_URLS = ["/landing", "/compare"] 
+      if(err.status === 401 && !EXCLUDED_URLS.some(url => this.router.url.includes(url))) {
         this.router.navigate(["/auth"])
       }
       throw err

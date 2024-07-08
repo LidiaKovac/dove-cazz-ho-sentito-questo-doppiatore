@@ -31,8 +31,10 @@ export class InputComponent implements ControlValueAccessor {
   @Input() defaultValue: string | null = null
   @Input() type: HTMLInputElement["type"] = "text"
   @Input() name!: HTMLInputElement["name"]
-  @Input() onChange!: (e: Event) => void
+  @Input() onChange!: (e: Event, input:string) => void
   @Input() onBlur!: (val: string) => void
   @Input() ngModel!: string
+  @Input() autocomplete!: "on" | "off"
+  @Input() dataSuggestionsVar!: string
   value: any
 }

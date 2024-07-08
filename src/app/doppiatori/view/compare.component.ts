@@ -1,26 +1,42 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { of, switchMap } from 'rxjs';
+import { DoppiatoriService } from '../doppiatori.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { DoppiatoriService } from 'src/app/doppiatori/doppiatori.service';
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss'],
+  selector: 'app-compare',
+  templateUrl: './compare.component.html',
+  styleUrls: ['./compare.component.scss'],
 })
-export class LandingComponent {
-  isLogged!: boolean;
+export class CompareComponent {
+  doppiatori: ICompare[] = [];
+  title!: string;
+  compareTo!: string;
+
   showOneQuery: string = '';
   showTwoQuery: string = '';
-  watchListQuery: string = '';
   suggestionsOne: string[] = [];
   suggestionsTwo: string[] = [];
-  suggestionsWatchList: string[] = [];
+
+  isLogged!: boolean;
+
   constructor(
-    private authSrv: AuthService,
     private doppiatoriSrv: DoppiatoriService,
+    private authSrv: AuthService,
+    private route: ActivatedRoute,
   ) {
+    this.route.queryParams
+      .pipe(
+        switchMap((qp) => {
+          this.title = qp['title'];
+          this.compareTo = qp['compareTo'];
+          return this.doppiatoriSrv.getComparison(qp['title'], qp['compareTo']);
+        }),
+      )
+      .subscribe((res) => {
+        this.doppiatori = res;
+      });
     this.authSrv.recoverLoggedUser().subscribe((user) => {
       this.isLogged = !!user;
     });
@@ -30,21 +46,15 @@ export class LandingComponent {
     this.doppiatoriSrv.showTwoQuery.subscribe(
       (res) => (this.showTwoQuery = res),
     );
-    this.doppiatoriSrv.watchListQuery.subscribe(
-      (res) => (this.watchListQuery = res),
-    );
     this.doppiatoriSrv.suggestionsOne.subscribe(
       (res) => (this.suggestionsOne = res),
     );
     this.doppiatoriSrv.suggestionsTwo.subscribe(
       (res) => (this.suggestionsTwo = res),
     );
-    this.doppiatoriSrv.suggestionsWatchList.subscribe(
-      (res) => (this.suggestionsWatchList = res),
-    );
   }
 
-  getSuggestions = (ev: Event, varName:string) => {
+  getSuggestions = (ev: Event, varName: string) => {
     this.doppiatoriSrv.fetchSuggestions(ev, varName);
   };
 
@@ -59,8 +69,4 @@ export class LandingComponent {
   navigateToComparison = () => {
     this.doppiatoriSrv.navigateToComparison();
   };
-
-  logout() {
-    this.authSrv.logout();
-  }
 }

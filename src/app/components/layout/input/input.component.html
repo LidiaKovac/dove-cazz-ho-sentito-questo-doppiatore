@@ -1,10 +1,12 @@
-<input 
-[attr.type]="type" 
-[attr.placeholder]="placeholder" 
-[attr.defaultValue]="defaultValue" 
-[attr.name]="name"
-(keyup)="onChange($event)"
-(blur)="onBlur(name)"
-[(ngModel)]="ngModel"
->
+<input
+  [attr.type]="type"
+  [attr.placeholder]="placeholder"
+  [attr.defaultValue]="defaultValue"
+  [attr.name]="name"
+  (keyup)="onChange($event, dataSuggestionsVar)"
+  (blur)="onBlur(dataSuggestionsVar)"
+  [(ngModel)]="ngModel"
+  [attr.autocomplete]="autocomplete"
+  [attr.dataset.suggestion]="dataSuggestionsVar"
+/>
 <ng-content></ng-content>

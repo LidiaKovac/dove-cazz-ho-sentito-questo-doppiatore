@@ -7,14 +7,16 @@
   border: 1px solid $primary;
   border-radius: 5px;
   padding: 35px;
+  height: 100%;
   &__chars {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
-    > * {
-      flex: 1 0 200px;
-    }
+    
+    // > * {
+    //   flex: 1 0 30%;
+    // }
   }
 }

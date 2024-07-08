@@ -10,6 +10,15 @@ const routes: Routes = [
   {
     path: "landing",
     loadChildren: () => import("./landing/landing.module").then(c => c.LandingModule),
+  },
+  {
+    path: "",
+    redirectTo: "landing",
+    pathMatch: "full"
+  },
+  {
+    path: "compare",
+    loadChildren: () => import("./doppiatori/doppiatori.module").then(c => c.DoppiatoriModule)
   }
 ];
 

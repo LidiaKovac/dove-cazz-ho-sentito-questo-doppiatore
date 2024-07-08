@@ -7,5 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [CompareCardComponent, SingleCharacterCardComponent],
   imports: [CommonModule, HttpClientModule],
+  exports: [CompareCardComponent, SingleCharacterCardComponent]
 })
 export class CharacterModule {}
