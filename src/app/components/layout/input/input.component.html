@@ -6,6 +6,7 @@
   (keyup)="onChange($event, dataSuggestionsVar)"
   (blur)="onBlur(dataSuggestionsVar)"
   [(ngModel)]="ngModel"
+  [attr.value]="defaultValue"
   [attr.autocomplete]="autocomplete"
   [attr.dataset.suggestion]="dataSuggestionsVar"
 />

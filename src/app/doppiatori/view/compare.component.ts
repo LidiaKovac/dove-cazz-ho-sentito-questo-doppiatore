@@ -11,8 +11,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class CompareComponent {
   doppiatori: ICompare[] = [];
-  title!: string;
-  compareTo!: string;
+
+  title:string = ""
+  compareTo:string = ""
 
   showOneQuery: string = '';
   showTwoQuery: string = '';
@@ -29,7 +30,9 @@ export class CompareComponent {
     this.route.queryParams
       .pipe(
         switchMap((qp) => {
+          this.showOneQuery = qp['title'];
           this.title = qp['title'];
+          this.showTwoQuery = qp['compareTo'];
           this.compareTo = qp['compareTo'];
           return this.doppiatoriSrv.getComparison(qp['title'], qp['compareTo']);
         }),

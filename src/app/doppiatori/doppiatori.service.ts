@@ -37,25 +37,20 @@ export class DoppiatoriService {
   public fetchSuggestions = (ev: Event, varName:string) => {
     const target = ev.target as HTMLInputElement;
     this[target.name].next(target.value);
-    console.log(target.name);
     if (this[target.name].getValue().length % 3 && target.value.length > 3) {
       this.getSuggestions(this[target.name].getValue(), varName).subscribe();
     }
   };
 
   emptySuggestions = (input: string) => {
-    console.log('closing');
     setTimeout(() => {
-      console.log(input);
       this[input].next([]);
     }, 300);
   };
 
   pickSuggestion({ target }: Event) {
     const targetAsDiv = target as HTMLDivElement;
-    console.log(this[targetAsDiv.id], targetAsDiv.id);
     this[targetAsDiv.id].next(targetAsDiv.innerText);
-    console.log(this[targetAsDiv.id]);
   }
 
   navigateToComparison = () => {
