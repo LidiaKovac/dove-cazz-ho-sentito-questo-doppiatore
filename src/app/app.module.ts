@@ -7,10 +7,16 @@ import { CharacterModule } from './characters/character.module';
 import { AuthModule } from './auth/auth.module';
 import { LandingModule } from './landing/landing.module';
 import { DoppiatoriModule } from './doppiatori/doppiatori.module';
+import { NgIconsModule } from '@ng-icons/core';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
+import { ionHomeOutline } from '@ng-icons/ionicons';
+import { IonicModule } from '@ionic/angular';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +24,9 @@ import { DoppiatoriModule } from './doppiatori/doppiatori.module';
     CharacterModule,
     AuthModule,
     LandingModule,
-    DoppiatoriModule
+    DoppiatoriModule,
+    NgIconsModule.withIcons({ionHomeOutline}),
+    IonicModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

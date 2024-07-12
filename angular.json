@@ -27,10 +27,19 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "node_modules/@ionic/angular/css/core.css"
+              }
+
             ],
             "scripts": []
           },
@@ -96,7 +105,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -133,11 +147,46 @@
             ],
             "outputDir": "storybook-static"
           }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "dove-cazz-ho-sentito-questo-doppiatore-2:ionic-cordova-build",
+            "devServerTarget": "dove-cazz-ho-sentito-questo-doppiatore-2:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "dove-cazz-ho-sentito-questo-doppiatore-2:ionic-cordova-build:production",
+              "devServerTarget": "dove-cazz-ho-sentito-questo-doppiatore-2:serve:production"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "dove-cazz-ho-sentito-questo-doppiatore-2:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dove-cazz-ho-sentito-questo-doppiatore-2:build:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "6e72754b-453f-40fa-9da2-576426926e12"
+    "analytics": "6e72754b-453f-40fa-9da2-576426926e12",
+    "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ]
+  },
+  "schematics": {
+    "@ionic/angular-toolkit:component": {
+      "styleext": "scss"
+    },
+    "@ionic/angular-toolkit:page": {
+      "styleext": "scss"
+    }
   }
 }
