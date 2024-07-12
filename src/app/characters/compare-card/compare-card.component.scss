@@ -2,7 +2,7 @@
 
 .compare-card {
   // max-width: 75%;
-  max-width: 600px;
+  // max-width: 600px;
   background-color: rgb(183, 212, 255, 0.5);
   backdrop-filter: blur(4);
   border: 1px solid $primary;
@@ -15,12 +15,13 @@
   &__chars {
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
     gap: 20px;
     flex-wrap: wrap;
-    
-    // > * {
-    //   flex: 1 0 30%;
-    // }
+    min-height: 80%;
+
+    > * {
+      flex: 1 0 30%;
+    }
   }
 }

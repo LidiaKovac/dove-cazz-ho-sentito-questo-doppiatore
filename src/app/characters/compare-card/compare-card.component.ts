@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class CompareCardComponent {
   @Input() name:ICompare['name'] = "Marco Rossi"
-  @Input() works: ICompare['works'] = []
+  @Input() characters: ICompare['characters'] = []
  }

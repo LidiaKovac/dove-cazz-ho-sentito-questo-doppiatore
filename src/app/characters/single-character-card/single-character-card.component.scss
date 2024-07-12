@@ -1,11 +1,11 @@
 @import "/src/styles/colors";
 @import "/src/styles/types";
 :host {
-  height: 100%;
+  // height: 100%;
   .card {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(255, 255, 255, 0.4);
-    max-width: 180px;
+    // max-width: 180px;
     min-width: 150px;
     height: 100%;
     display: flex;
@@ -23,7 +23,7 @@
       border-radius: 50%;
       position: relative;
       img {
-        max-width: 100%;
+        width: 100%;
         aspect-ratio: 1/1;
         object-fit: cover;
         z-index: 10;
@@ -66,6 +66,8 @@
       text-overflow: ellipsis;
       font-size: $body;
       margin: 0;
+      text-align: center;
+
     }
   }
 }

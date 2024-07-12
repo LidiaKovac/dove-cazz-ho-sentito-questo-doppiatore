@@ -1,15 +1,14 @@
 //! API
 
 interface ICompare {
-  doppiatore: string;
+  img: string
   name: string;
-  works: ICompareWork[];
+  characters: ICompareWork[];
 }
 
 interface ICompareWork {
-  work: string;
-  character: string;
-  characterImg: string;
+  character: ICharacter[];
+  title: string;
 }
 
 //! AUTH
@@ -33,4 +32,11 @@ interface User extends Signup {
   role: 'USER' | 'ADMIN';
 
   seen: any[];
+}
+
+interface ICharacter {
+  _id: string,
+  name: string,
+  wikiSlug: string,
+  img: string
 }
