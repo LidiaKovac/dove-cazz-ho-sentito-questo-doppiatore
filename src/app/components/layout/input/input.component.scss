@@ -1,4 +1,5 @@
 @import "src/styles/types";
+@import "src/styles/colors";
 
 input {
   padding: 15px;
@@ -8,4 +9,7 @@ input {
   box-shadow: inset 2px 2px 5px 0px rgb(0, 0, 0, 0.08);
   -webkit-box-shadow: inset 2px 2px 5px 0px rgb(0, 0, 0, 0.08);
   width: inherit;
+  &.invalid {
+    outline: 3px solid $accent;
+  }
 }

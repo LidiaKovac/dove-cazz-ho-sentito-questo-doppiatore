@@ -10,5 +10,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() value!:string
-  @Input() onClick!: () => void
+  @Input() onClick: () => void = () => 0
+  @Input() type!: "button" | "submit" | "reset"
 }

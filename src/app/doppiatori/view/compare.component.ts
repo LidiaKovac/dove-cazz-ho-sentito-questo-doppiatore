@@ -3,6 +3,7 @@ import { DoppiatoriService } from '../doppiatori.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-compare',
@@ -12,8 +13,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class CompareComponent {
   doppiatori: ICompare[] = [];
 
-  title:string = ""
-  compareTo:string = ""
+  title: string = ""
+  compareTo: string = ""
 
   showOneQuery: string = '';
   showTwoQuery: string = '';
@@ -21,9 +22,11 @@ export class CompareComponent {
   suggestionsTwo: string[] = [];
 
   isLogged!: boolean;
+  isLoading!: boolean;
 
   constructor(
     private doppiatoriSrv: DoppiatoriService,
+    private loadingSrv: LoadingService,
     private authSrv: AuthService,
     private route: ActivatedRoute,
   ) {
@@ -55,6 +58,7 @@ export class CompareComponent {
     this.doppiatoriSrv.suggestionsTwo.subscribe(
       (res) => (this.suggestionsTwo = res),
     );
+    this.loadingSrv.$loading.asObservable().subscribe(val => this.isLoading = val)
   }
 
   getSuggestions = (ev: Event, varName: string) => {

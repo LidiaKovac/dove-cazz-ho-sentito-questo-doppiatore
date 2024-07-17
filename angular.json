@@ -35,10 +35,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              {
-                "input": "node_modules/@ionic/angular/css/core.css"
-              }
+              "src/styles.scss"
+
 
             ],
             "scripts": []

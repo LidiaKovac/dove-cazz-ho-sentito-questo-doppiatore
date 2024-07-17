@@ -1,0 +1,12 @@
+<div [class]="classList.join(' ')" [ngClass]="{
+  'alert--info': type === 'info',
+  'alert--alert': type === 'alert',
+  'alert--error': type === 'error',
+}">
+  <div class="close">
+    <ion-icon name="close" (click)="deleteSelf()"></ion-icon>
+  </div>
+  <div class="alert__body">
+    <ng-content></ng-content>
+  </div>
+</div>

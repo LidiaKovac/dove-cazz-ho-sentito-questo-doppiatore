@@ -22,7 +22,7 @@ img {
 }
 
 a {
-  color: $primary
+  color: $primary;
 }
 
 .search__suggestion {
@@ -38,7 +38,6 @@ a {
   &--first,
   &--second,
   &--watchList {
-    
     width: 100%;
     // min-height: 100px;
     padding: 10px 15px;
@@ -46,5 +45,19 @@ a {
     &:hover {
       background-color: lighten($primary, 25%);
     }
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 120px;
+  height: 20px;
+  border-radius: 20px;
+  background: linear-gradient($accent 0 0) 0/0% no-repeat $primary;
+  animation: l2 2s infinite linear;
+}
+@keyframes l2 {
+  100% {
+    background-size: 110%;
   }
 }

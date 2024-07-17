@@ -40,3 +40,15 @@ interface ICharacter {
   wikiSlug: string,
   img: string
 }
+
+
+//!UTILS
+
+interface Alert {
+  val: string,
+  id: string,
+  type: "info" | "error" | "alert"
+}
+
+
+type IValidator = (v:string) => boolean

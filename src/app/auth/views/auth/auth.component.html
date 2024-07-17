@@ -26,20 +26,22 @@
       </div>
     </ng-template>
   </div>
-  <form class="auth__form-login" (submit)="handleLogin($event)">
+  <form class="auth__form-login" (ngSubmit)="handleLogin($event)">
     <app-input type="email" name="email" placeholder="Email"></app-input>
     <app-input type="password" name="password" placeholder="Password"></app-input>
-    <app-button>Login</app-button>
+    <app-button [type]="'submit'">Login</app-button>
   </form>
 
   <form class="auth__form-login" (submit)="handleRegister($event)">
-    <app-input type="email" name="email" placeholder="Email"></app-input>
+    <app-input type="email" name="email" placeholder="Email"   ></app-input>
     <app-input type="text" name="name" placeholder="Nome"></app-input>
     <app-input type="text" name="lastName" placeholder="Cognome"></app-input>
     <app-input
       type="password"
       name="password"
       placeholder="Password"
+      [validatorFn]="passValidator()"
+      validatorMsg="La password deve contenere almeno una lettera maiuscola, un carattere speciale ed essere lunga almeno 8 caratteri"
     ></app-input>
     <app-input
       type="password"

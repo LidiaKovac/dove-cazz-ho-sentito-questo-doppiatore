@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +19,10 @@ export class DoppiatoriService {
   constructor(
     private http: HttpClient,
     private router: Router,
-  ) {}
+    private loadingSrv: LoadingService
+  ) { }
 
-  private getSuggestions(query: string, input:string) {
+  private getSuggestions(query: string, input: string) {
     return this.http
       .get<
         string[]
@@ -29,12 +31,15 @@ export class DoppiatoriService {
   }
 
   public getComparison(title: string, title2: string) {
+    this.loadingSrv.setLoading = true
     return this.http.get<ICompare[]>(
       `${environment.url}doppiatori/compare?work=${title}&compareTo=${title2}`,
-    );
+    ).pipe(tap(() => {
+      this.loadingSrv.setLoading = false
+    }));
   }
 
-  public fetchSuggestions = (ev: Event, varName:string) => {
+  public fetchSuggestions = (ev: Event, varName: string) => {
     const target = ev.target as HTMLInputElement;
     this[target.name].next(target.value);
     if (this[target.name].getValue().length % 3 && target.value.length > 3) {

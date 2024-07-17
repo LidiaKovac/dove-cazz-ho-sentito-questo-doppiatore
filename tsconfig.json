@@ -23,7 +23,8 @@
       "ES2022",
       "dom"
     ],
-    "typeRoots": ["./src/app/types"]
+    "typeRoots": ["./src/app/types"],
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,13 +1,20 @@
 <input
+  #input
   [attr.type]="type"
   [attr.placeholder]="placeholder"
   [attr.defaultValue]="defaultValue"
   [attr.name]="name"
   (keyup)="onChange($event, dataSuggestionsVar)"
-  (blur)="onBlur(dataSuggestionsVar)"
+  (blur)="onBlur(dataSuggestionsVar); validator(input)"
   [(ngModel)]="ngModel"
   [attr.value]="defaultValue"
   [attr.autocomplete]="autocomplete"
   [attr.dataset.suggestion]="dataSuggestionsVar"
+  [ngClass]="{
+    'invalid': !isValid
+  }"
 />
+<small class="error" *ngIf="!isValid">
+  {{ validatorMsg }}
+</small>
 <ng-content></ng-content>
