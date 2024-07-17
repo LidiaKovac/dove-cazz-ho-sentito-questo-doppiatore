@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private loadingSrv: LoadingService
   ) {
     this.getMe().subscribe();
   }
@@ -60,6 +62,30 @@ export class AuthService {
       }),
     );
   }
+
+  importTrakt(username: string) {
+    this.loadingSrv.setLoading = true
+    return this.http.put(`${environment.url}user/me/import/trakt/${username}`, {}).pipe(
+      tap(() => {
+        this.loadingSrv.setLoading = false
+      })
+    )
+  }
+
+  importLetterboxd(fd: FormData) {
+    this.loadingSrv.setLoading = true
+    return this.http.put<IImport>(`${environment.url}user/me/import/letterboxd`, fd).pipe(
+      tap(() => {
+        this.loadingSrv.setLoading = false
+      }))
+  }
+
+  addToSeen(title:string) {
+    return this.http.get<IWork>(`${environment.url}works?query=${title}`).pipe(switchMap((res) => {
+      return this.http.put<IImport>(`${environment.url}user/me/watch/${res._id}`, {})
+    }))
+  }
+
 
   logout() {
     this.$user.next(null);

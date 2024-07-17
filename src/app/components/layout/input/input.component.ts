@@ -40,12 +40,13 @@ export class InputComponent implements ControlValueAccessor {
   value: any
   @Input() validatorFn: (v: string) => boolean = () => true
   @Input() validatorMsg!: string
+  @Input() accept!: string
+  @Input() autofocus!: boolean
 
   isValid = true
 
 
   validator(input: HTMLInputElement) {
-    console.log(this.validatorFn(input.value), input.value)
     this.isValid = this.validatorFn(input.value)
     return this.isValid
   }

@@ -16,6 +16,9 @@ export class DoppiatoriService {
   suggestionsOne = new BehaviorSubject<string[]>([]);
   suggestionsTwo = new BehaviorSubject<string[]>([]);
   suggestionsWatchList = new BehaviorSubject<string[]>([]);
+
+  suggestions = new BehaviorSubject<string[]>([])
+  query = new BehaviorSubject<string>('')
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -56,6 +59,7 @@ export class DoppiatoriService {
   pickSuggestion({ target }: Event) {
     const targetAsDiv = target as HTMLDivElement;
     this[targetAsDiv.id].next(targetAsDiv.innerText);
+    return targetAsDiv.innerText
   }
 
   navigateToComparison = () => {

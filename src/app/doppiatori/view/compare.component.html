@@ -17,8 +17,13 @@
   — Doppiatori in comune
 </h2>
 <div class="compare__search">
-  <app-input name="showOneQuery" dataSuggestionsVar="suggestionsOne" placeholder="Inserisci serie"
-    [onChange]="getSuggestions" [onBlur]="emptySuggestions" [ngModel]="showOneQuery" [autocomplete]="'off'">
+  <app-input name="showOneQuery"
+  dataSuggestionsVar="suggestionsOne"
+  placeholder="Inserisci serie"
+  [onChange]="getSuggestions"
+  [onBlur]="emptySuggestions"
+  [ngModel]="showOneQuery"
+  [autocomplete]="'off'">
     <ng-template #loading>
       <div class="loader"></div>
     </ng-template>

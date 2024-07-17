@@ -7,12 +7,14 @@
   (keyup)="onChange($event, dataSuggestionsVar)"
   (blur)="onBlur(dataSuggestionsVar); validator(input)"
   [(ngModel)]="ngModel"
-  [attr.value]="defaultValue"
   [attr.autocomplete]="autocomplete"
   [attr.dataset.suggestion]="dataSuggestionsVar"
   [ngClass]="{
-    'invalid': !isValid
+    invalid: !isValid,
   }"
+  [attr.accept]="accept"
+  [attr.value]="value"
+  [attr.autofocus]="autofocus"
 />
 <small class="error" *ngIf="!isValid">
   {{ validatorMsg }}

@@ -11,6 +11,18 @@ interface ICompareWork {
   title: string;
 }
 
+interface IImport {
+  amount: number
+  titles: string[]
+}
+
+interface IWork {
+  _id: string
+  title: string
+  poster: string
+  wikiSlug: string
+}
+
 //! AUTH
 
 interface Login {
@@ -51,4 +63,4 @@ interface Alert {
 }
 
 
-type IValidator = (v:string) => boolean
+type IValidator = (v: string) => boolean
