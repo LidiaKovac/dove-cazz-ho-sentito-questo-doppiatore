@@ -9,27 +9,24 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './suggestion-input.component.html',
   styleUrls: ['./suggestion-input.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, InputComponent]
+  imports: [CommonModule, FormsModule, InputComponent],
 })
-export class SuggestionInputComponent{
-  @Input() dataSuggestionsVar!:string
-  @Input() placeholder!:string
-  @Input() onChange!:(ev:Event, varName:string) => any
-  @Input() onBlur!:(par:string) => any
-  @Input() autocomplete!:"on" | "off"
-  @Input() autofocus: boolean = false
-  @Input() showSuggestionsCondition: boolean = false
-  @Input() id!:string
+export class SuggestionInputComponent {
+  @Input() dataSuggestionsVar!: string;
+  @Input() placeholder!: string;
+  @Input() onChange!: (ev: Event, varName: string) => any;
+  @Input() onBlur!: (par: string) => any;
+  @Input() autocomplete!: 'on' | 'off';
+  @Input() autofocus: boolean = false;
+  @Input() showSuggestionsCondition: boolean = false;
+  @Input() id!: string;
 
   @ViewChild('appInput') input!: InputComponent;
 
   suggestions: string[] = [];
   query: string = '';
 
-
-  constructor(
-    private doppiatoriSrv:DoppiatoriService
-  ) {
+  constructor(private doppiatoriSrv: DoppiatoriService) {
     this.doppiatoriSrv.suggestions.subscribe((s) => (this.suggestions = s));
     this.doppiatoriSrv.query.subscribe((q) => (this.query = q));
   }
