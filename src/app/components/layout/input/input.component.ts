@@ -37,10 +37,11 @@ export class InputComponent implements ControlValueAccessor {
   @Input() ngModel!: string
   @Input() autocomplete!: "on" | "off"
   @Input() dataSuggestionsVar!: string
-  value: any
+  @Input() value: any
   @Input() validatorFn: (v: string) => boolean = () => true
   @Input() validatorMsg!: string
   @Input() accept!: string
+  @Input() id!: string
   @Input() autofocus!: boolean
 
   isValid = true

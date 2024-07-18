@@ -65,7 +65,7 @@ export class AuthService {
 
   importTrakt(username: string) {
     this.loadingSrv.setLoading = true
-    return this.http.put(`${environment.url}user/me/import/trakt/${username}`, {}).pipe(
+    return this.http.put<IImport>(`${environment.url}user/me/import/trakt/${username}`, {}).pipe(
       tap(() => {
         this.loadingSrv.setLoading = false
       })

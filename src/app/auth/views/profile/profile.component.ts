@@ -1,19 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { DoppiatoriService } from 'src/app/doppiatori/doppiatori.service';
+import { InputComponent } from 'src/app/components/layout/input/input.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements AfterViewInit {
   username: string = '';
   isLoading!: boolean;
-  notFound: string[] = [];
+  notFound: string[] = ['1', '2', '3'];
   suggestions: string[] = [];
   query: string = '';
+
+  selected!: string;
+
+  @ViewChild('appInput') input!: InputComponent;
+
   constructor(
     private authSrv: AuthService,
     private loadingSrv: LoadingService,
@@ -26,9 +40,15 @@ export class ProfileComponent {
     this.doppiatoriSrv.query.subscribe((q) => (this.query = q));
   }
 
+  ngAfterViewInit() {
+    // console.log(this.inputs)
+  }
+
   importTrakt = (ev: Event) => {
     const fd = new FormData(ev.target as HTMLFormElement);
-    this.authSrv.importTrakt(fd.get('username') as string).subscribe();
+    this.authSrv.importTrakt(fd.get('username') as string).subscribe((nf) => {
+      this.notFound = nf.titles;
+    });
   };
 
   importLetterboxd(ev: Event) {
@@ -39,48 +59,36 @@ export class ProfileComponent {
     });
   }
 
-  toggleFind(ev: Event) {
-    const target = ev.target as HTMLButtonElement;
-    const li = target.closest('li');
-    li?.querySelector('app-input')?.classList.toggle('hide');
-    li?.querySelector('button.hide')?.classList.toggle('hide');
-    target.classList.toggle('hide');
-    const input = li?.querySelector('app-input input') as HTMLInputElement;
-    input.value = li!.id;
-    li?.querySelector('span')?.classList.toggle('hide');
+  toggleFind(show: string) {
+    this.selected = show;
+    setTimeout(() => {
+      if (this.input) {
+        this.input.value = show;
+      }
+    }, 100);
   }
 
   getSuggestions = (ev: Event) => {
     this.doppiatoriSrv.fetchSuggestions(ev, 'suggestions');
   };
   emptySuggestions() {
-    this.doppiatoriSrv.emptySuggestions("suggestions")
+    this.doppiatoriSrv.emptySuggestions('suggestions');
   }
 
   pickSuggestion(ev: Event) {
     const picked = this.doppiatoriSrv.pickSuggestion(ev);
-    const target = ev.target as HTMLButtonElement;
-    target.closest('app-input')!.querySelector('input')!.value = picked;
+    this.input.value = picked;
     setTimeout(() => {
       this.emptySuggestions();
-
     }, 500);
   }
 
   addToSeen(ev: Event, og: string) {
-    const target = ev.target as HTMLButtonElement;
-    const li = target.closest("li")
-      li?.classList.toggle("hide")
-      // li?.querySelector('app-input')?.classList.toggle('hide');
-      // li?.querySelector('button.hide')?.classList.toggle('hide');
-      // li?.querySelector('button.find')?.classList.toggle('hide');
     this.authSrv.addToSeen(this.query).subscribe(() => {
-      target.closest('li')!.remove();
       const found = this.notFound.findIndex((title) => title === og);
       if (found > -1) {
         this.notFound.splice(found, 1);
       }
-
-    })
+    });
   }
 }
