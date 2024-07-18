@@ -44,18 +44,6 @@ export class LandingComponent {
     );
   }
 
-  getSuggestions = (ev: Event, varName:string) => {
-    this.doppiatoriSrv.fetchSuggestions(ev, varName);
-  };
-
-  emptySuggestions = (input: string) => {
-    this.doppiatoriSrv.emptySuggestions(input);
-  };
-
-  pickSuggestion(ev: Event) {
-    this.doppiatoriSrv.pickSuggestion(ev);
-  }
-
   navigateToComparison = () => {
     this.doppiatoriSrv.navigateToComparison();
   };

@@ -12,7 +12,6 @@ export class AuthService {
   public $user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
     null,
   );
-  // public user = this.$user?.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -27,7 +26,6 @@ export class AuthService {
       .post<User>(`${environment.url}user/login`, data, { observe: 'response' })
       .pipe(
         tap((res) => {
-          // error handling
           this.$user?.next(res.body);
           this.router.navigate(['landing']);
           localStorage.setItem('doppiatori', res.headers.get('Authorization')!);
@@ -35,11 +33,7 @@ export class AuthService {
       );
   }
   signup(data: FormData) {
-    return this.http.post<User>(`${environment.url}user/register`, data).pipe(
-      tap((res) => {
-        // error handling
-      }),
-    );
+    return this.http.post<User>(`${environment.url}user/register`, data);
   }
 
   getMe() {

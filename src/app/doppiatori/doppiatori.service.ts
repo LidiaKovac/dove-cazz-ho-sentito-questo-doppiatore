@@ -17,13 +17,13 @@ export class DoppiatoriService {
   suggestionsTwo = new BehaviorSubject<string[]>([]);
   suggestionsWatchList = new BehaviorSubject<string[]>([]);
 
-  suggestions = new BehaviorSubject<string[]>([])
-  query = new BehaviorSubject<string>('')
+  suggestions = new BehaviorSubject<string[]>([]);
+  query = new BehaviorSubject<string>('');
   constructor(
     private http: HttpClient,
     private router: Router,
-    private loadingSrv: LoadingService
-  ) { }
+    private loadingSrv: LoadingService,
+  ) {}
 
   private getSuggestions(query: string, input: string) {
     return this.http
@@ -34,12 +34,16 @@ export class DoppiatoriService {
   }
 
   public getComparison(title: string, title2: string) {
-    this.loadingSrv.setLoading = true
-    return this.http.get<ICompare[]>(
-      `${environment.url}doppiatori/compare?work=${title}&compareTo=${title2}`,
-    ).pipe(tap(() => {
-      this.loadingSrv.setLoading = false
-    }));
+    this.loadingSrv.setLoading = true;
+    return this.http
+      .get<
+        ICompare[]
+      >(`${environment.url}doppiatori/compare?work=${title}&compareTo=${title2}`)
+      .pipe(
+        tap(() => {
+          this.loadingSrv.setLoading = false;
+        }),
+      );
   }
 
   public fetchSuggestions = (ev: Event, varName: string) => {
@@ -59,7 +63,7 @@ export class DoppiatoriService {
   pickSuggestion({ target }: Event) {
     const targetAsDiv = target as HTMLDivElement;
     this[targetAsDiv.id].next(targetAsDiv.innerText);
-    return targetAsDiv.innerText
+    return targetAsDiv.innerText;
   }
 
   navigateToComparison = () => {

@@ -18,7 +18,7 @@ const meta: Meta<CompareCardComponent> = {
       type: 'string',
     },
 
-    works: {
+    characters: {
       control: { type: 'object' },
     },
   },
@@ -52,28 +52,50 @@ type Story = StoryObj<CompareCardComponent>;
 export const Primary: Story = {
   args: {
     name: 'Stefano Crescentini',
-    works: [
+    characters: [
       {
-        work: 'Supernatural (serie televisiva)',
-        character: 'Jensen Ackles',
-        characterImg:
-          'https://source.boringavatars.com/beam/120/Jensen?colors=4d9de0,c9e6fe,ee7b30',
+        title: 'Supernatural (serie televisiva)',
+        character: [
+          {
+            _id: '',
+            wikiSlug: '',
+            name: 'Jensen Ackles',
+            img: 'https://source.boringavatars.com/beam/120/Jensen?colors=4d9de0,c9e6fe,ee7b30',
+          },
+        ],
       },
       {
-        work: 'Death Note',
-        character: 'Elle',
-        characterImg:
-          'https://source.boringavatars.com/beam/120/Elle?colors=4d9de0,c9e6fe,ee7b30',
-      }, {
-        work: 'Death Note',
-        character: 'Elle',
-        characterImg:
-          'https://source.boringavatars.com/beam/120/Elle?colors=4d9de0,c9e6fe,ee7b30',
-      }, {
-        work: 'Death Note',
-        character: 'Elle',
-        characterImg:
-          'https://source.boringavatars.com/beam/120/Elle?colors=4d9de0,c9e6fe,ee7b30',
+        title: 'Death Note',
+        character: [
+          {
+            _id: '',
+            wikiSlug: '',
+            name: 'Elle',
+            img: 'https://source.boringavatars.com/beam/120/Elle?colors=4d9de0,c9e6fe,ee7b30',
+          },
+        ],
+      },
+      {
+        title: 'Death Note',
+        character: [
+          {
+            _id: '',
+            wikiSlug: '',
+            name: 'Elle',
+            img: 'https://source.boringavatars.com/beam/120/Elle?colors=4d9de0,c9e6fe,ee7b30',
+          },
+        ],
+      },
+      {
+        title: 'Death Note',
+        character: [
+          {
+            _id: '',
+            wikiSlug: '',
+            name: 'Elle',
+            img: 'https://source.boringavatars.com/beam/120/Elle?colors=4d9de0,c9e6fe,ee7b30',
+          },
+        ],
       },
     ],
   },

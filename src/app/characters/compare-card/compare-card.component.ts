@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./compare-card.component.scss']
 })
 export class CompareCardComponent {
-  @Input() name:ICompare['name'] = "Marco Rossi"
+  @Input() name: ICompare['name'] = "Marco Rossi"
   @Input() characters: ICompare['characters'] = []
- }
+}

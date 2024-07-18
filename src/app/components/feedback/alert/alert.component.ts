@@ -9,26 +9,19 @@ import { AlertService } from './alert.service';
   styleUrls: ['./alert.component.scss'],
 })
 export class AlertComponent implements OnInit {
-  @Input() id: Alert["id"] = "0"
-  @Input() type: Alert["type"] = "info"
-  classList = ["alert"]
-  constructor(
-    private srv: AlertService
-  ) {
-
-
-  }
+  @Input() id: Alert['id'] = '0';
+  @Input() type: Alert['type'] = 'info';
+  classList = ['alert'];
+  constructor(private srv: AlertService) {}
   ngOnInit(): void {
-    setTimeout(this.deleteSelf, 3000)
+    setTimeout(this.deleteSelf, 3000);
   }
-
-
 
   deleteSelf = () => {
-    this.classList.push("deleting")
+    this.classList.push('deleting');
     setTimeout(() => {
-      this.classList.pop()
-      this.srv.deleteAlert(this.id)
-    }, 1000)
-  }
+      this.classList.pop();
+      this.srv.deleteAlert(this.id);
+    }, 1000);
+  };
 }

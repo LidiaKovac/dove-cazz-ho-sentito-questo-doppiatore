@@ -1,5 +1,5 @@
 <app-input
-  name="query"
+  [name]="name"
   dataSuggestionsVar="suggestions"
   placeholder="Serie, film o videogioco..."
   [onChange]="getSuggestions"
@@ -9,14 +9,11 @@
   [id]="id"
   #appInput
 >
-  <div
-    class="search__suggestion"
-    *ngIf="showSuggestionsCondition"
-  >
+  <div class="search__suggestion" *ngIf="shouldShow()">
     <div
       class="search__suggestion--first"
       *ngFor="let sugg of suggestions"
-      id="query"
+      [id]="name"
       (click)="pickSuggestion($event)"
     >
       {{ sugg }}

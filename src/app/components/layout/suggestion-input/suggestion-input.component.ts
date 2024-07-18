@@ -11,15 +11,14 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule, InputComponent],
 })
-export class SuggestionInputComponent {
+export class SuggestionInputComponent implements OnInit {
+  [key: string]: any;
   @Input() dataSuggestionsVar!: string;
   @Input() placeholder!: string;
-  @Input() onChange!: (ev: Event, varName: string) => any;
-  @Input() onBlur!: (par: string) => any;
   @Input() autocomplete!: 'on' | 'off';
   @Input() autofocus: boolean = false;
-  @Input() showSuggestionsCondition: boolean = false;
   @Input() id!: string;
+  @Input() name!: string;
 
   @ViewChild('appInput') input!: InputComponent;
 
@@ -30,17 +29,26 @@ export class SuggestionInputComponent {
     this.doppiatoriSrv.suggestions.subscribe((s) => (this.suggestions = s));
     this.doppiatoriSrv.query.subscribe((q) => (this.query = q));
   }
-  emptySuggestions() {
-    this.doppiatoriSrv.emptySuggestions('suggestions');
+
+  ngOnInit(): void {
+    this.doppiatoriSrv[this.dataSuggestionsVar].subscribe(
+      (res: string[]) => (this.suggestions = res),
+    );
   }
-  pickSuggestion(ev: Event) {
+  emptySuggestions = () => {
+    this.doppiatoriSrv.emptySuggestions(this.dataSuggestionsVar);
+  };
+  pickSuggestion = (ev: Event) => {
     const picked = this.doppiatoriSrv.pickSuggestion(ev);
     this.input.value = picked;
     setTimeout(() => {
       this.emptySuggestions();
     }, 500);
-  }
+  };
   getSuggestions = (ev: Event) => {
-    this.doppiatoriSrv.fetchSuggestions(ev, 'suggestions');
+    this.doppiatoriSrv.fetchSuggestions(ev, this.dataSuggestionsVar);
+  };
+  shouldShow = () => {
+    return this.suggestions.length > 0;
   };
 }

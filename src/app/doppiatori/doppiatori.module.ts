@@ -8,16 +8,14 @@ import { InputComponent } from '../components/layout/input/input.component';
 import { SuggestionInputComponent } from '../components/layout/suggestion-input/suggestion-input.component';
 
 @NgModule({
-  declarations: [
-    CompareComponent
-  ],
+  declarations: [CompareComponent],
   imports: [
     CommonModule,
     DoppiatoriRoutingModule,
     CharacterModule,
     ButtonComponent,
     InputComponent,
-    SuggestionInputComponent
-  ]
+    SuggestionInputComponent,
+  ],
 })
-export class DoppiatoriModule { }
+export class DoppiatoriModule {}

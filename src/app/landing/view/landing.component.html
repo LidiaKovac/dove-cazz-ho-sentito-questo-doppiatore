@@ -4,46 +4,22 @@
     <div class="landing__wrap-compare">
       <p>Cerca due serie per scoprire quali doppiatori hanno in comune</p>
       <div class="landing__form">
-        <app-input
+        <app-suggestion-input
           name="showOneQuery"
           dataSuggestionsVar="suggestionsOne"
           placeholder="Inserisci serie"
-          [onChange]="getSuggestions"
-          [onBlur]="emptySuggestions"
-          [ngModel]="showOneQuery"
           [autocomplete]="'off'"
         >
-          <div class="search__suggestion" *ngIf="suggestionsOne.length > 0">
-            <div
-              class="search__suggestion--first"
-              *ngFor="let sugg of suggestionsOne"
-              id="showOneQuery"
-              (click)="pickSuggestion($event)"
-            >
-              {{ sugg }}
-            </div>
-          </div>
-        </app-input>
-        <app-input
+        </app-suggestion-input>
+
+        <app-suggestion-input
           name="showTwoQuery"
           dataSuggestionsVar="suggestionsTwo"
           placeholder="Inserisci serie"
-          [onChange]="getSuggestions"
-          [onBlur]="emptySuggestions"
-          [ngModel]="showTwoQuery"
           [autocomplete]="'off'"
         >
-          <div class="search__suggestion" *ngIf="suggestionsTwo.length > 0">
-            <div
-              class="search__suggestion--second"
-              *ngFor="let sugg of suggestionsTwo"
-              id="showTwoQuery"
-              (click)="pickSuggestion($event)"
-            >
-              {{ sugg }}
-            </div>
-          </div>
-        </app-input>
+        </app-suggestion-input>
+
         <app-button [onClick]="navigateToComparison">Cerca</app-button>
       </div>
     </div>
@@ -53,29 +29,14 @@
         potresti averlo sentito:
       </p>
       <div class="landing__wrap-search">
-        <app-input
+        <app-suggestion-input
           name="watchListQuery"
           placeholder="Inserisci un titolo"
           dataSuggestionsVar="suggestionsWatchList"
-          [onChange]="getSuggestions"
-          [onBlur]="emptySuggestions"
-          [ngModel]="watchListQuery"
           [autocomplete]="'off'"
         >
-          <div
-            class="search__suggestion"
-            *ngIf="suggestionsWatchList.length > 0"
-          >
-            <div
-              class="search__suggestion--watchList"
-              *ngFor="let sugg of suggestionsWatchList"
-              id="watchListQuery"
-              (click)="pickSuggestion($event)"
-            >
-              {{ sugg }}
-            </div>
-          </div>
-        </app-input>
+        </app-suggestion-input>
+
         <app-button [onClick]="navigateToComparison">Cerca</app-button>
       </div>
     </section>

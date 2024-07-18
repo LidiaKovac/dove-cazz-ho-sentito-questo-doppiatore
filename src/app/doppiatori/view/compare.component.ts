@@ -13,8 +13,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class CompareComponent {
   doppiatori: ICompare[] = [];
 
-  title: string = ""
-  compareTo: string = ""
+  title: string = '';
+  compareTo: string = '';
 
   showOneQuery: string = '';
   showTwoQuery: string = '';
@@ -58,7 +58,9 @@ export class CompareComponent {
     this.doppiatoriSrv.suggestionsTwo.subscribe(
       (res) => (this.suggestionsTwo = res),
     );
-    this.loadingSrv.$loading.asObservable().subscribe(val => this.isLoading = val)
+    this.loadingSrv.$loading
+      .asObservable()
+      .subscribe((val) => (this.isLoading = val));
   }
 
   getSuggestions = (ev: Event, varName: string) => {

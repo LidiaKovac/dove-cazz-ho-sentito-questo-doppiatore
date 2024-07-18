@@ -46,7 +46,6 @@
             dataSuggestionsVar="suggestions"
             placeholder="Serie, film o videogioco..."
             [autocomplete]="'off'"
-            [showSuggestionsCondition]="suggestions.length > 0 && selected === show"
             [autofocus]="true"
             [id]="show"
             #appInput
@@ -62,7 +61,7 @@
           <button
             *ngIf="selected === show"
             class="save"
-            (click)="addToSeen($event, show)"
+            (click)="addToSeen(show)"
           >
             Save
           </button>

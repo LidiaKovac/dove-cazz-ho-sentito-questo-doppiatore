@@ -11,10 +11,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(
-    private router: Router
-
-  ) {}
+  constructor(private router: Router) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -25,16 +22,21 @@ export class TokenInterceptor implements HttpInterceptor {
     const clone = request.clone({
       headers: request.headers.set(
         'Authorization',
-        "Bearer " + localStorage.getItem('doppiatori') as string,
-      )
+        ('Bearer ' + localStorage.getItem('doppiatori')) as string,
+      ),
     });
-    
-    return next.handle(clone).pipe(catchError((err:HttpErrorResponse) => {
-      const EXCLUDED_URLS = ["/landing", "/compare"] 
-      if(err.status === 401 && !EXCLUDED_URLS.some(url => this.router.url.includes(url))) {
-        this.router.navigate(["/auth"])
-      }
-      throw err
-    }));
+
+    return next.handle(clone).pipe(
+      catchError((err: HttpErrorResponse) => {
+        const EXCLUDED_URLS = ['/landing', '/compare'];
+        if (
+          err.status === 401 &&
+          !EXCLUDED_URLS.some((url) => this.router.url.includes(url))
+        ) {
+          this.router.navigate(['/auth']);
+        }
+        throw err;
+      }),
+    );
   }
 }

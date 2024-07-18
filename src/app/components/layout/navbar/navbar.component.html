@@ -1,15 +1,24 @@
 <nav class="nav">
   <div class="nav__item"><ion-icon name="home-outline"></ion-icon> Home</div>
   <div class="nav__user-area" *ngIf="!isLogged; else profile">
-
-      <a routerLink="auth" [queryParams]="{
-        signup: false
-      }" class="nav__item">Login</a>
-      <a routerLink="auth" [queryParams]="{
-        signup: true
-      }" class="nav__item">Registrati</a>
+    <a
+      routerLink="auth"
+      [queryParams]="{
+        signup: false,
+      }"
+      class="nav__item"
+      >Login</a
+    >
+    <a
+      routerLink="auth"
+      [queryParams]="{
+        signup: true,
+      }"
+      class="nav__item"
+      >Registrati</a
+    >
   </div>
   <ng-template #profile>
-      <a routerLink="auth/user">Profile</a>
+    <a routerLink="auth/user">Profile</a>
   </ng-template>
 </nav>

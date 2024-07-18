@@ -20,8 +20,7 @@
   <app-suggestion-input
     dataSuggestionsVar="suggestionsOne"
     placeholder="Inserisci serie"
-    [onChange]="getSuggestions"
-    [onBlur]="emptySuggestions"
+    name="showOneQuery"
     [autocomplete]="'off'"
   >
   </app-suggestion-input>
@@ -30,11 +29,8 @@
     name="showTwoQuery"
     dataSuggestionsVar="suggestionsTwo"
     placeholder="Inserisci serie"
-    [onChange]="getSuggestions"
-    [onBlur]="emptySuggestions"
     [autocomplete]="'off'"
   >
-
   </app-suggestion-input>
   <app-button [onClick]="navigateToComparison">Cerca</app-button>
 </div>

@@ -17,7 +17,7 @@ import { InputComponent } from 'src/app/components/layout/input/input.component'
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements AfterViewInit {
+export class ProfileComponent {
   username: string = '';
   isLoading!: boolean;
   notFound: string[] = ['1', '2', '3'];
@@ -40,9 +40,6 @@ export class ProfileComponent implements AfterViewInit {
     this.doppiatoriSrv.query.subscribe((q) => (this.query = q));
   }
 
-  ngAfterViewInit() {
-    // console.log(this.inputs)
-  }
 
   importTrakt = (ev: Event) => {
     const fd = new FormData(ev.target as HTMLFormElement);
@@ -68,12 +65,7 @@ export class ProfileComponent implements AfterViewInit {
     }, 100);
   }
 
-
-
-
-
-
-  addToSeen(ev: Event, og: string) {
+  addToSeen(og: string) {
     this.authSrv.addToSeen(this.query).subscribe(() => {
       const found = this.notFound.findIndex((title) => title === og);
       if (found > -1) {

@@ -1,8 +1,11 @@
 <div class="auth__page">
-  <div class="panel" [ngClass]="{
+  <div
+    class="panel"
+    [ngClass]="{
       login: this.state,
       register: !this.state,
-    }">
+    }"
+  >
     <img src="../../../assets/titolo-sm.png" alt="" />
     <ul>
       <li>
@@ -25,7 +28,11 @@
   </div>
   <form class="auth__form-login" (ngSubmit)="handleLogin($event)">
     <app-input type="email" name="email" placeholder="Email"></app-input>
-    <app-input type="password" name="password" placeholder="Password"></app-input>
+    <app-input
+      type="password"
+      name="password"
+      placeholder="Password"
+    ></app-input>
     <app-button [type]="'submit'">Login</app-button>
   </form>
 
@@ -33,9 +40,18 @@
     <app-input type="email" name="email" placeholder="Email"></app-input>
     <app-input type="text" name="name" placeholder="Nome"></app-input>
     <app-input type="text" name="lastName" placeholder="Cognome"></app-input>
-    <app-input type="password" name="password" placeholder="Password" [validatorFn]="passValidator()"
-      validatorMsg="La password deve contenere almeno una lettera maiuscola, un carattere speciale ed essere lunga almeno 8 caratteri"></app-input>
-    <app-input type="password" name="confirmPassword" placeholder="Conferma password"></app-input>
+    <app-input
+      type="password"
+      name="password"
+      placeholder="Password"
+      [validatorFn]="passValidator()"
+      validatorMsg="La password deve contenere almeno una lettera maiuscola, un carattere speciale ed essere lunga almeno 8 caratteri"
+    ></app-input>
+    <app-input
+      type="password"
+      name="confirmPassword"
+      placeholder="Conferma password"
+    ></app-input>
     <app-button>Registrati</app-button>
   </form>
 </div>
