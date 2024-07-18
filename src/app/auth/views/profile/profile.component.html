@@ -13,7 +13,12 @@
     <div class="import__area">
       <h3>Trakt.tv</h3>
       <form class="input-group" (submit)="importTrakt($event)">
-        <app-input type="text" name="username" placeholder="Username Trakt.TV" [ngModel]="username"></app-input>
+        <app-input
+          type="text"
+          name="username"
+          placeholder="Username Trakt.TV"
+          [ngModel]="username"
+        ></app-input>
         <app-button>Save</app-button>
       </form>
 
@@ -24,8 +29,10 @@
       </form>
       <div class="overlay" *ngIf="isLoading">
         <div class="spinner"></div>
-        <small>Se hai visto tanti film potrebbe volerci un pochino di tempo... Abbi
-          pazienza!</small>
+        <small
+          >Se hai visto tanti film potrebbe volerci un pochino di tempo... Abbi
+          pazienza!</small
+        >
       </div>
     </div>
     <div class="not-found" *ngIf="notFound.length > 0">
@@ -33,20 +40,30 @@
       <ul>
         <li *ngFor="let show of notFound">
           <span *ngIf="selected !== show">{{ show }}</span>
-          <app-input *ngIf="selected === show" [defaultValue]="show" name="query" dataSuggestionsVar="suggestions"
-            [placeholder]="show" [onChange]="getSuggestions" [onBlur]="emptySuggestions" [autocomplete]="'off'"
-            [autofocus]="true" [id]="show" #appInput>
-            <div class="search__suggestion" *ngIf="suggestions.length > 0 && selected === show">
-              <div class="search__suggestion--first" *ngFor="let sugg of suggestions" id="query"
-                (click)="pickSuggestion($event)">
-                {{ sugg }}
-              </div>
-            </div>
-          </app-input>
-          <button *ngIf="selected !== show" (click)="toggleFind(show)" class="find">
+          <app-suggestion-input
+            *ngIf="selected === show"
+            name="query"
+            dataSuggestionsVar="suggestions"
+            placeholder="Serie, film o videogioco..."
+            [autocomplete]="'off'"
+            [showSuggestionsCondition]="suggestions.length > 0 && selected === show"
+            [autofocus]="true"
+            [id]="show"
+            #appInput
+          >
+          </app-suggestion-input>
+          <button
+            *ngIf="selected !== show"
+            (click)="toggleFind(show)"
+            class="find"
+          >
             Find
           </button>
-          <button *ngIf="selected === show" class="save" (click)="addToSeen($event, show)">
+          <button
+            *ngIf="selected === show"
+            class="save"
+            (click)="addToSeen($event, show)"
+          >
             Save
           </button>
         </li>

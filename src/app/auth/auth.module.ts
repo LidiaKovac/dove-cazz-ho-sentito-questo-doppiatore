@@ -8,6 +8,7 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
 import { InputComponent } from '../components/layout/input/input.component';
 import { ButtonComponent } from '../components/layout/button/button.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { SuggestionInputComponent } from '../components/layout/suggestion-input/suggestion-input.component';
 
 
 
@@ -22,6 +23,7 @@ import { ProfileComponent } from './views/profile/profile.component';
     FormsModule,
     AuthRoutingModule,
     InputComponent,
+    SuggestionInputComponent,
     ButtonComponent
   ],
   providers: [

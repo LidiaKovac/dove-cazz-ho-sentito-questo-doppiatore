@@ -1,0 +1,25 @@
+<app-input
+  name="query"
+  dataSuggestionsVar="suggestions"
+  placeholder="Serie, film o videogioco..."
+  [onChange]="getSuggestions"
+  [onBlur]="emptySuggestions"
+  [autocomplete]="'off'"
+  [autofocus]="true"
+  [id]="id"
+  #appInput
+>
+  <div
+    class="search__suggestion"
+    *ngIf="showSuggestionsCondition"
+  >
+    <div
+      class="search__suggestion--first"
+      *ngFor="let sugg of suggestions"
+      id="query"
+      (click)="pickSuggestion($event)"
+    >
+      {{ sugg }}
+    </div>
+  </div>
+</app-input>

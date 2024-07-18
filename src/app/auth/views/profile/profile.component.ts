@@ -68,20 +68,10 @@ export class ProfileComponent implements AfterViewInit {
     }, 100);
   }
 
-  getSuggestions = (ev: Event) => {
-    this.doppiatoriSrv.fetchSuggestions(ev, 'suggestions');
-  };
-  emptySuggestions() {
-    this.doppiatoriSrv.emptySuggestions('suggestions');
-  }
 
-  pickSuggestion(ev: Event) {
-    const picked = this.doppiatoriSrv.pickSuggestion(ev);
-    this.input.value = picked;
-    setTimeout(() => {
-      this.emptySuggestions();
-    }, 500);
-  }
+
+
+
 
   addToSeen(ev: Event, og: string) {
     this.authSrv.addToSeen(this.query).subscribe(() => {

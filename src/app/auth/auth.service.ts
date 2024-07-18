@@ -80,7 +80,7 @@ export class AuthService {
       }))
   }
 
-  addToSeen(title:string) {
+  addToSeen(title: string) {
     return this.http.get<IWork>(`${environment.url}works?query=${title}`).pipe(switchMap((res) => {
       return this.http.put<IImport>(`${environment.url}user/me/watch/${res._id}`, {})
     }))

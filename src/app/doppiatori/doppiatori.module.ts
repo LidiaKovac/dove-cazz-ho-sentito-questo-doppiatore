@@ -5,6 +5,7 @@ import { DoppiatoriRoutingModule } from './doppiatori-routing.module';
 import { CharacterModule } from '../characters/character.module';
 import { ButtonComponent } from '../components/layout/button/button.component';
 import { InputComponent } from '../components/layout/input/input.component';
+import { SuggestionInputComponent } from '../components/layout/suggestion-input/suggestion-input.component';
 
 @NgModule({
   declarations: [
@@ -14,8 +15,9 @@ import { InputComponent } from '../components/layout/input/input.component';
     CommonModule,
     DoppiatoriRoutingModule,
     CharacterModule,
-    ButtonComponent, 
-    InputComponent
+    ButtonComponent,
+    InputComponent,
+    SuggestionInputComponent
   ]
 })
 export class DoppiatoriModule { }

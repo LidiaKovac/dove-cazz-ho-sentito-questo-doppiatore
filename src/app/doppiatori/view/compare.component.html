@@ -17,36 +17,35 @@
   — Doppiatori in comune
 </h2>
 <div class="compare__search">
-  <app-input name="showOneQuery"
-  dataSuggestionsVar="suggestionsOne"
-  placeholder="Inserisci serie"
-  [onChange]="getSuggestions"
-  [onBlur]="emptySuggestions"
-  [ngModel]="showOneQuery"
-  [autocomplete]="'off'">
-    <ng-template #loading>
-      <div class="loader"></div>
-    </ng-template>
-    <div class="search__suggestion" *ngIf="suggestionsOne.length > 0 ">
-      <div class="search__suggestion--first" *ngFor="let sugg of suggestionsOne" id="showOneQuery"
-        (click)="pickSuggestion($event)">
-        {{ sugg }}
-      </div>
-    </div>
-  </app-input>
-  <app-input name="showTwoQuery" dataSuggestionsVar="suggestionsTwo" placeholder="Inserisci serie"
-    [onChange]="getSuggestions" [onBlur]="emptySuggestions" [ngModel]="showTwoQuery" [autocomplete]="'off'">
-    <div class="search__suggestion" *ngIf="suggestionsTwo.length > 0">
-      <div class="search__suggestion--second" *ngFor="let sugg of suggestionsTwo" id="showTwoQuery"
-        (click)="pickSuggestion($event)">
-        {{ sugg }}
-      </div>
-    </div>
-  </app-input>
+  <app-suggestion-input
+    dataSuggestionsVar="suggestionsOne"
+    placeholder="Inserisci serie"
+    [onChange]="getSuggestions"
+    [onBlur]="emptySuggestions"
+    [autocomplete]="'off'"
+  >
+  </app-suggestion-input>
+
+  <app-suggestion-input
+    name="showTwoQuery"
+    dataSuggestionsVar="suggestionsTwo"
+    placeholder="Inserisci serie"
+    [onChange]="getSuggestions"
+    [onBlur]="emptySuggestions"
+    [autocomplete]="'off'"
+  >
+
+  </app-suggestion-input>
   <app-button [onClick]="navigateToComparison">Cerca</app-button>
 </div>
-<h2 *ngIf="!isLoading">({{doppiatori.length}}) risultati:</h2>
-<div class="compare__wrap" *ngIf="!isLoading;else loading">
-  <app-compare-card *ngFor="let doppiatore of doppiatori" [name]="doppiatore.name"
-    [characters]="doppiatore.characters"></app-compare-card>
+<h2 *ngIf="!isLoading">({{ doppiatori.length }}) risultati:</h2>
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>
+<div class="compare__wrap" *ngIf="!isLoading; else loading">
+  <app-compare-card
+    *ngFor="let doppiatore of doppiatori"
+    [name]="doppiatore.name"
+    [characters]="doppiatore.characters"
+  ></app-compare-card>
 </div>
