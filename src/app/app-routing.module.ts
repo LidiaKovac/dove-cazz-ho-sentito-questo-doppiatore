@@ -4,26 +4,28 @@ import { LandingGuard } from './landing/landing.guard';
 
 const routes: Routes = [
   {
-    path: "auth",
-    loadChildren:  () => import("./auth/auth.module").then(c => c.AuthModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((c) => c.AuthModule),
   },
   {
-    path: "landing",
-    loadChildren: () => import("./landing/landing.module").then(c => c.LandingModule),
+    path: 'landing',
+    loadChildren: () =>
+      import('./landing/landing.module').then((c) => c.LandingModule),
   },
   {
-    path: "",
-    redirectTo: "landing",
-    pathMatch: "full"
+    path: '',
+    redirectTo: 'landing',
+    pathMatch: 'full',
   },
   {
-    path: "compare",
-    loadChildren: () => import("./doppiatori/doppiatori.module").then(c => c.DoppiatoriModule)
-  }
+    path: 'compare',
+    loadChildren: () =>
+      import('./doppiatori/doppiatori.module').then((c) => c.DoppiatoriModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

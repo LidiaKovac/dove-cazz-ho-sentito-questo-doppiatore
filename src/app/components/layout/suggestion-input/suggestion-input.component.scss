@@ -1,5 +1,8 @@
 @import "/src/styles/types";
 @import "/src/styles/colors";
+app-input {
+  width: 100%;
+}
 ::ng-deep .search__suggestion {
   position: absolute;
   left: 0;

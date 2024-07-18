@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,13 +15,8 @@ import { AlertComponent } from './components/feedback/alert/alert.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    AlertComponent
-  ],
+  declarations: [AppComponent, NavbarComponent, AlertComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,14 +24,16 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     AuthModule,
     LandingModule,
     DoppiatoriModule,
-    NgIconsModule.withIcons({ionHomeOutline, ionClose}),
-    IonicModule.forRoot({})
+    NgIconsModule.withIcons({ ionHomeOutline, ionClose }),
+    IonicModule.forRoot({}),
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: ErrorInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

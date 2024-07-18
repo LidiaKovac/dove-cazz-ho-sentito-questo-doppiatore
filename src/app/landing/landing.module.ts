@@ -18,6 +18,4 @@ import { SuggestionInputComponent } from '../components/layout/suggestion-input/
     SuggestionInputComponent,
   ],
 })
-export class LandingModule {
-
-}
+export class LandingModule {}

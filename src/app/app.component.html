@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
 <div class="alert__list">
-  <app-alert *ngFor="let alert of alerts" [id]="alert.id" [type]="alert.type" >
-    {{alert.val}}
+  <app-alert *ngFor="let alert of alerts" [id]="alert.id" [type]="alert.type">
+    {{ alert.val }}
   </app-alert>
 </div>
