@@ -1,0 +1,27 @@
+<nav class="nav">
+  <div class="nav__global">
+    <a class="nav__item" routerLink="/"> Home</a>
+    <a routerLink="/search" class="nav__item">Cerca</a>
+  </div>
+  <div class="nav__user-area" *ngIf="!isLogged; else profile">
+    <a
+      routerLink="auth"
+      [queryParams]="{
+        signup: false,
+      }"
+      class="nav__item"
+      >Login</a
+    >
+    <a
+      routerLink="auth"
+      [queryParams]="{
+        signup: true,
+      }"
+      class="nav__item"
+      >Registrati</a
+    >
+  </div>
+  <ng-template #profile>
+    <a routerLink="auth/user">Profile</a>
+  </ng-template>
+</nav>

@@ -3,17 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CharacterModule } from './characters/character.module';
-import { AuthModule } from './auth/auth.module';
-import { LandingModule } from './landing/landing.module';
-import { DoppiatoriModule } from './doppiatori/doppiatori.module';
 import { NgIconsModule } from '@ng-icons/core';
-import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { ionClose, ionHomeOutline } from '@ng-icons/ionicons';
 import { IonicModule } from '@ionic/angular';
-import { AlertComponent } from './components/feedback/alert/alert.component';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CharacterModule } from './features/characters/character.module';
+import { AuthModule } from './features/auth/auth.module';
+import { LandingModule } from './features/landing/landing.module';
+import { DoppiatoriModule } from './features/doppiatori/doppiatori.module';
+import { NavbarComponent } from './shared/components/layout/navbar/navbar.component';
+import { AlertComponent } from './shared/components/feedback/alert/alert.component';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, AlertComponent],

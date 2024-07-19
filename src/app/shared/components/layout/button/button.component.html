@@ -1,0 +1,4 @@
+<button (click)="onClick()" #btn>
+  {{ value }}
+  <ng-content *ngIf="!value"></ng-content>
+</button>

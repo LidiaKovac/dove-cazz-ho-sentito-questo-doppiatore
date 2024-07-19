@@ -1,0 +1,22 @@
+@import "/src/styles/types";
+@import "/src/styles/colors";
+.nav {
+  height: 50px;
+  backdrop-filter: blur(10px);
+  background-color: transparentize($primary, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  font-size: $text;
+
+  padding: 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__user-area, &__global {
+    display: flex;
+    gap: 20px;
+  }
+}
