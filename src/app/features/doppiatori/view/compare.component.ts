@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnChanges,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { DoppiatoriService } from '../doppiatori.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { delay, switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { AuthService } from '../../auth/auth.service';
 
@@ -10,7 +18,7 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
 })
-export class CompareComponent {
+export class CompareComponent implements AfterViewInit, OnChanges {
   doppiatori: ICompare[] = [];
 
   title: string = '';
@@ -23,6 +31,10 @@ export class CompareComponent {
 
   isLogged!: boolean;
   isLoading!: boolean;
+
+  @ViewChildren('el') cards!: QueryList<ElementRef<HTMLElement>>;
+  @ViewChild('grid') grid!: ElementRef;
+  gridRowEnd!: number;
 
   constructor(
     private doppiatoriSrv: DoppiatoriService,
@@ -45,9 +57,14 @@ export class CompareComponent {
             return this.doppiatoriSrv.getUserComparison(qp['query']);
           }
         }),
+        switchMap((res) => {
+          this.doppiatori = res;
+          return this.cards.changes;
+        }),
+        delay(100),
       )
       .subscribe((res) => {
-        this.doppiatori = res;
+        this.calculateSpan();
       });
     this.authSrv.recoverLoggedUser().subscribe((user) => {
       this.isLogged = !!user;
@@ -56,6 +73,49 @@ export class CompareComponent {
     this.doppiatoriSrv.showTwoQuery.subscribe((res) => (this.showTwoQuery = res));
     this.doppiatoriSrv.watchListQuery.subscribe((res) => (this.watchListQuery = res));
     this.loadingSrv.$loading.asObservable().subscribe((val) => (this.isLoading = val));
+  }
+
+  ngAfterViewInit() {
+    // this.calculateSpan();
+    this.cards.changes.subscribe((cards) => {
+      this.calculateSpan();
+    });
+  }
+
+  ngOnChanges() {
+    // this.calculateSpan();
+  }
+
+  calculateTotalHeight(arr: ElementRef[]) {
+    return arr.reduce((acc, curr) => {
+      console.log(curr.nativeElement);
+      const html = curr.nativeElement as HTMLElement;
+      return acc + html.getBoundingClientRect().height;
+    }, 0);
+  }
+
+  get averageCardHeight() {
+    return (
+      this.cards.reduce((acc, curr, i) => {
+        console.log(curr.nativeElement);
+        const html = curr.nativeElement as HTMLElement;
+        if (this.cards.get(i)?.nativeElement) {
+          this.cards.get(i)!.nativeElement.style.height =
+            html.getBoundingClientRect().height + 'px';
+        }
+        return acc + html.getBoundingClientRect().height;
+      }, 0) / this.cards.length
+    );
+  }
+
+  calculateSpan() {
+    const firstHalf = [...this.cards].slice(0, this.cards.length / 2);
+    const secondHalf = [...this.cards].slice(this.cards.length / 2);
+    const higher = Math.max(
+      this.calculateTotalHeight(firstHalf),
+      this.calculateTotalHeight(secondHalf),
+    );
+    this.gridRowEnd = Math.ceil(higher) + Math.ceil(this.averageCardHeight);
   }
 
   getSuggestions = (ev: Event, varName: string) => {

@@ -10,12 +10,12 @@
   padding-inline: 50px;
   padding-block: 20px;
   container-type: inline-size;
-.loading__wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-}
+  .loading__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
   h1 {
     color: $primary;
     span {
@@ -46,17 +46,20 @@
     &.row {
       flex-direction: row;
       > * {
-      flex: 1 1 calc(50% - 20px);
+        flex: 1 1 calc(50% - 20px);
+      }
     }
-    }
+
     &.col {
+      display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
-      max-height: 400vh;
+      // max-height: 1000px;
+
       > * {
-      flex: unset;
-      max-width: 50%;
-    }
+        flex: unset;
+        max-width: 50%;
+        height: fit-content;
+      }
     }
   }
   .compare__search {

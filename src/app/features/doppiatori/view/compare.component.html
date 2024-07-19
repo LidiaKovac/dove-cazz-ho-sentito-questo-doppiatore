@@ -60,13 +60,20 @@
     <div class="loader"></div>
   </div>
 </ng-template>
-<div class="compare__wrap" [ngClass]="{
-  'row': doppiatori.length <= 2,
-  'col': doppiatori.length > 2
-}" *ngIf="!isLoading; else loading">
-  <app-compare-card
-    *ngFor="let doppiatore of doppiatori"
-    [name]="doppiatore.name"
-    [characters]="doppiatore.characters"
-  ></app-compare-card>
+<div
+  class="compare__wrap"
+  #grid
+  [ngClass]="{
+    row: doppiatori.length <= 2,
+    col: doppiatori.length > 2,
+  }"
+  *ngIf="!isLoading; else loading"
+  [style]="'max-height:'+gridRowEnd+'px'"
+>
+  <div class="compare-card-wrap" #el *ngFor="let doppiatore of doppiatori">
+    <app-compare-card
+      [name]="doppiatore.name"
+      [characters]="doppiatore.characters"
+    ></app-compare-card>
+  </div>
 </div>
