@@ -1,0 +1,87 @@
+<div class="tutorial">
+  <h1>Guida all'importazione dei dati</h1>
+  <h3>Indice: </h3>
+  <div class="toc">
+    <ul>
+      <li>
+        <a [routerLink]="[]" fragment="trakt">Trakt.TV</a>
+        <ul>
+          <li><a [routerLink]="[]" fragment="trakt-1">1. &nbsp; Effettua il login</a></li>
+          <li><a [routerLink]="[]" fragment="trakt-2">2. &nbsp; Vai al tuo profilo</a></li>
+          <li>
+            <a [routerLink]="[]" fragment="trakt-3">3. &nbsp; Copia il tuo username dall'URL</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a [routerLink]="[]" fragment="letterboxd">Letterboxd</a>
+        <ul>
+          <li><a [routerLink]="[]" fragment="letterboxd-1">1.&nbsp; Esegui il login</a></li>
+          <li><a [routerLink]="[]" fragment="letterboxd-2">2.&nbsp; Vai alla pagina delle impostazioni</a></li>
+          <li><a [routerLink]="[]" fragment="letterboxd-3">3.&nbsp; Vai alla tab 'Data'</a></li>
+          <li><a [routerLink]="[]" fragment="letterboxd-4">4.&nbsp; Scarica i tuoi dati</a></li>
+          <li><a [routerLink]="[]" fragment="letterboxd-5">5.&nbsp; Estrai la cartella compressa</a></li>
+          <li><a [routerLink]="[]" fragment="letterboxd-6">6.&nbsp; Carica il file watched.csv</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <h2 id="trakt">Trakt.TV</h2>
+
+  <p>Per eseguire l'import dei dati da Trakt sara' sufficiente inserire il proprio nome utente.</p>
+  <p>Il nome utente puo' essere trovato seguendo i seguenti passaggi:</p>
+  <h3 id="trakt-1">1. &nbsp; Effettua il login</h3>
+  <section>
+    <p>Effettua il login su <a href="trakt.tv" target="_blank">Trakt</a></p>
+    <img small [src]="'https://imgur.com/yHMQv03' | imgurUrl" alt="Schermata di login di trakt" />
+  </section>
+  <h3 id="trakt-2">2. &nbsp; Vai al tuo profilo</h3>
+  <section>
+    <p>Dalla schermata a cui verrai reindirizzato, scegli "Your profile"</p>
+    <img [src]="'https://imgur.com/iqjRjmK' | imgurUrl" alt="Dashboard di trakt" />
+  </section>
+  <h3 id="trakt-3">3. &nbsp; Copia il tuo username dall'URL</h3>
+  <section>
+    <p>Controlla nell'indirizzo della pagina. In fondo all'URL troverai il tuo nome utente.</p>
+    <img [src]="'https://imgur.com/g9d73yu' | imgurUrl" alt="Indirizzo di trakt con nome utente" />
+  </section>
+  <h2 id="letterboxd">Letterboxd</h2>
+  <h3 id="letterboxd-1">1.&nbsp; Esegui il login</h3>
+  <section>
+    <p>Esegui il login su <a href="https://letterboxd.com/" target="_blank">Letterboxd</a></p>
+    <img [src]="'https://imgur.com/W2l0uRs' | imgurUrl" alt="" />
+  </section>
+  <h3 id="letterboxd-2">2.&nbsp; Vai alla pagina delle impostazioni</h3>
+  <section>
+    <p>Metti il mouse sul tuo nome in alto e seleziona "Settings" dal menu che si aprira'.</p>
+    <img small [src]="'https://imgur.com/pFSBdEO' | imgurUrl" alt="" />
+  </section>
+  <h3 id="letterboxd-3">3.&nbsp; Vai alla tab 'Data'</h3>
+  <section>
+    <p>Tra tutte le opzioni disponibili nella pagina Settings, scegli "Data".</p>
+    <img [src]="'https://imgur.com/dsiWFMW' | imgurUrl" alt="" />
+  </section>
+  <h3 id="letterboxd-4">4.&nbsp; Scarica i tuoi dati</h3>
+  <section>
+    <p>Seleziona "Export your data".</p>
+    <p>
+      Nella finestra di dialogo che si aprira', conferma la tua scelta cliccando nuovamente su
+      "Export your data"
+    </p>
+    <img [src]="'https://imgur.com/qsmNU8e' | imgurUrl" alt="" />
+  </section>
+  <h3 id="letterboxd-5">5.&nbsp; Estrai la cartella compressa</h3>
+  <section>
+    <p>Una volta completato il download, estrai la cartella compressa (.zip) che hai scaricato.</p>
+    <p>Puoi utilizzare programmi come WinRAR, WinZIP, 7Zip o le funzionalita' native di Windows.</p>
+    <img small [src]="'https://imgur.com/hwHBuo4' | imgurUrl" alt="" />
+  </section>
+  <h3 id="letterboxd-6">6.&nbsp; Carica il file watched.csv</h3>
+  <section>
+    <p>
+      Nella tua <a routerLink="/auth/user">pagina profilo</a>, carica il file watched.csv nell'area
+      dedicata.
+    </p>
+    <img [src]="'https://imgur.com/u2jsMOs' | imgurUrl" alt="" />
+  </section>
+</div>

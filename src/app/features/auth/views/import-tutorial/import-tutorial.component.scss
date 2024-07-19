@@ -1,0 +1,43 @@
+@import "/src/styles/colors";
+:host {
+  .tutorial {
+    padding-inline: 10%;
+    padding-block: 20px;
+    .toc {
+      width: fit-content;
+      border: 1px solid lighten($primary, 40);
+      padding-inline-end: 20px;
+      padding-block-start: 10px;
+      ul {
+        list-style: "🔗";
+        margin-top: 5px;
+        a {
+          margin-inline-start: 10px;
+        }
+        li {
+          margin-bottom: 5px;
+        }
+      }
+    }
+    section {
+      padding-left: 30px;
+      img {
+        width: 70%;
+        &[small] {
+          width: 40%;
+        }
+        @media screen and (max-width: 1100px) {
+          width: 100%;
+          &[small] {
+            width: 60%;
+          }
+        }
+        @media screen and (max-width: 760px) {
+          &[small] {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

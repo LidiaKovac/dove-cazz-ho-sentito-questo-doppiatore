@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingGuard } from './landing/landing.guard';
+import { workGuard } from './features/works/work.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((c) => c.AuthModule),
+    loadChildren: () => import('./features/auth/auth.module').then((c) => c.AuthModule),
   },
   {
     path: 'landing',
-    loadChildren: () =>
-      import('./landing/landing.module').then((c) => c.LandingModule),
+    loadChildren: () => import('./features/landing/landing.module').then((c) => c.LandingModule),
   },
   {
     path: '',
@@ -20,12 +19,17 @@ const routes: Routes = [
   {
     path: 'compare',
     loadChildren: () =>
-      import('./doppiatori/doppiatori.module').then((c) => c.DoppiatoriModule),
+      import('./features/doppiatori/doppiatori.module').then((c) => c.DoppiatoriModule),
+  },
+  {
+    path: 'works',
+    loadChildren: () => import('./features/works/works.module').then((c) => c.WorksModule),
+    canActivate: [workGuard],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,0 +1,70 @@
+<div class="profile">
+  <form class="profile__info" (submit)="editMe($event)">
+    <h2>Modifica il tuo profilo</h2>
+    <app-input type="email" name="email" placeholder="Email" [ngModel]="user.email"></app-input>
+    <div class="profile__info-name">
+      <app-input type="text" name="name" placeholder="Nome" [ngModel]="user.name"></app-input>
+      <app-input
+        type="text"
+        name="lastName"
+        placeholder="Cognome"
+        [ngModel]="user.lastName"
+      ></app-input>
+    </div>
+    <app-button [disabled]="isLoading && isSavingUser">
+      <span *ngIf="!(isLoading && isSavingUser); else loaderUser">Save</span>
+      <ng-template #loaderUser>
+        <div class="loader"></div>
+      </ng-template>
+    </app-button>
+  </form>
+  <div class="profile__import">
+    <h2>Importa i film e le serie viste</h2>
+    <a routerLink="/user/tutorial">Serve aiuto?</a>
+    <div class="import__area">
+      <h3>Trakt.tv</h3>
+      <form class="input-group" (submit)="importTrakt($event)">
+        <app-input
+          type="text"
+          name="username"
+          placeholder="Username Trakt.TV"
+          [ngModel]="username"
+        ></app-input>
+        <app-button>Save</app-button>
+      </form>
+
+      <h3>Letterboxd</h3>
+      <form class="input-group" (submit)="importLetterboxd($event)">
+        <app-input type="file" name="file" accept=".csv"></app-input>
+        <app-button>Save</app-button>
+      </form>
+      <div class="overlay" *ngIf="isLoading && !isSavingUser">
+        <div class="spinner"></div>
+        <small
+          >Se hai visto tanti film potrebbe volerci un pochino di tempo... Abbi pazienza!</small
+        >
+      </div>
+    </div>
+    <div class="not-found" *ngIf="notFound.length > 0">
+      <h3>({{ notFound.length }}) elementi non trovati</h3>
+      <ul>
+        <li *ngFor="let show of notFound">
+          <span *ngIf="selected !== show">{{ show }}</span>
+          <app-suggestion-input
+            *ngIf="selected === show"
+            name="query"
+            dataSuggestionsVar="suggestions"
+            placeholder="Serie, film o videogioco..."
+            [autocomplete]="'off'"
+            [autofocus]="true"
+            [id]="show"
+            #appInput
+          >
+          </app-suggestion-input>
+          <button *ngIf="selected !== show" (click)="toggleFind(show)" class="find">Find</button>
+          <button *ngIf="selected === show" class="save" (click)="addToSeen(show)">Save</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
