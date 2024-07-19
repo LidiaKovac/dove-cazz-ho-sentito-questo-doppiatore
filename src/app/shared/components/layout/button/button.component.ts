@@ -17,11 +17,14 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   @ViewChild('btn') btn!: ElementRef;
 
   ngAfterViewInit() {
-    this.btn.nativeElement.disabled = this.disabled;
+    if (this.btn) {
+      this.btn.nativeElement.disabled = this.disabled;
+    }
   }
 
   ngOnChanges() {
-    console.log('ok');
-    this.btn.nativeElement.disabled = this.disabled;
+    if (this.btn) {
+      this.btn.nativeElement.disabled = this.disabled;
+    }
   }
 }

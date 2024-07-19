@@ -9,9 +9,11 @@ import { InputComponent } from 'src/app/shared/components/layout/input/input.com
 import { SuggestionInputComponent } from 'src/app/shared/components/layout/suggestion-input/suggestion-input.component';
 import { ButtonComponent } from 'src/app/shared/components/layout/button/button.component';
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
+import { ImgurUrlPipe } from 'src/app/shared/pipes/imgur-url.pipe';
+import { ImportTutorialComponent } from './views/import-tutorial/import-tutorial.component';
 
 @NgModule({
-  declarations: [AuthComponent, ProfileComponent],
+  declarations: [AuthComponent, ProfileComponent, ImportTutorialComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -20,6 +22,7 @@ import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
     InputComponent,
     SuggestionInputComponent,
     ButtonComponent,
+    ImgurUrlPipe,
   ],
   providers: [
     {

@@ -34,6 +34,10 @@ export class LandingComponent {
     this.doppiatoriSrv.navigateToComparison();
   };
 
+  navigateToUserComparison = () => {
+    this.doppiatoriSrv.navigateToUserComparison();
+  };
+
   logout() {
     this.authSrv.logout();
   }

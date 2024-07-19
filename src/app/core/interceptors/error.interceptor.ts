@@ -20,11 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     });
     if (request.url.includes('/user/me') && request.method === 'GET') {
       console.log('Skipping loading');
-      return next.handle(request).pipe(
-        tap(() => {
-          this.loadingSrv.setLoading = false;
-        }),
-      );
+      return next.handle(request);
     }
     if (request.url.includes('compare')) {
       return next.handle(request).pipe(

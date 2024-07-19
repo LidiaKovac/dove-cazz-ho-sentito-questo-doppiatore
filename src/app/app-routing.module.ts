@@ -20,10 +20,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/doppiatori/doppiatori.module').then((c) => c.DoppiatoriModule),
   },
+  {
+    path: 'works',
+    loadChildren: () => import('./features/works/works.module').then((c) => c.WorksModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

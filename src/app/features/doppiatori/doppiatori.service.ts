@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, map, switchMap, tap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { environment } from 'src/environments/environment';
 
@@ -44,6 +44,26 @@ export class DoppiatoriService {
       );
   }
 
+  public getUserComparison(title: string) {
+    this.loadingSrv.setLoading = true;
+    return this.http.get<IWork>(`${environment.url}works?query=${title}`).pipe(
+      switchMap(({ _id }) => {
+        return this.http.get<ICompare[]>(`${environment.url}doppiatori/user-compare/${_id}`);
+      }),
+      map((characters) => {
+        return characters.map((char) => {
+          return {
+            ...char,
+            characters: char.characters.filter((c) => c.character.length > 0),
+          };
+        });
+      }),
+      tap(() => {
+        this.loadingSrv.setLoading = false;
+      }),
+    );
+  }
+
   public fetchSuggestions = (ev: Event, varName: string) => {
     const target = ev.target as HTMLInputElement;
     this[target.name].next(target.value);
@@ -69,6 +89,13 @@ export class DoppiatoriService {
       queryParams: {
         title: this.showOneQuery.getValue(),
         compareTo: this.showTwoQuery.getValue(),
+      },
+    });
+  };
+  navigateToUserComparison = () => {
+    this.router.navigate(['/compare'], {
+      queryParams: {
+        query: this.watchListQuery.getValue(),
       },
     });
   };

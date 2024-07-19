@@ -18,8 +18,8 @@ export class CompareComponent {
 
   showOneQuery: string = '';
   showTwoQuery: string = '';
-  suggestionsOne: string[] = [];
-  suggestionsTwo: string[] = [];
+  watchListQuery: string = '';
+  showQuery: string = '';
 
   isLogged!: boolean;
   isLoading!: boolean;
@@ -37,7 +37,13 @@ export class CompareComponent {
           this.title = qp['title'];
           this.showTwoQuery = qp['compareTo'];
           this.compareTo = qp['compareTo'];
-          return this.doppiatoriSrv.getComparison(qp['title'], qp['compareTo']);
+          this.watchListQuery = qp['query'];
+          this.showQuery = qp['query'];
+          if (!this.watchListQuery && this.compareTo && this.title) {
+            return this.doppiatoriSrv.getComparison(qp['title'], qp['compareTo']);
+          } else {
+            return this.doppiatoriSrv.getUserComparison(qp['query']);
+          }
         }),
       )
       .subscribe((res) => {
@@ -48,8 +54,7 @@ export class CompareComponent {
     });
     this.doppiatoriSrv.showOneQuery.subscribe((res) => (this.showOneQuery = res));
     this.doppiatoriSrv.showTwoQuery.subscribe((res) => (this.showTwoQuery = res));
-    this.doppiatoriSrv.suggestionsOne.subscribe((res) => (this.suggestionsOne = res));
-    this.doppiatoriSrv.suggestionsTwo.subscribe((res) => (this.suggestionsTwo = res));
+    this.doppiatoriSrv.watchListQuery.subscribe((res) => (this.watchListQuery = res));
     this.loadingSrv.$loading.asObservable().subscribe((val) => (this.isLoading = val));
   }
 
@@ -67,5 +72,8 @@ export class CompareComponent {
 
   navigateToComparison = () => {
     this.doppiatoriSrv.navigateToComparison();
+  };
+  navigateToUserComparison = () => {
+    this.doppiatoriSrv.navigateToUserComparison();
   };
 }
