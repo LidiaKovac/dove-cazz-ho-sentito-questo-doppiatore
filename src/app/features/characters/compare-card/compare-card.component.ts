@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-compare-card',
@@ -8,4 +8,6 @@ import { Component, Input, OnChanges } from '@angular/core';
 export class CompareCardComponent {
   @Input() name: ICompare['name'] = 'Marco Rossi';
   @Input() characters: ICompare['characters'] = [];
+
+  constructor(public elementRef: ElementRef<HTMLElement>) {}
 }

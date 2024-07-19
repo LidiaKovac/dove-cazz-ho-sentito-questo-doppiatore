@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { delay, switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { AuthService } from '../../auth/auth.service';
+import { CompareCardComponent } from '../../characters/compare-card/compare-card.component';
 
 @Component({
   selector: 'app-compare',
@@ -32,7 +33,7 @@ export class CompareComponent implements AfterViewInit, OnChanges {
   isLogged!: boolean;
   isLoading!: boolean;
 
-  @ViewChildren('el') cards!: QueryList<ElementRef<HTMLElement>>;
+  @ViewChildren(CompareCardComponent) cards!: QueryList<CompareCardComponent>;
   @ViewChild('grid') grid!: ElementRef;
   gridRowEnd!: number;
 
@@ -86,10 +87,14 @@ export class CompareComponent implements AfterViewInit, OnChanges {
     // this.calculateSpan();
   }
 
-  calculateTotalHeight(arr: ElementRef[]) {
-    return arr.reduce((acc, curr) => {
-      console.log(curr.nativeElement);
-      const html = curr.nativeElement as HTMLElement;
+  calculateTotalHeight(arr: CompareCardComponent[]) {
+    return arr.reduce((acc, curr, i) => {
+      console.log(curr.elementRef.nativeElement);
+      const html = curr.elementRef.nativeElement as HTMLElement;
+      // if (this.cards.get(i)?.nativeElement) {
+      //   this.cards.get(i)!.nativeElement.style.height =
+      //     Math.ceil(html.getBoundingClientRect().height) + 'px';
+      // }
       return acc + html.getBoundingClientRect().height;
     }, 0);
   }
@@ -97,12 +102,9 @@ export class CompareComponent implements AfterViewInit, OnChanges {
   get averageCardHeight() {
     return (
       this.cards.reduce((acc, curr, i) => {
-        console.log(curr.nativeElement);
-        const html = curr.nativeElement as HTMLElement;
-        if (this.cards.get(i)?.nativeElement) {
-          this.cards.get(i)!.nativeElement.style.height =
-            html.getBoundingClientRect().height + 'px';
-        }
+        console.log(curr.elementRef);
+        const html = curr.elementRef.nativeElement as HTMLElement;
+
         return acc + html.getBoundingClientRect().height;
       }, 0) / this.cards.length
     );
