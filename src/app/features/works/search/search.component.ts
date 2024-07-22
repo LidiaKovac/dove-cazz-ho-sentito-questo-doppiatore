@@ -18,28 +18,21 @@ export class SearchComponent {
     private worksSrv: WorkService,
     private loadingSrv: LoadingService,
   ) {
-
-    this.loadingSrv.$loading
-      .asObservable()
+    this.loadingSrv.$loading.subscribe((res) => {
+      this.isLoading = res;
+    });
+    this.route.queryParamMap
       .pipe(
-        switchMap((res) => {
-          this.isLoading = res;
-          return this.route.queryParamMap;
-        }),
         switchMap((params) => {
+          this.loadingSrv.setLoading = true;
           this.query = params.get('query');
           if (this.query !== null) return this.worksSrv.getWorks(this.query);
           else throw new Error('Query non valida o assente');
         }),
+        switchMap(() => this.worksSrv.works)
       )
       .subscribe((res) => {
         this.works = res;
       });
-  }
-
-  getWorks() {
-    if (this.query) {
-      this.worksSrv.getWorks(this.query).subscribe((res) => (this.works = res));
-    }
   }
 }
