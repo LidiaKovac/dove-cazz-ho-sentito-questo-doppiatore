@@ -1,0 +1,33 @@
+@import "src/styles/colors";
+@import "src/styles/types";
+
+@mixin button($color: $primary) {
+  @if ($color == $primary) {
+    background-color: $primary;
+    color: white;
+  } @else {
+    background-color: $accent;
+    color: black;
+  }
+  padding: 16px 32px;
+  border: none;
+  border-radius: 5px;
+  font-size: $text;
+  box-shadow: 2px 2px 5px 0px rgb(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 5px 0px rgb(0, 0, 0, 0.1);
+  transition: 0.15s;
+  width: inherit;
+  cursor: pointer;
+  &:hover {
+    background-color: lighten($color, 5%);
+  }
+  &:active {
+    transform: translate(0px, 2px);
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+  &:disabled {
+    background-color: lighten($color, 30);
+    cursor: not-allowed;
+  }
+}

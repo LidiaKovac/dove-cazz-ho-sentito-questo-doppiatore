@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, switchMap, tap } from 'rxjs';
-import { LoadingService } from 'src/app/core/services/loading.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,6 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class DoppiatoriService {
   [key: string]: any;
+
+  //compare
   showOneQuery = new BehaviorSubject<string>('');
   showTwoQuery = new BehaviorSubject<string>('');
   watchListQuery = new BehaviorSubject<string>('');
@@ -17,6 +18,7 @@ export class DoppiatoriService {
   suggestionsTwo = new BehaviorSubject<string[]>([]);
   suggestionsWatchList = new BehaviorSubject<string[]>([]);
 
+  //user search && user compare
   suggestions = new BehaviorSubject<string[]>([]);
   query = new BehaviorSubject<string>('');
   constructor(

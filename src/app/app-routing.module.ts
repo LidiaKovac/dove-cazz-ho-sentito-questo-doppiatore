@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { workGuard } from './features/works/work.guard';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path: 'works',
     loadChildren: () => import('./features/works/works.module').then((c) => c.WorksModule),
+    canActivate: [workGuard],
   },
 ];
 

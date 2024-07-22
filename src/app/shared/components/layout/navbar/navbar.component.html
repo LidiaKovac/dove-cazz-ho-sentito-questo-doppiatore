@@ -1,7 +1,16 @@
 <nav class="nav">
   <div class="nav__global">
     <a class="nav__item" routerLink="/"> Home</a>
-    <a routerLink="/search" class="nav__item">Cerca</a>
+    <form (submit)="navigateToSearch($event)">
+      <app-input
+        dataSuggestionsVar="suggestions"
+        placeholder="Inserisci un titolo..."
+        autocomplete="off"
+        name="query"
+      >
+        <button> <ion-icon name="search-outline"></ion-icon> </button>
+      </app-input>
+    </form>
   </div>
   <div class="nav__user-area" *ngIf="!isLogged; else profile">
     <a
