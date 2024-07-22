@@ -12,22 +12,21 @@ export class ErrorInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('intercepting', request.url, request.method);
     const catchErr: OperatorFunction<HttpEvent<any>, HttpEvent<unknown>> = catchError((err) => {
       this.alertSrv.addAlert(err.error.message, 'error');
       this.loadingSrv.setLoading = false;
       return throwError(() => err);
     });
     if (request.url.includes('/user/me') && request.method === 'GET') {
-      console.log('Skipping loading');
       return next.handle(request);
     }
-    if (request.url.includes('compare')) {
+    if (request.url.includes('compare') || request.url.includes('works?query=')) {
       return next.handle(request).pipe(
         retry({
           count: 3,
-          delay: (_, count) => timer(1000 * count),
+          delay: (_, count) => timer(5000 * count),
         }),
+        catchErr,
       );
     }
     return next.handle(request).pipe(catchErr);

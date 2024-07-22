@@ -2,4 +2,11 @@
   display: block;
   padding-inline: 50px;
   padding-block: 20px;
+  .cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    container-type: inline-size;
+  }
 }
