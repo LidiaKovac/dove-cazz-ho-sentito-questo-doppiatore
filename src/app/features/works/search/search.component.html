@@ -1,7 +1,9 @@
-<h1>{{ query }} — ({{works.length}}) risultati</h1>
+<h1>{{ query }} — ({{ works.length }}) risultati</h1>
 <ng-template *ngIf="isLoading; else cards">
   <div class="loader"></div>
 </ng-template>
 <ng-template #cards>
-  <app-card *ngFor="let work of works" [work]="work"> </app-card>
+  <div class="cards">
+    <app-card *ngFor="let work of works" [work]="work"> </app-card>
+  </div>
 </ng-template>

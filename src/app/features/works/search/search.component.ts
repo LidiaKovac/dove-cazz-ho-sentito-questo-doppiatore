@@ -18,9 +18,7 @@ export class SearchComponent {
     private worksSrv: WorkService,
     private loadingSrv: LoadingService,
   ) {
-    // this.loadingSrv.$loading.subscribe((res) => {
-    //   this.isLoading = res;
-    // });
+
     this.loadingSrv.$loading
       .asObservable()
       .pipe(
@@ -37,20 +35,6 @@ export class SearchComponent {
       .subscribe((res) => {
         this.works = res;
       });
-    // this.route.queryParamMap
-    //   .pipe(
-    //     switchMap((params) => {
-    //       if (params.get('query') !== null) {
-    //         this.query = params.get('query');
-    //         return this.worksSrv.getWorks(params.get('query') as string);
-    //       } else throw new Error('Param not valid or not found');
-    //     }),
-    //     switchMap((res) => {
-    //       this.works = res;
-    //       return this.lo
-    //     }),
-    //   )
-    //   .subscribe();
   }
 
   getWorks() {

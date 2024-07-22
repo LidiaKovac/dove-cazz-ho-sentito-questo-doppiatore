@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { ionClose, ionHomeOutline, ionSearch } from '@ng-icons/ionicons';
+import { ionClose, ionEye, ionEyeOff, ionHomeOutline, ionSearch } from '@ng-icons/ionicons';
 import { IonicModule } from '@ionic/angular';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { CharacterModule } from './features/characters/character.module';
@@ -16,6 +16,9 @@ import { AlertComponent } from './shared/components/feedback/alert/alert.compone
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { InputComponent } from './shared/components/layout/input/input.component';
 import { WorksModule } from './features/works/works.module';
+import { CardComponent } from './shared/components/layout/card/card.component';
+import { ButtonComponent } from './shared/components/layout/button/button.component';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, AlertComponent],
@@ -23,19 +26,21 @@ import { WorksModule } from './features/works/works.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // CharacterModule,
-    // AuthModule,
-    // LandingModule,
-    // DoppiatoriModule,
-    // WorksModule,
+
     InputComponent,
-    NgIconsModule.withIcons({ ionHomeOutline, ionClose, ionSearch }),
+    ButtonComponent,
+    NgIconsModule.withIcons({ ionHomeOutline, ionClose, ionSearch, ionEye, ionEyeOff }),
     IonicModule.forRoot({}),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      useClass: TokenInterceptor,
+      provide: HTTP_INTERCEPTORS,
       multi: true,
     },
   ],

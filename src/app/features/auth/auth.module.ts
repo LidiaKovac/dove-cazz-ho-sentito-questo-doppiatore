@@ -24,12 +24,6 @@ import { ImportTutorialComponent } from './views/import-tutorial/import-tutorial
     ButtonComponent,
     ImgurUrlPipe,
   ],
-  providers: [
-    {
-      useClass: TokenInterceptor,
-      provide: HTTP_INTERCEPTORS,
-      multi: true,
-    },
-  ],
+  providers: [],
 })
 export class AuthModule {}
