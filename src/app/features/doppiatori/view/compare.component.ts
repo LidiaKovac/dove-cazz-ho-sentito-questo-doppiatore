@@ -55,6 +55,7 @@ export class CompareComponent implements AfterViewInit, OnChanges {
           if (!this.watchListQuery && this.compareTo && this.title) {
             return this.doppiatoriSrv.getComparison(qp['title'], qp['compareTo']);
           } else {
+            console.log(qp['query']);
             return this.doppiatoriSrv.getUserComparison(qp['query']);
           }
         }),
