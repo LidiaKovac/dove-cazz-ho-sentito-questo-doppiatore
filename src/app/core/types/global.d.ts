@@ -24,6 +24,12 @@ interface IWork {
   isSeen?: boolean;
 }
 
+interface IWorkPaged {
+  data: IWork[];
+  page: number;
+  total: number;
+}
+
 //! AUTH
 
 interface Login {

@@ -8,6 +8,7 @@ import { ButtonComponent } from 'src/app/shared/components/layout/button/button.
 import { NgIconsModule } from '@ng-icons/core';
 import { IonicModule } from '@ionic/angular';
 import { ionEye, ionEyeOff } from '@ng-icons/ionicons';
+import { PaginationComponent } from 'src/app/shared/components/layout/pagination/pagination.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SuggestionInputComponent,
     ButtonComponent,
+    PaginationComponent,
     NgIconsModule.withIcons({ ionEye, ionEyeOff }),
     IonicModule.forRoot({}),
   ],

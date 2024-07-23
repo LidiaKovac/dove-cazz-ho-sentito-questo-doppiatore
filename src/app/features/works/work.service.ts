@@ -10,18 +10,24 @@ import { environment } from 'src/environments/environment';
 })
 export class WorkService {
   public works = new BehaviorSubject<IWork[]>([]);
+  public pages = new BehaviorSubject<number>(0);
+  public total = new BehaviorSubject<number>(0);
   constructor(
     private http: HttpClient,
     private loadingSrv: LoadingService,
     private alertSrv: AlertService,
   ) {}
 
-  getWorks(q: string) {
-    return this.http.get<IWork[]>(`${environment.url}works?query=${q}`).pipe(
-      tap(() => {
+  getWorks(q: string, page: number = 1) {
+    console.log('pippo1');
+
+    return this.http.get<IWorkPaged>(`${environment.url}works?query=${q}&page=${page}`).pipe(
+      tap((res) => {
         this.loadingSrv.setLoading = false;
+        this.total.next(res.total);
+        this.pages.next(Math.ceil(res.total / 10) + 1);
       }),
-      map((res) => this.works.next(res)),
+      map((res) => this.works.next(res.data)),
     );
   }
 
