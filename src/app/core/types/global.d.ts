@@ -17,10 +17,11 @@ interface IImport {
 }
 
 interface IWork {
-  _id: string
-  title: string
-  poster: string
-  wikiSlug: string
+  _id: string;
+  title: string;
+  poster: string;
+  wikiSlug: string;
+  isSeen?: boolean;
 }
 
 //! AUTH

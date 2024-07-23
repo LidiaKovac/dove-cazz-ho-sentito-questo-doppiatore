@@ -17,6 +17,7 @@ export class NavbarComponent {
   }
 
   navigateToSearch(ev: Event) {
+    ev.preventDefault();
     const fd = new FormData(ev.target as HTMLFormElement);
     const query = fd.get('query');
     this.router.navigate(['/works'], {
