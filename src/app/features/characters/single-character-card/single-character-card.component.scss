@@ -40,7 +40,7 @@
         border-radius: 50%;
 
         //move to center
-        transform: translate($offset / -2, $offset / -2);
+        transform: translate(calc($offset / -2), calc($offset / -2));
 
         //general styling
         background-color: $accent;

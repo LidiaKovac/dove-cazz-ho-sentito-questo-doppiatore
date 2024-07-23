@@ -36,7 +36,7 @@ export class SuggestionInputComponent implements OnInit {
     );
   }
   emptySuggestions = () => {
-    // this.doppiatoriSrv.emptySuggestions(this.dataSuggestionsVar);
+    this.doppiatoriSrv.emptySuggestions(this.dataSuggestionsVar);
   };
   pickSuggestion = (ev: Event) => {
     const picked = this.doppiatoriSrv.pickSuggestion(ev);
