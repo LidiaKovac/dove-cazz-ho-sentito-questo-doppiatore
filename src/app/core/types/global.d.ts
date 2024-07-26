@@ -21,7 +21,7 @@ interface IWork {
   title: string;
   poster: string;
   wikiSlug: string;
-  isSeen?: boolean;
+  seen?: boolean;
 }
 
 interface IWorkPaged {
