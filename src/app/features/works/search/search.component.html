@@ -1,7 +1,8 @@
-<h1 *ngIf="!isLoading" >{{ query }} — ({{ works.length }}) risultati</h1>
-  <div *ngIf="isLoading; else cards" class="loader"></div>
+<h1 *ngIf="!isLoading">{{ query }} — ({{ total }}) risultati</h1>
+<div *ngIf="isLoading; else cards" class="loader"></div>
 <ng-template #cards>
   <div class="cards">
     <app-card *ngFor="let work of works" [work]="work"> </app-card>
   </div>
+  <app-pagination [pages]="pages" [onClick]="searchWork"></app-pagination>
 </ng-template>

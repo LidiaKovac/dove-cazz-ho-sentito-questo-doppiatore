@@ -63,7 +63,7 @@ export class CompareComponent implements AfterViewInit, OnChanges {
           this.doppiatori = res;
           return this.cards.changes;
         }),
-        delay(100),
+        // delay(100),
       )
       .subscribe((res) => {
         this.calculateSpan();

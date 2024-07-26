@@ -12,12 +12,15 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 export class SearchComponent {
   query!: string | null;
   works: IWork[] = [];
+  pages: number = 0;
+  total: number = 0;
   isLoading: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private worksSrv: WorkService,
     private loadingSrv: LoadingService,
   ) {
+    this.searchWork = this.searchWork.bind(this);
     this.loadingSrv.$loading.subscribe((res) => {
       this.isLoading = res;
     });
@@ -29,10 +32,22 @@ export class SearchComponent {
           if (this.query !== null) return this.worksSrv.getWorks(this.query);
           else throw new Error('Query non valida o assente');
         }),
-        switchMap(() => this.worksSrv.works)
+        switchMap(() => this.worksSrv.works),
+        switchMap((works) => {
+          this.works = works;
+          return this.worksSrv.pages;
+        }),
+        switchMap((pages) => {
+          this.pages = pages;
+          return this.worksSrv.total;
+        }),
       )
       .subscribe((res) => {
-        this.works = res;
+        this.total = res;
       });
+  }
+
+  searchWork(page: number) {
+    if (this.query) this.worksSrv.getWorks(this.query, page).subscribe();
   }
 }

@@ -49,7 +49,8 @@ export class DoppiatoriService {
 
   public getUserComparison(title: string) {
     this.loadingSrv.setLoading = true;
-    return this.http.get<IWork>(`${environment.url}works?query=${title}`).pipe(
+    console.log(title);
+    return this.http.get<IWork>(`${environment.url}works/name?name=${title}`).pipe(
       switchMap(({ _id }) => {
         return this.http.get<ICompare[]>(`${environment.url}doppiatori/user-compare/${_id}`);
       }),
