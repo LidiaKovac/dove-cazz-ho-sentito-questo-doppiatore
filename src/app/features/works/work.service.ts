@@ -32,17 +32,19 @@ export class WorkService {
   }
 
   watchWork(id: string) {
+        this.optimisticToggleSeen(id);
+
     return this.http.put<IWork[]>(`${environment.url}user/me/watch/${id}`, null).pipe(
       tap(() => {
-        this.optimisticToggleSeen(id);
       }),
     );
   }
 
   unwatchWork(id: string) {
+    this.optimisticToggleSeen(id);
     return this.http.put<IWork[]>(`${environment.url}user/me/unwatch/${id}`, null).pipe(
       tap(() => {
-        this.optimisticToggleSeen(id);
+
       }),
     );
   }
@@ -52,9 +54,9 @@ export class WorkService {
     for (let i = 0; i < currentWorks.length; i++) {
       const work = currentWorks[i];
       if (work._id === id) {
-        currentWorks[i].isSeen = !currentWorks[i].isSeen;
+        currentWorks[i].seen = !currentWorks[i].seen;
         this.alertSrv.addAlert(
-          `Elemento ${currentWorks[i].isSeen ? 'aggiunto ' : 'rimosso d'}alla tua lista`,
+          `Elemento ${currentWorks[i].seen ? 'aggiunto ' : 'rimosso d'}alla tua lista`,
           'info',
         );
         break;
