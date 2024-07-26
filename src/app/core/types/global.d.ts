@@ -21,7 +21,13 @@ interface IWork {
   title: string;
   poster: string;
   wikiSlug: string;
-  isSeen?: boolean;
+  seen?: boolean;
+}
+
+interface IWorkPaged {
+  data: IWork[];
+  page: number;
+  total: number;
 }
 
 //! AUTH
