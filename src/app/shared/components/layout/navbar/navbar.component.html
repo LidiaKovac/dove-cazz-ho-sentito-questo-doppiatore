@@ -1,7 +1,7 @@
 <nav class="nav">
   <div class="nav__global">
     <a class="nav__item" routerLink="/"> Home</a>
-    <form (submit)="navigateToSearch($event)">
+    <form *ngIf="isLogged" (submit)="navigateToSearch($event)">
       <app-input
         dataSuggestionsVar="suggestions"
         placeholder="Inserisci un titolo..."
