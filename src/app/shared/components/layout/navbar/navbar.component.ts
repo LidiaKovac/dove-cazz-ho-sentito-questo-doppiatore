@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/auth.service';
 
@@ -9,6 +9,10 @@ import { AuthService } from 'src/app/features/auth/auth.service';
 })
 export class NavbarComponent {
   isLogged: boolean = false;
+
+  @ViewChild('dropdown', { static: true, read: ElementRef })
+  navDropdown!: ElementRef<HTMLDivElement>;
+
   constructor(
     private authSrv: AuthService,
     private router: Router,
@@ -23,5 +27,8 @@ export class NavbarComponent {
     this.router.navigate(['/works'], {
       queryParams: { query },
     });
+  }
+  openNav() {
+    this.navDropdown.nativeElement.classList.toggle('open');
   }
 }

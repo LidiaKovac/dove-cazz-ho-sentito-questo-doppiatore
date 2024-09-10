@@ -26,6 +26,10 @@
 
   .search {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+    app-card {
+      // min-width: 550px;
+    }
   }
 }

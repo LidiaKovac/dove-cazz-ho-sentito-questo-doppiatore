@@ -80,21 +80,21 @@ export class WorkService {
     this.works.next(currentWorks);
   }
 
-  setSelectedById(id:string) {
-        this.isDetailsLoading.next(true);
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: {
-            selected: id,
-          },
-          queryParamsHandling: 'merge',
-          // skipLocationChange: true,
-        });
-        this.getWorkById(id).subscribe((res) => {
-          this.selected.next(res);
-          this.loadingSrv.setLoading = false;
-          this.isDetailsLoading.next(false);
-        });
+  setSelectedById(id: string) {
+    this.isDetailsLoading.next(true);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        selected: id,
+      },
+      queryParamsHandling: 'merge',
+      // skipLocationChange: true,
+    });
+    this.getWorkById(id).subscribe((res) => {
+      this.selected.next(res);
+      this.loadingSrv.setLoading = false;
+      this.isDetailsLoading.next(false);
+    });
   }
 
   setSelected(work: IWork) {
