@@ -4,7 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { ionClose, ionEye, ionEyeOff, ionHomeOutline, ionSearch } from '@ng-icons/ionicons';
+import {
+  ionClose,
+  ionEye,
+  ionEyeOff,
+  ionHomeOutline,
+  ionMenu,
+  ionSearch,
+} from '@ng-icons/ionicons';
 import { IonicModule } from '@ionic/angular';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { CharacterModule } from './features/characters/character.module';
@@ -29,7 +36,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
     InputComponent,
     ButtonComponent,
-    NgIconsModule.withIcons({ ionHomeOutline, ionClose, ionSearch, ionEye, ionEyeOff }),
+    NgIconsModule.withIcons({ ionHomeOutline, ionClose, ionSearch, ionEye, ionEyeOff, ionMenu }),
     IonicModule.forRoot({}),
   ],
   providers: [

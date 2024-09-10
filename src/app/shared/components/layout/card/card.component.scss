@@ -1,16 +1,27 @@
 @import "/src/styles/colors";
 
 :host {
-    width: calc(50% - 20px);
+  // width: calc(33% - 40px);
+  // max-width: 50%;
+  min-width: 550px;
+  flex: 1 1 calc(33% - 40px);
   display: block;
   container-type: inline-size;
+
   // &:nth-child(odd) {
   //   .card {
   //     flex-direction: row-reverse;
   //   }
   // }
+  @media screen and (max-width: 690px) {
+    // width: 50%;
+    min-width: 265px;
+    .card {
+      flex-direction: column;
+    }
+  }
   .card {
-    height: 100%;
+    // height: 100%;
     background-color: rgb(183, 212, 255, 0.5);
     backdrop-filter: blur(4);
     border: 1px solid $primary;
@@ -22,10 +33,13 @@
     // flex-direction: column;
     // justify-content: space-between;
     align-items: center;
+    // flex-wrap: wrap;
     // padding-bottom: 20px;
+
     h3 {
       display: -webkit-box;
       max-width: 100%;
+      text-wrap: wrap;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
@@ -63,7 +77,6 @@
       gap: 10px;
       ::ng-deep {
         button {
-
           padding: 8px 16px;
           display: flex;
           align-items: center;
