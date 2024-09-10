@@ -7,8 +7,9 @@ import { CardComponent } from 'src/app/shared/components/layout/card/card.compon
 import { ButtonComponent } from 'src/app/shared/components/layout/button/button.component';
 import { NgIconsModule } from '@ng-icons/core';
 import { IonicModule } from '@ionic/angular';
-import { ionEye, ionEyeOff } from '@ng-icons/ionicons';
+import { ionClose, ionEye, ionEyeOff } from '@ng-icons/ionicons';
 import { PaginationComponent } from 'src/app/shared/components/layout/pagination/pagination.component';
+import { ModalComponent } from 'src/app/shared/components/layout/modal/modal.component';
 
 const routes: Routes = [
   {
@@ -18,14 +19,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SearchComponent, CardComponent],
+  declarations: [SearchComponent, CardComponent, ModalComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SuggestionInputComponent,
     ButtonComponent,
     PaginationComponent,
-    NgIconsModule.withIcons({ ionEye, ionEyeOff }),
+    NgIconsModule.withIcons({ ionEye, ionEyeOff, ionClose }),
     IonicModule.forRoot({}),
   ],
 })

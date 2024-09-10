@@ -8,10 +8,10 @@
 }
 :host {
   display: block;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   container-type: inline-size;
   .landing {
-    height: 100vh;
+    height: 100%;
     padding: 100px;
     display: flex;
     flex-wrap: wrap;

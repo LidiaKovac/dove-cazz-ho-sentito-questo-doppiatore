@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Params, Route, Router } from '@angular/router';
 import { WorkService } from '../work.service';
 import { BehaviorSubject, of, switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -13,32 +13,49 @@ export class SearchComponent {
   query!: string | null;
   works: IWork[] = [];
   pages: number = 0;
+  page: number = 1;
   total: number = 0;
   isLoading: boolean = true;
   isDetailsLoading: boolean = false;
 
-  selected: IWork | null = null;
+  selected!: IWork | null;
+  openModal!: boolean;
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private worksSrv: WorkService,
     private loadingSrv: LoadingService,
   ) {
-    this.searchWork = this.searchWork.bind(this);
+    // this.searchWork = this.searchWork.bind(this);
     this.loadingSrv.$loading.subscribe((res) => {
       this.isLoading = res;
     });
     this.worksSrv.isDetailsLoading.subscribe((res) => (this.isDetailsLoading = res));
-    this.worksSrv.selected.subscribe((res) => (this.selected = res));
+    this.worksSrv.selected.subscribe((res) => {
+      this.selected = res;
+    });
     this.route.queryParamMap
       .pipe(
         switchMap((params) => {
           this.loadingSrv.setLoading = true;
-          if (params.get('selected')) {
+          if (!params.get('page')) {
+            this.router.navigate([], {
+              relativeTo: this.route,
+              queryParams: { page: 1 } as Params,
+              queryParamsHandling: 'merge', // remove to replace all query params by provided
+            });
+          }
+          if (params.get('selected') && params.get('selected') !== this.selected?._id) {
             this.worksSrv.setSelectedById(params.get('selected')!);
           }
+          this.page = parseInt(params.get('page')!);
+
           this.query = params.get('query');
-          if (this.query !== null) return this.worksSrv.getWorks(this.query);
-          else throw new Error('Query non valida o assente');
+          if (this.query !== null) {
+            console.log('page');
+            return this.worksSrv.getWorks(this.query, this.page);
+          } else throw new Error('Query non valida o assente');
         }),
 
         switchMap(() => this.worksSrv.works),
@@ -56,11 +73,8 @@ export class SearchComponent {
       });
   }
 
-  searchWork(page: number) {
-    if (this.query) this.worksSrv.getWorks(this.query, page).subscribe();
-  }
-
   setSelected = (work: IWork) => {
     this.worksSrv.setSelected(work);
+    this.openModal = true;
   };
 }

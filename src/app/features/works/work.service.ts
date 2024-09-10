@@ -25,12 +25,7 @@ export class WorkService {
     private route: ActivatedRoute,
     private router: Router,
   ) {
-    this.route.queryParams.subscribe((params) => {
-      console.log(params);
-      // if (params['selected']) {
-      //   this.setSelected(params['selected']);
-      // }
-    });
+
   }
 
   getWorks(q: string, page: number = 1) {
@@ -88,7 +83,7 @@ export class WorkService {
         selected: id,
       },
       queryParamsHandling: 'merge',
-      // skipLocationChange: true,
+      skipLocationChange: true,
     });
     this.getWorkById(id).subscribe((res) => {
       this.selected.next(res);
@@ -97,7 +92,12 @@ export class WorkService {
     });
   }
 
-  setSelected(work: IWork) {
+  setSelected(work: IWork | null) {
+    if (!work) {
+      this.selected.next(null);
+
+      return;
+    }
     this.isDetailsLoading.next(true);
     this.router.navigate([], {
       relativeTo: this.route,
@@ -105,7 +105,7 @@ export class WorkService {
         selected: work._id,
       },
       queryParamsHandling: 'merge',
-      // skipLocationChange: true,
+      skipLocationChange: true,
     });
     this.selected.next(work); //optimistic
     this.getWorkById(work._id).subscribe((res) => {

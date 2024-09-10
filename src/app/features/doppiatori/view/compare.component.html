@@ -68,13 +68,13 @@
     col: doppiatori.length > 2,
   }"
   *ngIf="!isLoading; else loading"
-  [style]="'max-height:' + gridRowEnd + 'px'"
+  [style]="window.innerWidth > window.innerHeight ? 'max-height:' + gridRowEnd + 'px' : ''"
 >
   <!-- <div class="compare-card-wrap" > -->
-    <app-compare-card
+  <app-compare-card
     *ngFor="let doppiatore of doppiatori"
-      [name]="doppiatore.name"
-      [characters]="doppiatore.characters"
-    ></app-compare-card>
+    [name]="doppiatore.name"
+    [characters]="doppiatore.characters"
+  ></app-compare-card>
   <!-- </div> -->
 </div>
