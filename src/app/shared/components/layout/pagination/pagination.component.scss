@@ -1,0 +1,11 @@
+@import "src/styles/mixins";
+:host {
+  display: block;
+  margin-block: 10px;
+  button {
+    aspect-ratio: 1/1;
+    @include button;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
+}
