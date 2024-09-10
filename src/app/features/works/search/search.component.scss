@@ -15,14 +15,6 @@
     container-type: inline-size;
   }
 
-  .details {
-    width: 35%;
-
-    background-color: rgb(183, 212, 255, 0.5);
-    backdrop-filter: blur(4);
-    border: 1px solid $primary;
-    border-radius: 5px;
-  }
 
   .search {
     display: flex;
@@ -31,5 +23,16 @@
     app-card {
       // min-width: 550px;
     }
+  }
+
+  .modal-loading {
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+
+     background-color: rgb(0, 0, 0, 0.5);
+
   }
 }

@@ -8,12 +8,14 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
+
   margin: 0;
 }
 
 app-root {
   display: block;
-  min-height: 100vh;
+  // min-height: 100vh;
+  min-height: 100%;
 }
 
 img {
@@ -24,8 +26,6 @@ img {
 a {
   color: $primary;
 }
-
-
 
 /* HTML: <div class="loader"></div> */
 .loader {
@@ -41,7 +41,6 @@ a {
   }
 }
 
-
 .spinner {
   display: inline-block;
   width: 50px;
@@ -52,5 +51,8 @@ a {
   animation: l3 1s infinite linear;
 }
 
-
-@keyframes l3 {to{transform: rotate(1turn)}}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}

@@ -1,27 +1,13 @@
 <h1 *ngIf="!(isLoading && !isDetailsLoading)">{{ query }} — ({{ total }}) risultati</h1>
 <div *ngIf="isLoading && !isDetailsLoading; else cards" class="loader"></div>
 <ng-template #cards>
-  <app-pagination [pages]="pages" [onClick]="searchWork"></app-pagination>
+  <app-pagination *ngIf="pages > 0" [pages]="pages"></app-pagination>
   <div class="search">
     <div class="cards">
       <app-card [clickFn]="setSelected" *ngFor="let work of works" [work]="work"> </app-card>
     </div>
-    <div class="details" *ngIf="selected">
-      <div class="spinner" *ngIf="isDetailsLoading && isLoading; else details"></div>
-      <ng-template #details>
-        <img [src]="selected.poster" [alt]="selected.title">
-        <h2>{{selected.title}}</h2>
-        <small>{{selected.originalTitle}}</small>
-        <h3>Doppiatori: </h3>
-        <ul>
-          <li *ngFor="let dopp of selected.doppiatori">
-            {{dopp.doppiatore.name}} - <span *ngFor="let char of dopp.character">
-              {{char.name}},
-            </span>
-          </li>
-        </ul>
-      </ng-template>
-    </div>
+
+    <app-modal *ngIf="openModal && selected"> </app-modal>
   </div>
-  <app-pagination [pages]="pages" [onClick]="searchWork"></app-pagination>
+  <app-pagination *ngIf="pages > 0" [pages]="pages"></app-pagination>
 </ng-template>

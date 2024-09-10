@@ -33,6 +33,8 @@ export class CompareComponent implements AfterViewInit, OnChanges {
   isLogged!: boolean;
   isLoading!: boolean;
 
+  window = window;
+
   @ViewChildren(CompareCardComponent) cards!: QueryList<CompareCardComponent>;
   @ViewChild('grid') grid!: ElementRef;
   gridRowEnd!: number;
@@ -112,8 +114,8 @@ export class CompareComponent implements AfterViewInit, OnChanges {
   }
 
   calculateSpan() {
-    const firstHalf = [...this.cards].slice(0, this.cards.length / 2);
-    const secondHalf = [...this.cards].slice(this.cards.length / 2);
+    const firstHalf = [...this.cards].slice(0, (this.cards.length - 1) / 2);
+    const secondHalf = [...this.cards].slice((this.cards.length - 1) / 2);
     const higher = Math.max(
       this.calculateTotalHeight(firstHalf),
       this.calculateTotalHeight(secondHalf),

@@ -43,6 +43,8 @@
     justify-content: flex-start;
     gap: 20px;
 
+    padding-bottom: 50px;
+
     &.row {
       flex-direction: row;
       > * {
@@ -60,7 +62,16 @@
         max-width: 50%;
         height: fit-content;
       }
+      @media screen and (orientation: portrait) {
+        > * {
+          max-width: unset;
+          // height: unset;
+          max-height: unset!important;
+          flex-basis: 400px;
+        }
+      }
     }
+
   }
   .compare__search {
     display: flex;

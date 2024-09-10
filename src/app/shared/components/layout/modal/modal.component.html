@@ -1,0 +1,25 @@
+<ng-template #loadingSpinner>
+  <div class="spinner"></div>
+</ng-template>
+<div class="modal" *ngIf="!loading && !selectedLoading; else loadingSpinner">
+  <button (click)="close()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+  <div class="modal__img" >
+    <div class="modal__img-bg">
+    <img [src]="work.poster"  />
+
+    </div>
+    <img [src]="work.poster" [alt]="work.title" />
+  </div>
+  <h2>{{ work.title }}</h2>
+  <small>{{ work.originalTitle }}</small>
+  <h3>Doppiatori:</h3>
+  <ul>
+    <li *ngFor="let dopp of work.doppiatori">
+      {{ dopp.doppiatore.name }} -
+      <span *ngFor="let char of dopp.character"> {{ char.name }}, </span>
+    </li>
+  </ul>
+</div>
+<div class="modal__bg" (click)="close()"></div>

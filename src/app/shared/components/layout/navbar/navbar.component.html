@@ -34,28 +34,27 @@
     <a routerLink="auth/user" class="nav__item" id="profile"></a>
   </ng-template>
   <div class="nav--mobile">
-    <button class="nav__toggle"(click)="openNav()">
+    <button class="nav__toggle" (click)="openNav()">
       <ion-icon name="menu"></ion-icon>
     </button>
     <div class="nav--mobile-dropdown" #dropdown>
-
       <a class="nav__item" id="home" routerLink="/"></a>
       <div class="nav__user-area" *ngIf="!isLogged; else profile">
         <a
-        routerLink="auth"
-        [queryParams]="{
-          signup: false,
-        }"
-        class="nav__item"
-        id="login"
+          routerLink="auth"
+          [queryParams]="{
+            signup: false,
+          }"
+          class="nav__item"
+          id="login"
         ></a>
         <a
-        routerLink="auth"
-        [queryParams]="{
-          signup: true,
-        }"
-        class="nav__item"
-        id="signup"
+          routerLink="auth"
+          [queryParams]="{
+            signup: true,
+          }"
+          class="nav__item"
+          id="signup"
         ></a>
       </div>
       <ng-template #profile>
