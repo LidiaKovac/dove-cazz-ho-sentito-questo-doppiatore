@@ -1,5 +1,6 @@
 @import "/src/styles/types";
 @import "/src/styles/colors";
+@import "/src/styles/mixins";
 .nav {
   height: 50px;
   backdrop-filter: blur(10px);
@@ -15,9 +16,80 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &__user-area, &__global {
+  &--mobile {
+    display: none;
+  }
+  &__user-area,
+  &__global {
     display: flex;
     gap: 20px;
     align-items: center;
+  }
+  $links: (
+    home: "Home",
+    login: "Login",
+    signup: "Registrati",
+    profile: "Profilo"
+  );
+  &__item {
+    @each $id, $link in $links {
+
+      &##{$id} {
+        &:after {
+          content: $link;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 540px) {
+    min-height: 100px;
+    height: unset;
+    padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    .nav__item:not(.nav--mobile .nav__item) {
+      display: none;
+    }
+    .nav--mobile  {
+      display: inline;
+      .nav__toggle {
+        @include button;
+        aspect-ratio: 1/1;
+        height: 50px;
+        padding: unset;
+      }
+    }
+    .nav--mobile-dropdown {
+      position: fixed;
+      top: 100px;
+      left: 0;
+
+      transform: translateY(calc(-100%  - 100px));
+      transition: 0.5s;
+
+      width: 100%;
+      // height: 100px;
+
+      padding: 40px;
+
+      background-color: $primary;
+      backdrop-filter: blur(100px);
+
+      a {
+        color: white!important;
+      }
+
+      text-align: center;
+      a {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      &.open {
+        transform: translateY(0%);
+      }
+
+    }
   }
 }

@@ -19,8 +19,10 @@ interface IImport {
 interface IWork {
   _id: string;
   title: string;
+  originalTitle?: string;
   poster: string;
   wikiSlug: string;
+  doppiatori?: DoppiatoreCharacter[];
   seen?: boolean;
 }
 
@@ -28,6 +30,18 @@ interface IWorkPaged {
   data: IWork[];
   page: number;
   total: number;
+}
+
+interface DoppiatoreCharacter {
+  doppiatore: Doppiatore;
+  character: ICharacter[];
+}
+
+interface Doppiatore {
+  _id: string;
+  name: string;
+  img: string;
+  wikiSlug: string;
 }
 
 //! AUTH

@@ -8,6 +8,7 @@ import { WorkService } from 'src/app/features/works/work.service';
 })
 export class CardComponent {
   @Input() work!: IWork;
+  @Input() clickFn!: (work: IWork) => void;
   // @Output() handleOptimistic = new EventEmitter();
   constructor(private workSrv: WorkService) {}
 

@@ -11,18 +11,17 @@
   display: flex;
   align-items: center;
   position: relative;
-  // padding-block: 2px;
-  // background-color: white;
-  &:has(::ng-deep button) {
+
+  &:has(::ng-deep button:not(.toggle-password)) {
     input {
       border-top-right-radius: 0px !important;
       border-bottom-right-radius: 0px !important;
     }
   }
-  & input:focus + ::ng-deep button {
+  & input:focus + ::ng-deep button:not(.toggle-password) {
     outline: 2px $accent solid;
   }
-  ::ng-deep button {
+  ::ng-deep button:not(.toggle-password) {
     @include button($accent);
     aspect-ratio: 1/1;
     width: 51px;
@@ -55,6 +54,24 @@
     }
     &:focus {
       outline: 2px solid $accent;
+    }
+  }
+  button.toggle-password:has(ng-icon) {
+    position: absolute;
+    right: 10px;
+
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    &:hover {
+      ng-icon {
+        color: lighten($primary, 10%);
+      }
+    }
+    ng-icon {
+      width: 18px;
+      height: 18px;
+      color: $primary;
     }
   }
 }
