@@ -13,7 +13,7 @@ import { WorkService } from 'src/app/features/works/work.service';
   imports: [CommonModule],
 })
 export class PaginationComponent implements OnInit {
-  @Input() pages: number = 1;
+  pages!: number
   // @Input() onClick: (page: number) => void = () => null;
   pagesArr: null[] = [];
   pagesShown: number[] = [];
@@ -29,6 +29,10 @@ export class PaginationComponent implements OnInit {
       .pipe(
         switchMap((params) => {
           this.params = params;
+          return this.workSrv.pages
+        }),
+        switchMap((pages) => {
+          this.pages = pages
           return this.loading.$loading;
         }),
       )

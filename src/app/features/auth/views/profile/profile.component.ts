@@ -11,6 +11,7 @@ import { AuthService } from '../../auth.service';
 import { InputComponent } from 'src/app/shared/components/layout/input/input.component';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { DoppiatoriService } from 'src/app/features/doppiatori/doppiatori.service';
+import { AlertService } from 'src/app/shared/components/feedback/alert/alert.service';
 
 @Component({
   selector: 'app-profile',
@@ -37,6 +38,7 @@ export class ProfileComponent {
     private authSrv: AuthService,
     private loadingSrv: LoadingService,
     private doppiatoriSrv: DoppiatoriService,
+    private alertSrv:AlertService
   ) {
     this.loadingSrv.$loading.asObservable().subscribe((val) => {
       this.isLoading = val;
@@ -46,6 +48,8 @@ export class ProfileComponent {
     });
     this.doppiatoriSrv.suggestions.subscribe((s) => (this.suggestions = s));
     this.doppiatoriSrv.query.subscribe((q) => (this.query = q));
+  
+    
   }
 
   //!import
@@ -53,7 +57,13 @@ export class ProfileComponent {
     const fd = new FormData(ev.target as HTMLFormElement);
     this.authSrv.importTrakt(fd.get('username') as string).subscribe((nf) => {
       this.notFound = nf.titles;
+      if(nf.amount > 0) {
+        this.alertSrv.addAlert("Alcune serie non sono state trovate.", "alert")
+      } else {
+        this.alertSrv.addAlert("Serie TV importate con successo.", "info")
+      }
     });
+    
   };
 
   importLetterboxd(ev: Event) {
@@ -61,6 +71,11 @@ export class ProfileComponent {
     const fd = new FormData(target);
     this.authSrv.importLetterboxd(fd).subscribe((nf) => {
       this.notFound = nf.titles;
+      if(nf.amount > 0) {
+        this.alertSrv.addAlert("Alcune serie non sono state trovate.", "alert")
+      } else {
+        this.alertSrv.addAlert("Film importati con successo.", "info")
+      }
     });
   }
 
