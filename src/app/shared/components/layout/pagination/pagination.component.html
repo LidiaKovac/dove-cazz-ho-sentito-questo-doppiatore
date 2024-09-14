@@ -1,11 +1,13 @@
-<button (click)="selectPage(1)">1</button> -
-<button
-  *ngFor="let page of pagesShown"
-  [ngClass]="{
-    'current-page': page === curr,
-  }"
-  (click)="selectPage(page)"
->
-  {{ page }}
-</button>
-- <button (click)="selectPage(this.pagesArr.length)">{{ pagesArr.length }}</button>
+<ng-container *ngIf="pages > 1">
+  <button (click)="selectPage(1)">1</button> -
+  <button
+    *ngFor="let page of pagesShown"
+    [ngClass]="{
+      'current-page': page === curr,
+    }"
+    (click)="selectPage(page)"
+  >
+    {{ page }}
+  </button>
+  - <button (click)="selectPage(this.pagesArr.length)">{{ pagesArr.length }}</button>
+</ng-container>

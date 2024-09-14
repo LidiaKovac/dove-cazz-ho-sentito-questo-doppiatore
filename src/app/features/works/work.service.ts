@@ -33,7 +33,7 @@ export class WorkService {
       tap((res) => {
         this.loadingSrv.setLoading = false;
         this.total.next(res.total);
-        this.pages.next(Math.ceil(res.total / 10) + 1);
+        this.pages.next(Math.round(res.total / 10) + 1);
       }),
       map((res) => this.works.next(res.data)),
     );

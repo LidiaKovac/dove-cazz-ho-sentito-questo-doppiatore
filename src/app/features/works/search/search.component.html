@@ -1,7 +1,7 @@
 <h1 *ngIf="!(isLoading && !isDetailsLoading)">{{ query }} — ({{ total }}) risultati</h1>
 <div *ngIf="isLoading && !isDetailsLoading; else cards" class="loader"></div>
 <ng-template #cards>
-  <app-pagination *ngIf="pages > 0" [pages]="pages"></app-pagination>
+  <app-pagination ></app-pagination>
   <div class="search">
     <div class="cards">
       <app-card [clickFn]="setSelected" *ngFor="let work of works" [work]="work"> </app-card>
@@ -9,5 +9,5 @@
 
     <app-modal *ngIf="openModal && selected"> </app-modal>
   </div>
-  <app-pagination *ngIf="pages > 0" [pages]="pages"></app-pagination>
+  <app-pagination ></app-pagination>
 </ng-template>
