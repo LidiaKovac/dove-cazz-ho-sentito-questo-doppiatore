@@ -1,27 +1,17 @@
-# DoveCazzHoSentitoQuestoDoppiatore2
+# DOVE C\*ZZO HO SENTITO QUESTO DOPPIATORE? 🎙️🤔
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+## 🚧 Status del Progetto:
+Il progetto è ancora in fase di sviluppo, ma puoi già provarlo qui: [🔗 Prova la Web App](https://dovehosentitoquestodoppiatore.netlify.app).
 
-## Development server
+## 🔍 Scopri Dove Hai Sentito un Doppiatore:
+Hai mai guardato un film o una serie e ti sei chiesto: "Ma dove ho già sentito questa voce?!" 😵 Questa Web App ti aiuta a risolvere il mistero! Puoi cercare i lavori in comune tra due doppiatori e, se ti registri, scoprirai se i doppiatori di quello che stai guardando hanno lavorato anche in altre opere della tua watchlist.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📥 Importa la Tua Watchlist:
+Hai una lista infinita di film e serie da Letterboxd o Trakt? Nessun problema! Puoi importarla direttamente e vedere se ci sono doppiatori in comune tra ciò che hai già visto e altre opere. Tutti i dati sui doppiatori sono raccolti tramite scraping giornaliero da Wikipedia (mentre i personaggi e i lavori vengono aggiornati settimanalmente).
 
-## Code scaffolding
+## 💻 Segui lo Sviluppo:
+Sto creando una serie di video non tecnici dove racconto l'avventura dietro lo sviluppo di quest'app. Dai un'occhiata alla playlist su YouTube qui: 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[🎥 Playlist YouTube](https://youtube.com/playlist?list=PL8sPO0ZGGI9Ktw0Yn_YM6Dg8rPFNcPxZa&si=HxTdQojqYwJIimxV)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Divertiti a scoprire il mondo del doppiaggio e a risolvere tutti i tuoi "Dove ho già sentito questa voce?!"! 😎
