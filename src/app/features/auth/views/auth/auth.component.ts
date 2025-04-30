@@ -11,12 +11,16 @@ import { password, required } from 'src/app/core/validators';
 })
 export class AuthComponent {
   constructor(
-    private authSrv: AuthService,
-    private alertSrv: AlertService,
-    private route: ActivatedRoute,
+    private readonly authSrv: AuthService,
+    private readonly alertSrv: AlertService,
+    private readonly route: ActivatedRoute,
   ) {
     this.route.queryParams.subscribe((qp) => {
-      qp['signup'] === 'true' ? (this.state = false) : (this.state = true);
+      if(qp['signup'] === 'true') {
+        this.state = false
+      } else {
+        this.state = true
+      }
     });
   }
 

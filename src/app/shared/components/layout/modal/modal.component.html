@@ -7,7 +7,7 @@
   </button>
   <div class="modal__img" >
     <div class="modal__img-bg">
-    <img [src]="work.poster"  />
+    <img [src]="work.poster" [alt]="work.title" />
 
     </div>
     <img [src]="work.poster" [alt]="work.title" />
@@ -22,4 +22,4 @@
     </li>
   </ul>
 </div>
-<div class="modal__bg" (click)="close()"></div>
+<div class="modal__bg" role="button" (click)="close()" (onkeyup)="close()" tabindex="0"></div>

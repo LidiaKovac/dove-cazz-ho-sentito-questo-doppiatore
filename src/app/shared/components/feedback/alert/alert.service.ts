@@ -6,7 +6,7 @@ import uniqid from 'uniqid';
   providedIn: 'root',
 })
 export class AlertService {
-  private alerts = new BehaviorSubject<Alert[]>([]);
+  private readonly alerts = new BehaviorSubject<Alert[]>([]);
 
   constructor() {}
 

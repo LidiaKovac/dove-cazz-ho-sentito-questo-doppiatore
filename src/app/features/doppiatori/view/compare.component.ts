@@ -2,14 +2,13 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnChanges,
   QueryList,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { DoppiatoriService } from '../doppiatori.service';
 import { ActivatedRoute } from '@angular/router';
-import { delay, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { AuthService } from '../../auth/auth.service';
 import { CompareCardComponent } from '../../characters/compare-card/compare-card.component';
@@ -19,7 +18,7 @@ import { CompareCardComponent } from '../../characters/compare-card/compare-card
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
 })
-export class CompareComponent implements AfterViewInit, OnChanges {
+export class CompareComponent implements AfterViewInit {
   doppiatori: ICompare[] = [];
 
   title: string = '';
@@ -40,10 +39,10 @@ export class CompareComponent implements AfterViewInit, OnChanges {
   gridRowEnd!: number;
 
   constructor(
-    private doppiatoriSrv: DoppiatoriService,
-    private loadingSrv: LoadingService,
-    private authSrv: AuthService,
-    private route: ActivatedRoute,
+    private readonly doppiatoriSrv: DoppiatoriService,
+    private readonly loadingSrv: LoadingService,
+    private readonly authSrv: AuthService,
+    private readonly route: ActivatedRoute,
   ) {
     this.route.queryParams
       .pipe(
@@ -65,7 +64,6 @@ export class CompareComponent implements AfterViewInit, OnChanges {
           this.doppiatori = res;
           return this.cards.changes;
         }),
-        // delay(100),
       )
       .subscribe((res) => {
         this.calculateSpan();
@@ -80,24 +78,18 @@ export class CompareComponent implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    // this.calculateSpan();
     this.cards.changes.subscribe((cards) => {
       this.calculateSpan();
     });
   }
 
-  ngOnChanges() {
-    // this.calculateSpan();
-  }
+
 
   calculateTotalHeight(arr: CompareCardComponent[]) {
     return arr.reduce((acc, curr, i) => {
       console.log(curr.elementRef.nativeElement);
       const html = curr.elementRef.nativeElement as HTMLElement;
-      // if (this.cards.get(i)?.nativeElement) {
-      //   this.cards.get(i)!.nativeElement.style.height =
-      //     Math.ceil(html.getBoundingClientRect().height) + 'px';
-      // }
+
       return acc + html.getBoundingClientRect().height;
     }, 0);
   }

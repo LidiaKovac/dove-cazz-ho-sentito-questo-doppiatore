@@ -1,11 +1,6 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
-  OnInit,
-  QueryList,
   ViewChild,
-  ViewChildren,
 } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { InputComponent } from 'src/app/shared/components/layout/input/input.component';
@@ -35,10 +30,10 @@ export class ProfileComponent {
   isSavingUser: boolean = false;
 
   constructor(
-    private authSrv: AuthService,
-    private loadingSrv: LoadingService,
-    private doppiatoriSrv: DoppiatoriService,
-    private alertSrv:AlertService
+    private readonly authSrv: AuthService,
+    private readonly loadingSrv: LoadingService,
+    private readonly doppiatoriSrv: DoppiatoriService,
+    private readonly alertSrv:AlertService
   ) {
     this.loadingSrv.$loading.asObservable().subscribe((val) => {
       this.isLoading = val;

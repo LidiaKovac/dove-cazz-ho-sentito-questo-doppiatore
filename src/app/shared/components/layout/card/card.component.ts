@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { WorkService } from 'src/app/features/works/work.service';
 
 @Component({
@@ -9,8 +9,7 @@ import { WorkService } from 'src/app/features/works/work.service';
 export class CardComponent {
   @Input() work!: IWork;
   @Input() clickFn!: (work: IWork) => void;
-  // @Output() handleOptimistic = new EventEmitter();
-  constructor(private workSrv: WorkService) {}
+  constructor(private readonly workSrv: WorkService) {}
 
   watchWork = () => {
     this.workSrv.watchWork(this.work._id).subscribe();

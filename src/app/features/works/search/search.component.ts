@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { WorkService } from '../work.service';
-import { BehaviorSubject, of, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
@@ -22,12 +22,11 @@ export class SearchComponent {
   openModal!: boolean;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private worksSrv: WorkService,
-    private loadingSrv: LoadingService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly worksSrv: WorkService,
+    private readonly loadingSrv: LoadingService,
   ) {
-    // this.searchWork = this.searchWork.bind(this);
     this.loadingSrv.$loading.subscribe((res) => {
       this.isLoading = res;
     });
@@ -47,9 +46,9 @@ export class SearchComponent {
             });
           }
           if (params.get('selected') && params.get('selected') !== this.selected?._id) {
-            this.worksSrv.setSelectedById(params.get('selected')!);
+            this.worksSrv.setSelectedById(params.get('selected') ?? "");
           }
-          this.page = parseInt(params.get('page')!);
+          this.page = parseInt(params.get('page') ?? "1");
 
           this.query = params.get('query');
           if (this.query !== null) {

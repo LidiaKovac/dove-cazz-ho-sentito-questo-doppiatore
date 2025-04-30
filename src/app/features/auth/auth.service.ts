@@ -12,9 +12,9 @@ export class AuthService {
   public $user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 
   constructor(
-    private http: HttpClient,
-    private router: Router,
-    private loadingSrv: LoadingService,
+    private readonly http: HttpClient,
+    private readonly router: Router,
+    private readonly loadingSrv: LoadingService,
   ) {
     this.getMe().subscribe();
   }
@@ -24,7 +24,7 @@ export class AuthService {
       tap((res) => {
         this.$user?.next(res.body);
         this.router.navigate(['landing']);
-        localStorage.setItem('doppiatori', res.headers.get('Authorization')!);
+        localStorage.setItem('doppiatori', res.headers.get('Authorization') ?? "");
       }),
     );
   }

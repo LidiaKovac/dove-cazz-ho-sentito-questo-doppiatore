@@ -23,9 +23,9 @@ export class InputComponent implements ControlValueAccessor {
   writeValue(obj: any): void {
     this.value = obj;
   }
-  registerOnChange(fn: any): void {}
-  registerOnTouched(fn: any): void {}
-  setDisabledState?(isDisabled: boolean): void {}
+  registerOnChange(fn: any): void {return}
+  registerOnTouched(fn: any): void {return}
+  setDisabledState?(isDisabled: boolean): void {return}
 
   @Input() placeholder: string = 'Example';
   @Input() defaultValue: string | null = null;
