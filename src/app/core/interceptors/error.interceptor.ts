@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { catchError, Observable, OperatorFunction, retry, tap, throwError, timer } from 'rxjs';
+import { catchError, Observable, OperatorFunction, retry, throwError, timer } from 'rxjs';
 import { LoadingService } from '../services/loading.service';
 import { AlertService } from 'src/app/shared/components/feedback/alert/alert.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(
-    private alertSrv: AlertService,
-    private loadingSrv: LoadingService,
+    private readonly alertSrv: AlertService,
+    private readonly loadingSrv: LoadingService,
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {

@@ -1,11 +1,4 @@
-<!-- <h1>
-  Dove
-  <span>
-    cazzo
-    <img src="../../../assets/strike.png" />
-  </span>
-  hai sentito questo doppiatore?!
-</h1> -->
+
 <h2>
   <ng-template #userCompare>
     <span>
@@ -70,11 +63,9 @@
   *ngIf="!isLoading; else loading"
   [style]="window.innerWidth > window.innerHeight ? 'max-height:' + gridRowEnd + 'px' : ''"
 >
-  <!-- <div class="compare-card-wrap" > -->
   <app-compare-card
     *ngFor="let doppiatore of doppiatori"
     [name]="doppiatore.name"
     [characters]="doppiatore.characters"
   ></app-compare-card>
-  <!-- </div> -->
 </div>

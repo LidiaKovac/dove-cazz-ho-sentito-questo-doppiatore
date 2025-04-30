@@ -55,7 +55,6 @@
     &.col {
       display: flex;
       flex-direction: column;
-      // max-height: 1000px;
 
       > * {
         flex: 1 1 500px;
@@ -65,7 +64,6 @@
       @media screen and (orientation: portrait) {
         > * {
           max-width: unset;
-          // height: unset;
           max-height: unset!important;
           flex-basis: 400px;
         }

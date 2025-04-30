@@ -8,15 +8,15 @@ import { WorkService } from 'src/app/features/works/work.service';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   work!: IWork;
 
   loading!: boolean;
   selectedLoading!: boolean;
 
   constructor(
-    private workSrv: WorkService,
-    private loadingSrv: LoadingService,
+    private readonly workSrv: WorkService,
+    private readonly loadingSrv: LoadingService,
   ) {
     this.loadingSrv.$loading
       .pipe(
@@ -34,7 +34,6 @@ export class ModalComponent implements OnInit {
       });
   }
 
-  ngOnInit() {}
 
   close() {
     this.workSrv.setSelected(null);

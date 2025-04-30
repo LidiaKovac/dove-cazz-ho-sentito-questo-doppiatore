@@ -3,5 +3,5 @@ export const required: IValidator = (value: string) => {
 };
 
 export const password: IValidator = (value: string) => {
-  return new RegExp('^(?=.*[A-Z])(?=.*[\\W_]).{8,}$').test(value);
+  return /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
 };

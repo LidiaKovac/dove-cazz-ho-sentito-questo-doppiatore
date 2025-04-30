@@ -19,11 +19,11 @@ export class WorkService {
   public isDetailsLoading = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private http: HttpClient,
-    private loadingSrv: LoadingService,
-    private alertSrv: AlertService,
-    private route: ActivatedRoute,
-    private router: Router,
+    private readonly http: HttpClient,
+    private readonly loadingSrv: LoadingService,
+    private readonly alertSrv: AlertService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
   ) {
 
   }
@@ -61,12 +61,11 @@ export class WorkService {
 
   optimisticToggleSeen(id: string) {
     const currentWorks = this.works.getValue();
-    for (let i = 0; i < currentWorks.length; i++) {
-      const work = currentWorks[i];
+    for (const work of currentWorks) {
       if (work._id === id) {
-        currentWorks[i].seen = !currentWorks[i].seen;
+        work.seen = !work.seen;
         this.alertSrv.addAlert(
-          `Elemento ${currentWorks[i].seen ? 'aggiunto ' : 'rimosso d'}alla tua lista`,
+          `Elemento ${work.seen ? 'aggiunto ' : 'rimosso d'}alla tua lista`,
           'info',
         );
         break;

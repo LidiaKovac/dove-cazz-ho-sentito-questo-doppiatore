@@ -7,7 +7,7 @@
   }"
 >
   <div class="close">
-    <ion-icon name="close" (click)="deleteSelf()"></ion-icon>
+    <ion-icon name="close" (click)="deleteSelf()" (onkeydown)="deleteSelf()" tabindex="0"></ion-icon>
   </div>
   <div class="alert__body">
     <ng-content></ng-content>
