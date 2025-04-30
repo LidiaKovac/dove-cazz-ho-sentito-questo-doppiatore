@@ -25,7 +25,7 @@ export class SuggestionInputComponent implements OnInit {
   suggestions: string[] = [];
   query: string = '';
 
-  constructor(private doppiatoriSrv: DoppiatoriService) {
+  constructor(private readonly doppiatoriSrv: DoppiatoriService) {
     this.doppiatoriSrv.suggestions.subscribe((s) => (this.suggestions = s));
     this.doppiatoriSrv.query.subscribe((q) => (this.query = q));
   }

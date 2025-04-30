@@ -17,12 +17,12 @@
     </ul>
 
     <div *ngIf="!state; else Login">
-      Hai già un account? <span (click)="toggleState()">Entra</span>
+      Hai già un account? <span (click)="toggleState()" onkeydown="toggleState()" tabindex="0">Entra</span>
     </div>
     <ng-template #Login>
       <div>
         Non hai ancora un account?
-        <span (click)="toggleState()">Registrati</span>
+        <span (click)="toggleState()" onkeydown="toggleState()" tabindex="1">Registrati</span>
       </div>
     </ng-template>
   </div>

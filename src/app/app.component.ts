@@ -12,8 +12,8 @@ export class AppComponent {
   alerts: Alert[] = [];
 
   constructor(
-    private authSrv: AuthService,
-    private alertSrv: AlertService,
+    private readonly authSrv: AuthService,
+    private readonly alertSrv: AlertService,
   ) {
     this.authSrv.getMe().subscribe();
     this.alertSrv.alertList.subscribe((alerts) => (this.alerts = alerts));

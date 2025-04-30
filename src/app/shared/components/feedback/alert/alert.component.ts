@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { AppModule } from 'src/app/app.module';
 import { AlertService } from './alert.service';
 
 @Component({
@@ -12,7 +10,7 @@ export class AlertComponent implements OnInit {
   @Input() id: Alert['id'] = '0';
   @Input() type: Alert['type'] = 'info';
   classList = ['alert'];
-  constructor(private srv: AlertService) {}
+  constructor(private readonly srv: AlertService) {}
   ngOnInit(): void {
     setTimeout(this.deleteSelf, 3000);
   }

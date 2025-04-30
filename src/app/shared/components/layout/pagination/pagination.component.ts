@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { WorkService } from 'src/app/features/works/work.service';
 
@@ -14,16 +14,15 @@ import { WorkService } from 'src/app/features/works/work.service';
 })
 export class PaginationComponent implements OnInit {
   pages!: number
-  // @Input() onClick: (page: number) => void = () => null;
   pagesArr: null[] = [];
   pagesShown: number[] = [];
   params!: ParamMap;
   curr!: number;
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private loading: LoadingService,
-    private workSrv: WorkService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly loading: LoadingService,
+    private readonly workSrv: WorkService,
   ) {
     this.route.queryParamMap
       .pipe(
@@ -37,17 +36,16 @@ export class PaginationComponent implements OnInit {
         }),
       )
       .subscribe((loading) => {
-        this.curr = parseInt(this.params.get('page')!);
+        this.curr = parseInt(this.params.get('page') ?? "0");
         if (!loading) {
           this.calcPagesShown();
         }
       });
-    //   this.pagesArr = new Array(this.pages - 1);
   }
 
   calcPagesShown() {
     this.pagesShown = [];
-    const currPage = parseInt(this.params.get('page') || '0');
+    const currPage = parseInt(this.params.get('page') ?? '0');
     for (let i = 0; i <= this.pagesArr.length; i++) {
       const diff = currPage - i;
       if ((i > 0 && diff < 3 && diff > -4) || diff === 0) {

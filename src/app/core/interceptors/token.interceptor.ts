@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.includes('login') || request.url.includes('register'))
@@ -19,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
     const clone = request.clone({
       headers: request.headers.set(
         'Authorization',
-        ('Bearer ' + localStorage.getItem('doppiatori')) as string,
+        'Bearer ' + localStorage.getItem('doppiatori'),
       ),
     });
 

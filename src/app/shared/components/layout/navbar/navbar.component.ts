@@ -14,8 +14,8 @@ export class NavbarComponent {
   navDropdown!: ElementRef<HTMLDivElement>;
 
   constructor(
-    private authSrv: AuthService,
-    private router: Router,
+    private readonly authSrv: AuthService,
+    private readonly router: Router,
   ) {
     this.authSrv.$user.subscribe((user) => (this.isLogged = !!user));
   }

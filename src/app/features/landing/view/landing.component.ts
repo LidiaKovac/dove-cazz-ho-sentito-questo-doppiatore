@@ -16,8 +16,8 @@ export class LandingComponent {
   suggestionsTwo: string[] = [];
   suggestionsWatchList: string[] = [];
   constructor(
-    private authSrv: AuthService,
-    private doppiatoriSrv: DoppiatoriService,
+    private readonly authSrv: AuthService,
+    private readonly doppiatoriSrv: DoppiatoriService,
   ) {
     this.authSrv.recoverLoggedUser().subscribe((user) => {
       this.isLogged = !!user;

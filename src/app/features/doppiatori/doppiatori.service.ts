@@ -23,9 +23,9 @@ export class DoppiatoriService {
   suggestions = new BehaviorSubject<string[]>([]);
   query = new BehaviorSubject<string>('');
   constructor(
-    private http: HttpClient,
-    private router: Router,
-    private loadingSrv: LoadingService,
+    private readonly http: HttpClient,
+    private readonly router: Router,
+    private readonly loadingSrv: LoadingService,
   ) {}
 
   private getSuggestions(query: string, input: string) {
