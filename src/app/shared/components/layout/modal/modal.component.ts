@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { WorkService } from 'src/app/features/works/work.service';
