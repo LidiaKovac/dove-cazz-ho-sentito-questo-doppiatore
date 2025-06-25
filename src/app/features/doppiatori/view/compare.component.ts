@@ -14,9 +14,10 @@ import { AuthService } from '../../auth/auth.service';
 import { CompareCardComponent } from '../../characters/compare-card/compare-card.component';
 
 @Component({
-  selector: 'app-compare',
-  templateUrl: './compare.component.html',
-  styleUrls: ['./compare.component.scss'],
+    selector: 'app-compare',
+    templateUrl: './compare.component.html',
+    styleUrls: ['./compare.component.scss'],
+    standalone: false
 })
 export class CompareComponent implements AfterViewInit {
   doppiatori: ICompare[] = [];

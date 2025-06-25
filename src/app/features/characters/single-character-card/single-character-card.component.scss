@@ -1,5 +1,5 @@
-@import "/src/styles/colors";
-@import "/src/styles/types";
+@use "/src/styles/colors" as *;
+@use "/src/styles/types";
 :host {
   .card {
     font-family: Arial, Helvetica, sans-serif;
@@ -63,7 +63,7 @@
       text-wrap: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: $body;
+      font-size: types.$body;
       margin: 0;
       text-align: center;
     }

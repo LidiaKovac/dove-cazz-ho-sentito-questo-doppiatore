@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       this.loadingSrv.setLoading = false;
       return throwError(() => err);
     });
-    if (request.url.includes('/user/me') && request.method === 'GET') {
+    if (request.url.includes('/users/me') && request.method === 'GET') {
       return next.handle(request);
     }
     if (request.url.includes('compare') || request.url.includes('works?query=')) {

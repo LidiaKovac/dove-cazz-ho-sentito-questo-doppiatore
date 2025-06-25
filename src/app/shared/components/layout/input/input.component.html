@@ -16,11 +16,15 @@
   [attr.id]="id"
   [value]="value"
   [attr.autofocus]="autofocus"
-/>
-<small class="error" *ngIf="!isValid">
-  {{ validatorMsg }}
-</small>
-<button (mousedown)="setType('text')" (mouseup)="setType('password')" type="button" *ngIf="name==='password'" class="toggle-password">
-  <ng-icon  name="ion-eye"></ng-icon>
-</button>
-<ng-content></ng-content>
+  />
+  @if (!isValid) {
+    <small class="error">
+      {{ validatorMsg }}
+    </small>
+  }
+  @if (name==='password') {
+    <button (mousedown)="setType('text')" (mouseup)="setType('password')" type="button" class="toggle-password">
+      <!-- <ng-icon  name="ion-eye"></ng-icon> -->
+    </button>
+  }
+  <ng-content></ng-content>

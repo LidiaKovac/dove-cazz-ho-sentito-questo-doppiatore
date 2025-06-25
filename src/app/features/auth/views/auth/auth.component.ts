@@ -5,9 +5,10 @@ import { AlertService } from 'src/app/shared/components/feedback/alert/alert.ser
 import { password, required } from 'src/app/core/validators';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss'],
+    selector: 'app-auth',
+    templateUrl: './auth.component.html',
+    styleUrls: ['./auth.component.scss'],
+    standalone: false
 })
 export class AuthComponent {
   constructor(

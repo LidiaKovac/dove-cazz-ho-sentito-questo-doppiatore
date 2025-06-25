@@ -12,10 +12,11 @@
       ></app-input>
     </div>
     <app-button [disabled]="isLoading && isSavingUser">
-      <span *ngIf="!(isLoading && isSavingUser); else loaderUser">Save</span>
-      <ng-template #loaderUser>
+      @if (!(isLoading && isSavingUser)) {
+        <span>Save</span>
+      } @else {
         <div class="loader"></div>
-      </ng-template>
+      }
     </app-button>
   </form>
   <div class="profile__import">
@@ -38,33 +39,46 @@
         <app-input type="file" name="file" accept=".csv"></app-input>
         <app-button>Save</app-button>
       </form>
-      <div class="overlay" *ngIf="isLoading && !isSavingUser">
-        <div class="spinner"></div>
-        <small
-          >Se hai visto tanti film potrebbe volerci un pochino di tempo... Abbi pazienza!</small
-        >
+      @if (isLoading && !isSavingUser) {
+        <div class="overlay">
+          <div class="spinner"></div>
+          <small
+            >Se hai visto tanti film potrebbe volerci un pochino di tempo... Abbi pazienza!</small
+            >
+          </div>
+        }
       </div>
-    </div>
-    <div class="not-found" *ngIf="notFound.length > 0">
-      <h3>({{ notFound.length }}) elementi non trovati</h3>
-      <ul>
-        <li *ngFor="let show of notFound">
-          <span *ngIf="selected !== show">{{ show }}</span>
-          <app-suggestion-input
-            *ngIf="selected === show"
-            name="query"
-            dataSuggestionsVar="suggestions"
-            placeholder="Serie, film o videogioco..."
-            [autocomplete]="'off'"
-            [autofocus]="true"
-            [id]="show"
-            #appInput
-          >
-          </app-suggestion-input>
-          <button *ngIf="selected !== show" (click)="toggleFind(show)" class="find">Find</button>
-          <button *ngIf="selected === show" class="save" (click)="addToSeen(show)">Save</button>
-        </li>
-      </ul>
+      @if (notFound.length > 0) {
+        <div class="not-found">
+          <h3>({{ notFound.length }}) elementi non trovati</h3>
+          <ul>
+            @for (show of notFound; track show) {
+              <li>
+                @if (selected !== show) {
+                  <span>{{ show }}</span>
+                }
+                @if (selected === show) {
+                  <app-suggestion-input
+                    name="query"
+                    dataSuggestionsVar="suggestions"
+                    placeholder="Serie, film o videogioco..."
+                    [autocomplete]="'off'"
+                    [autofocus]="true"
+                    [id]="show"
+                    #appInput
+                    >
+                  </app-suggestion-input>
+                }
+                @if (selected !== show) {
+                  <button (click)="toggleFind(show)" class="find">Find</button>
+                }
+                @if (selected === show) {
+                  <button class="save" (click)="addToSeen(show)">Save</button>
+                }
+              </li>
+            }
+          </ul>
+        </div>
+      }
     </div>
   </div>
-</div>

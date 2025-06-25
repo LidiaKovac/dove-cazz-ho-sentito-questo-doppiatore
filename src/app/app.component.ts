@@ -3,9 +3,10 @@ import { AuthService } from './features/auth/auth.service';
 import { AlertService } from './shared/components/feedback/alert/alert.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
   title = 'dove-cazz-ho-sentito-questo-doppiatore-2';

@@ -1,6 +1,9 @@
-@import "src/styles/types";
-@import "src/styles/colors";
-@import "src/styles/mixins";
+@use "src/styles/types";
+@use "src/styles/colors" as *;
+@use "src/styles/mixins";
+
+@use "sass:color";
+
 
 .inset-shadow {
   box-shadow: inset 2px 2px 5px 0px rgb(0, 0, 0, 0.08) !important;
@@ -22,7 +25,7 @@
     outline: 2px $accent solid;
   }
   ::ng-deep button:not(.toggle-password) {
-    @include button($accent);
+    @include mixins.button($accent);
     aspect-ratio: 1/1;
     width: 51px;
     padding: unset;
@@ -44,7 +47,7 @@
   }
   input {
     padding: 15px;
-    font-size: $text;
+    font-size: types.$text;
     border-radius: 5px;
     border: none;
     @extend .inset-shadow;
@@ -65,7 +68,7 @@
     height: 100%;
     &:hover {
       ng-icon {
-        color: lighten($primary, 10%);
+        color: color.adjust($primary, $lightness: 10%);
       }
     }
     ng-icon {

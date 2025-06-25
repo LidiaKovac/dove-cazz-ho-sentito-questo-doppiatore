@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { WorkService } from 'src/app/features/works/work.service';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
+    selector: 'app-card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.scss'],
+    standalone: false
 })
 export class CardComponent {
   @Input() work!: IWork;

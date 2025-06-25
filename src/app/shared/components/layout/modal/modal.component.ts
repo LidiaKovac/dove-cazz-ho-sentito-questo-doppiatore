@@ -4,9 +4,10 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { WorkService } from 'src/app/features/works/work.service';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+    selector: 'app-modal',
+    templateUrl: './modal.component.html',
+    styleUrls: ['./modal.component.scss'],
+    standalone: false
 })
 export class ModalComponent {
   work!: IWork;

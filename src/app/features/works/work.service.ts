@@ -42,7 +42,7 @@ export class WorkService {
   watchWork(id: string) {
     this.optimisticToggleSeen(id);
 
-    return this.http.put<IWork[]>(`${environment.url}user/me/watch/${id}`, null);
+    return this.http.put<IWork[]>(`${environment.url}users/me/watch/${id}`, null);
   }
 
   getWorkById(id: string) {
@@ -56,7 +56,7 @@ export class WorkService {
 
   unwatchWork(id: string) {
     this.optimisticToggleSeen(id);
-    return this.http.put<IWork[]>(`${environment.url}user/me/unwatch/${id}`, null);
+    return this.http.put<IWork[]>(`${environment.url}users/me/unwatch/${id}`, null);
   }
 
   optimisticToggleSeen(id: string) {

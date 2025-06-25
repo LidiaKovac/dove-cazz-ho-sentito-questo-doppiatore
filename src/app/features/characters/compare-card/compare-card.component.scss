@@ -1,4 +1,4 @@
-@import "/src/styles/colors";
+@use "/src/styles/colors" as *;
 
 .compare-card {
   background-color: rgb(183, 212, 255, 0.5);

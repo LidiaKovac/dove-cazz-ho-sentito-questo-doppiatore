@@ -8,15 +8,21 @@
   [autofocus]="true"
   [id]="id"
   #appInput
->
-  <div class="search__suggestion" *ngIf="shouldShow()">
-    <div
-      class="search__suggestion--first"
-      *ngFor="let sugg of suggestions"
-      [id]="name"
-      (click)="pickSuggestion($event)"
-    >
-      {{ sugg }}
-    </div>
+  >
+  <div class="search__suggestion" >
+    @if (shouldShow && suggestions.length < 1) {
+      <div class="search__suggestion--first">
+        Warming up the data...
+      </div>
+    }
+    @for (sugg of suggestions; track sugg) {
+      <div
+        class="search__suggestion--first"
+        [id]="name"
+        (click)="pickSuggestion($event)"
+        >
+        {{ sugg }}
+      </div>
+    }
   </div>
 </app-input>

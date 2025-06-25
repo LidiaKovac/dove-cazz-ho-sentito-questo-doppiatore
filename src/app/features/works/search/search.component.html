@@ -1,13 +1,19 @@
-<h1 *ngIf="!(isLoading && !isDetailsLoading)">{{ query }} — ({{ total }}) risultati</h1>
-<div *ngIf="isLoading && !isDetailsLoading; else cards" class="loader"></div>
-<ng-template #cards>
+@if (!(isLoading && !isDetailsLoading)) {
+  <h1>{{ query }} — ({{ total }}) risultati</h1>
+}
+@if (isLoading && !isDetailsLoading) {
+  <div class="loader"></div>
+} @else {
   <app-pagination ></app-pagination>
   <div class="search">
     <div class="cards">
-      <app-card [clickFn]="setSelected" *ngFor="let work of works" [work]="work"> </app-card>
+      @for (work of works; track work) {
+        <app-card [clickFn]="setSelected" [work]="work"> </app-card>
+      }
     </div>
-
-    <app-modal *ngIf="openModal && selected"> </app-modal>
+    @if (openModal && selected) {
+      <app-modal> </app-modal>
+    }
   </div>
   <app-pagination ></app-pagination>
-</ng-template>
+}

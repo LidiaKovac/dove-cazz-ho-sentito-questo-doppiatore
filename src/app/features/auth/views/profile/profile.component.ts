@@ -9,9 +9,10 @@ import { DoppiatoriService } from 'src/app/features/doppiatori/doppiatori.servic
 import { AlertService } from 'src/app/shared/components/feedback/alert/alert.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.scss'],
+    standalone: false
 })
 export class ProfileComponent {
   //!import

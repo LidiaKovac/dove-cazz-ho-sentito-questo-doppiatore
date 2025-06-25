@@ -5,7 +5,7 @@
       login: this.state,
       register: !this.state,
     }"
-  >
+    >
     <img src="../../../assets/titolo-sm.png" alt="" />
     <ul>
       <li>
@@ -16,15 +16,16 @@
       <li>Trova doppiatori in comune tra due serie</li>
     </ul>
 
-    <div *ngIf="!state; else Login">
-      Hai già un account? <span role="button" (click)="toggleState()" onkeydown="toggleState()" tabindex="0">Entra</span>
-    </div>
-    <ng-template #Login>
+    @if (!state) {
+      <div>
+        Hai già un account? <span role="button" (click)="toggleState()" onkeydown="toggleState()" tabindex="0">Entra</span>
+      </div>
+    } @else {
       <div>
         Non hai ancora un account?
         <span role="button" (click)="toggleState()" onkeydown="toggleState()" tabindex="-1">Registrati</span>
       </div>
-    </ng-template>
+    }
   </div>
   <form class="auth__form-login" (ngSubmit)="handleLogin($event)">
     <app-input type="email" name="email" placeholder="Email"></app-input>

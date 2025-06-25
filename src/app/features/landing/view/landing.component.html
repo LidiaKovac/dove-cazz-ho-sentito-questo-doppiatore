@@ -9,7 +9,7 @@
           dataSuggestionsVar="suggestionsOne"
           placeholder="Inserisci serie"
           [autocomplete]="'off'"
-        >
+          >
         </app-suggestion-input>
 
         <app-suggestion-input
@@ -17,37 +17,37 @@
           dataSuggestionsVar="suggestionsTwo"
           placeholder="Inserisci serie"
           [autocomplete]="'off'"
-        >
+          >
         </app-suggestion-input>
 
         <app-button [onClick]="navigateToComparison">Cerca</app-button>
       </div>
+      @if (isLogged) {
+        <section>
+          <p>
+            Inserisci il nome della serie che stai guardando e scopri in quali serie
+            potresti averlo sentito:
+          </p>
+          <div class="landing__wrap-search">
+            <app-suggestion-input
+              name="watchListQuery"
+              placeholder="Inserisci un titolo"
+              dataSuggestionsVar="suggestionsWatchList"
+              [autocomplete]="'off'"
+              >
+            </app-suggestion-input>
+            <app-button [onClick]="navigateToUserComparison">Cerca</app-button>
+          </div>
+        </section>
+      } @else {
+        <p>
+          Oppure <a [routerLink]="['/auth']">effettua il login</a> per scoprire in
+          quali serie potresti aver sentito <i> quel </i> doppiatore
+        </p>
+      }
     </div>
-    <section *ngIf="isLogged; else notLogged">
-      <p>
-        Inserisci il nome della serie che stai guardando e scopri in quali serie
-        potresti averlo sentito:
-      </p>
-      <div class="landing__wrap-search">
-        <app-suggestion-input
-          name="watchListQuery"
-          placeholder="Inserisci un titolo"
-          dataSuggestionsVar="suggestionsWatchList"
-          [autocomplete]="'off'"
-        >
-        </app-suggestion-input>
-
-        <app-button [onClick]="navigateToUserComparison">Cerca</app-button>
-      </div>
-    </section>
-    <ng-template #notLogged>
-      <p>
-        Oppure <a [routerLink]="['/auth']">effettua il login</a> per scoprire in
-        quali serie potresti aver sentito <i> quel </i> doppiatore
-      </p>
-    </ng-template>
   </div>
-  <div class="landing__img">
+  <!-- <div class="landing__img">
     <img src="../../../assets/foto.png" alt="" />
-  </div>
+  </div> -->
 </div>

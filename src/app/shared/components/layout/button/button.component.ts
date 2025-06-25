@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
-  standalone: true,
-  imports: [CommonModule],
+    selector: 'app-button',
+    templateUrl: './button.component.html',
+    styleUrls: ['./button.component.scss'],
+    imports: []
 })
 export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() value!: string;

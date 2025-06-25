@@ -1,4 +1,4 @@
-@import "./styles/colors";
+@use "styles/colors";
 * {
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
@@ -23,7 +23,7 @@ img {
 }
 
 a {
-  color: $primary;
+  color: colors.$primary;
 }
 
 /* HTML: <div class="loader"></div> */
@@ -31,7 +31,7 @@ a {
   width: 120px;
   height: 20px;
   border-radius: 20px;
-  background: linear-gradient($accent 0 0) 0/0% no-repeat $primary;
+  background: linear-gradient(colors.$accent 0 0) 0/0% no-repeat colors.$primary;
   animation: l2 2s infinite linear;
 }
 @keyframes l2 {
@@ -45,8 +45,8 @@ a {
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 8px solid $primary;
-  border-right-color: $accent;
+  border: 8px solid colors.$primary;
+  border-right-color: colors.$accent;
   animation: l3 1s infinite linear;
 }
 

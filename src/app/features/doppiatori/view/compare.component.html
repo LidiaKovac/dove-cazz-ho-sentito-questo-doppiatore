@@ -1,12 +1,6 @@
 
 <h2>
-  <ng-template #userCompare>
-    <span>
-      {{ showQuery }}
-    </span>
-    — Doppiatori in comune con la tua watchlist
-  </ng-template>
-  <ng-container *ngIf="title && compareTo; else userCompare">
+  @if (title && compareTo) {
     <span>
       {{ title }}
     </span>
@@ -15,57 +9,63 @@
       {{ compareTo }}
     </span>
     — Doppiatori in comune
-  </ng-container>
+  } @else {
+    <span>
+      {{ showQuery }}
+    </span>
+    — Doppiatori in comune con la tua watchlist
+  }
 </h2>
 <div class="compare__search">
-  <ng-template #userCompareForm>
-    <app-suggestion-input
-      dataSuggestionsVar="suggestions"
-      placeholder="Inserisci serie"
-      name="watchListQuery"
-      [autocomplete]="'off'"
-    >
-    </app-suggestion-input>
-    <app-button [onClick]="navigateToUserComparison">Cerca</app-button>
-  </ng-template>
-  <ng-container *ngIf="title && compareTo; else userCompareForm">
+  @if (title && compareTo) {
     <app-suggestion-input
       dataSuggestionsVar="suggestionsOne"
       placeholder="Inserisci serie"
       name="showOneQuery"
       [autocomplete]="'off'"
-    >
+      >
     </app-suggestion-input>
-
     <app-suggestion-input
       name="showTwoQuery"
       dataSuggestionsVar="suggestionsTwo"
       placeholder="Inserisci serie"
       [autocomplete]="'off'"
-    >
+      >
     </app-suggestion-input>
     <app-button [onClick]="navigateToComparison">Cerca</app-button>
-  </ng-container>
+  } @else {
+    <app-suggestion-input
+      dataSuggestionsVar="suggestions"
+      placeholder="Inserisci serie"
+      name="watchListQuery"
+      [autocomplete]="'off'"
+      >
+    </app-suggestion-input>
+    <app-button [onClick]="navigateToUserComparison">Cerca</app-button>
+  }
 </div>
-<h2 *ngIf="!isLoading">({{ doppiatori.length }}) risultati:</h2>
-<ng-template #loading>
-  <div class="loading__wrap">
-    <div class="loader"></div>
-  </div>
-</ng-template>
-<div
-  class="compare__wrap"
-  #grid
+@if (!isLoading) {
+  <h2>({{ doppiatori.length }}) risultati:</h2>
+}
+@if (!isLoading) {
+  <div
+    class="compare__wrap"
+    #grid
   [ngClass]="{
     row: doppiatori.length <= 2,
     col: doppiatori.length > 2,
   }"
-  *ngIf="!isLoading; else loading"
-  [style]="window.innerWidth > window.innerHeight ? 'max-height:' + gridRowEnd + 'px' : ''"
->
-  <app-compare-card
-    *ngFor="let doppiatore of doppiatori"
-    [name]="doppiatore.name"
-    [characters]="doppiatore.characters"
-  ></app-compare-card>
-</div>
+    [style]="window.innerWidth > window.innerHeight ? 'max-height:' + gridRowEnd + 'px' : ''"
+    >
+    @for (doppiatore of doppiatori; track doppiatore) {
+      <app-compare-card
+        [name]="doppiatore.name"
+        [characters]="doppiatore.characters"
+      ></app-compare-card>
+    }
+  </div>
+} @else {
+  <div class="loading__wrap">
+    <div class="loader"></div>
+  </div>
+}

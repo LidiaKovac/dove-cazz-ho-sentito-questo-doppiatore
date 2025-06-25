@@ -1,25 +1,30 @@
-<ng-template #loadingSpinner>
-  <div class="spinner"></div>
-</ng-template>
-<div class="modal" *ngIf="!loading && !selectedLoading; else loadingSpinner">
-  <button (click)="close()">
-    <ion-icon name="close"></ion-icon>
-  </button>
-  <div class="modal__img" >
-    <div class="modal__img-bg">
-    <img [src]="work.poster" [alt]="work.title" />
 
+@if (!loading && !selectedLoading) {
+  <div class="modal">
+    <button (click)="close()">
+      <!-- <ion-icon name="close"></ion-icon> -->
+    </button>
+    <div class="modal__img" >
+      <div class="modal__img-bg">
+        <img [src]="work.poster" [alt]="work.title" />
+      </div>
+      <img [src]="work.poster" [alt]="work.title" />
     </div>
-    <img [src]="work.poster" [alt]="work.title" />
+    <h2>{{ work.title }}</h2>
+    <small>{{ work.originalTitle }}</small>
+    <h3>Doppiatori:</h3>
+    <ul>
+      @for (dopp of work.doppiatori; track dopp) {
+        <li>
+          {{ dopp.doppiatore.name }} -
+          @for (char of dopp.character; track char) {
+            <span> {{ char.name }}, </span>
+          }
+        </li>
+      }
+    </ul>
   </div>
-  <h2>{{ work.title }}</h2>
-  <small>{{ work.originalTitle }}</small>
-  <h3>Doppiatori:</h3>
-  <ul>
-    <li *ngFor="let dopp of work.doppiatori">
-      {{ dopp.doppiatore.name }} -
-      <span *ngFor="let char of dopp.character"> {{ char.name }}, </span>
-    </li>
-  </ul>
-</div>
+} @else {
+  <div class="spinner"></div>
+}
 <div class="modal__bg" role="button" (click)="close()" (onkeyup)="close()" tabindex="0"></div>

@@ -5,8 +5,12 @@
   <div class="card__body">
     <h3>{{ work.title }}</h3>
     <div class="card__actions">
-      <app-button *ngIf="!work.seen" [onClick]="watchWork"> <ion-icon name="eye-outline"></ion-icon> Aggiungi alla mia lista </app-button>
-      <app-button *ngIf="work.seen" [onClick]="unwatchWork"> <ion-icon name="eye-off-outline"></ion-icon> Rimuovi dalla mia lista </app-button>
+      @if (!work.seen) {
+        <!-- <app-button [onClick]="watchWork"> <ion-icon name="eye-outline"></ion-icon> Aggiungi alla mia lista </app-button> -->
+      }
+      @if (work.seen) {
+        <!-- <app-button [onClick]="unwatchWork"> <ion-icon name="eye-off-outline"></ion-icon> Rimuovi dalla mia lista </app-button> -->
+      }
       <app-button (click)="clickFn(work)" (onkeydown)="clickFn(work)" [tabIndex]="0" > Vedi dettagli </app-button>
     </div>
   </div>

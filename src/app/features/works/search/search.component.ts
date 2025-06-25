@@ -5,9 +5,10 @@ import { switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
+    standalone: false
 })
 export class SearchComponent {
   query!: string | null;

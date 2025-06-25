@@ -1,7 +1,8 @@
-@import "/src/styles/colors";
+@use "/src/styles/colors" as *;
+@use "sass:color";
 
 .alert {
-  background-color: transparentize(white, 0.5);
+  background-color: color.adjust(white,$alpha: 0.5);
   backdrop-filter: blur(10px);
   padding: 20px;
   padding-top: 40px;
@@ -34,7 +35,7 @@
   }
 
   &--info {
-    background-color: transparentize(white, 0.5);
+    background-color: color.adjust(white,$alpha: 0.5);
     border-color: white;
     .close {
       background-color: white;
@@ -42,7 +43,7 @@
   }
 
   &--alert {
-    background-color: transparentize($primary, 0.5);
+    background-color: color.adjust($primary, $alpha: 0.5);
     color: white;
     border-color: $primary;
     .close {
@@ -51,7 +52,7 @@
   }
 
   &--error {
-    background-color: transparentize(lighten($accent, 30), 0.4);
+    background-color: color.adjust($accent, $alpha: 0.4, $lightness: 30%);
     border-color: $accent;
     .close {
       background-color: $accent;

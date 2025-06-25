@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './views/auth/auth.component';
 import { ProfileComponent } from './views/profile/profile.component';
@@ -11,18 +11,11 @@ import { ButtonComponent } from 'src/app/shared/components/layout/button/button.
 import { ImgurUrlPipe } from 'src/app/shared/pipes/imgur-url.pipe';
 import { ImportTutorialComponent } from './views/import-tutorial/import-tutorial.component';
 
-@NgModule({
-  declarations: [AuthComponent, ProfileComponent, ImportTutorialComponent],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    AuthRoutingModule,
-    InputComponent,
-    SuggestionInputComponent,
-    ButtonComponent,
-    ImgurUrlPipe,
-  ],
-  providers: [],
-})
+@NgModule({ declarations: [AuthComponent, ProfileComponent, ImportTutorialComponent], imports: [CommonModule,
+        FormsModule,
+        AuthRoutingModule,
+        InputComponent,
+        SuggestionInputComponent,
+        ButtonComponent,
+        ImgurUrlPipe], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AuthModule {}

@@ -1,5 +1,5 @@
-@import "src/styles/types";
-@import "src/styles/colors";
+@use "src/styles/types";
+@use "src/styles/colors" as *;
 @mixin multiple-lines {
   flex-direction: column;
   > * {
@@ -8,11 +8,11 @@
 }
 :host {
   display: block;
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 80px);
   container-type: inline-size;
   .landing {
     height: 100%;
-    padding: 100px;
+    padding-inline: 10%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -23,10 +23,11 @@
     }
 
     &__wrap {
-      width: 60%;
+      width: 100%;
 
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 20px;
       @container (max-width: 900px) {
         width: 100%;
@@ -51,14 +52,14 @@
       }
 
       img {
-        width: 70%;
+        width: 600px;
         @container (max-width: 700px) {
           width: 100%;
         }
       }
       p {
         width: 80%;
-        font-size: $text;
+        font-size: types.$text;
         color: $textColor;
         line-height: 1.5;
         @container (max-width: 700px) {
@@ -86,7 +87,7 @@
       }
     }
     &__img {
-      width: 40%;
+      width: 30%;
       display: flex;
       justify-content: center;
       align-items: center;

@@ -6,11 +6,10 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { WorkService } from 'src/app/features/works/work.service';
 
 @Component({
-  selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss'],
-  standalone: true,
-  imports: [CommonModule],
+    selector: 'app-pagination',
+    templateUrl: './pagination.component.html',
+    styleUrls: ['./pagination.component.scss'],
+    imports: [CommonModule]
 })
 export class PaginationComponent implements OnInit {
   pages!: number

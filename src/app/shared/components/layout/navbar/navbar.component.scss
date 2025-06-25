@@ -1,15 +1,17 @@
-@import "/src/styles/types";
-@import "/src/styles/colors";
-@import "/src/styles/mixins";
+@use "/src/styles/types";
+@use "/src/styles/colors" as *;
+@use "/src/styles/mixins";
+@use "sass:color";
+
 .nav {
   height: 50px;
   backdrop-filter: blur(10px);
-  background-color: transparentize($primary, 0.9);
+  background-color: rgb($primary, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
 
-  font-size: $text;
+  font-size: types.$text;
 
   padding: 40px;
 
@@ -54,7 +56,7 @@
     .nav--mobile  {
       display: inline;
       .nav__toggle {
-        @include button;
+        @include mixins.button;
         aspect-ratio: 1/1;
         height: 50px;
         padding: unset;
@@ -78,7 +80,7 @@
       display: flex;
       flex-direction: column;
       align-items:center ;
-      
+
       a {
         color: white!important;
         display: block;

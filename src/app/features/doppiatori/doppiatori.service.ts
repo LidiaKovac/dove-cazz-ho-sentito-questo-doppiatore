@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, map, of, switchMap, tap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { environment } from 'src/environments/environment';
 
@@ -30,9 +30,7 @@ export class DoppiatoriService {
 
   private getSuggestions(query: string, input: string) {
     return this.http
-      .get<
-        string[]
-      >(`${environment.url}doppiatori/suggestions?query=${encodeURI(query.toLowerCase())}`)
+      .get<string[]>(`${environment.url}works/suggestions?query=${encodeURI(query.toLowerCase())}`)
       .pipe(tap((res) => this[input].next(res)));
   }
 
@@ -72,8 +70,8 @@ export class DoppiatoriService {
     const target = ev.target as HTMLInputElement;
     this[target.name].next(target.value);
     if (this[target.name].getValue().length % 3 && target.value.length > 3) {
-      this.getSuggestions(this[target.name].getValue(), varName).subscribe();
-    }
+      return this.getSuggestions(this[target.name].getValue(), varName);
+    } return of([])
   };
 
   emptySuggestions = (input: string) => {

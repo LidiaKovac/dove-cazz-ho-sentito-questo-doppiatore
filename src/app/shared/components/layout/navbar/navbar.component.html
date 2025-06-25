@@ -1,18 +1,21 @@
 <nav class="nav">
   <div class="nav__global">
     <a class="nav__item" id="home" routerLink="/"></a>
-    <form *ngIf="isLogged" (submit)="navigateToSearch($event)">
+    @if (isLogged) {
+    <form (submit)="navigateToSearch($event)">
       <app-input
         dataSuggestionsVar="suggestions"
         placeholder="Inserisci un titolo..."
         autocomplete="off"
         name="query"
       >
-        <button><ion-icon name="search-outline"></ion-icon></button>
+        <button><i class="bi bi-search"></i></button>
       </app-input>
     </form>
+    }
   </div>
-  <div class="nav__user-area" *ngIf="!isLogged; else profile">
+  @if (!isLogged) {
+  <div class="nav__user-area">
     <a
       routerLink="auth"
       [queryParams]="{
@@ -30,16 +33,18 @@
       id="signup"
     ></a>
   </div>
-  <ng-template #profile>
-    <a routerLink="auth/user" class="nav__item" id="profile"></a>
-  </ng-template>
+  } @else {
+  <a routerLink="auth/user" class="nav__item" id="profile"></a>
+  }
+
   <div class="nav--mobile">
     <button class="nav__toggle" (click)="openNav()">
-      <ion-icon name="menu"></ion-icon>
+      <i class="bi bi-list"></i>
     </button>
     <div class="nav--mobile-dropdown" #dropdown>
       <a class="nav__item" id="home" routerLink="/"></a>
-      <div class="nav__user-area" *ngIf="!isLogged; else profile">
+      @if(!isLogged) {
+      <div class="nav__user-area">
         <a
           routerLink="auth"
           [queryParams]="{
@@ -57,9 +62,9 @@
           id="signup"
         ></a>
       </div>
-      <ng-template #profile>
-        <a routerLink="auth/user" class="nav__item" id="profile"></a>
-      </ng-template>
+      } @else {
+      <a routerLink="auth/user" class="nav__item" id="profile"></a>
+      }
     </div>
   </div>
 </nav>

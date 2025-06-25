@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-single-character-card',
-  templateUrl: './single-character-card.component.html',
-  styleUrls: ['./single-character-card.component.scss'],
+    selector: 'app-single-character-card',
+    templateUrl: './single-character-card.component.html',
+    styleUrls: ['./single-character-card.component.scss'],
+    standalone: false
 })
 export class SingleCharacterCardComponent {
   @Input() name?: string = 'Marco Rossi';

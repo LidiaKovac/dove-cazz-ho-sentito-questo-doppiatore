@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   getMe() {
-    return this.http.get<User>(`${environment.url}user/me`).pipe(
+    return this.http.get<User>(`${environment.url}users/me`).pipe(
       map((user) => {
         this.$user.next(user);
         return user;
@@ -43,7 +43,7 @@ export class AuthService {
 
   editMe(user: FormData) {
     this.loadingSrv.setLoading = true;
-    return this.http.put<User>(`${environment.url}user/me`, user).pipe(
+    return this.http.put<User>(`${environment.url}users/me`, user).pipe(
       map((user) => {
         this.loadingSrv.setLoading = false;
         this.$user.next(user);
@@ -66,7 +66,7 @@ export class AuthService {
 
   importTrakt(username: string) {
     this.loadingSrv.setLoading = true;
-    return this.http.put<IImport>(`${environment.url}user/me/import/trakt/${username}`, {}).pipe(
+    return this.http.put<IImport>(`${environment.url}users/me/import/trakt/${username}`, {}).pipe(
       tap(() => {
         this.loadingSrv.setLoading = false;
       }),
@@ -75,7 +75,7 @@ export class AuthService {
 
   importLetterboxd(fd: FormData) {
     this.loadingSrv.setLoading = true;
-    return this.http.put<IImport>(`${environment.url}user/me/import/letterboxd`, fd).pipe(
+    return this.http.put<IImport>(`${environment.url}users/me/import/letterboxd`, fd).pipe(
       tap(() => {
         this.loadingSrv.setLoading = false;
       }),
@@ -85,7 +85,7 @@ export class AuthService {
   addToSeen(title: string) {
     return this.http.get<IWork>(`${environment.url}works?query=${title}`).pipe(
       switchMap((res) => {
-        return this.http.put<IImport>(`${environment.url}user/me/watch/${res._id}`, {});
+        return this.http.put<IImport>(`${environment.url}users/me/watch/${res._id}`, {});
       }),
     );
   }

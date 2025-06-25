@@ -1,5 +1,6 @@
-@import "src/styles/colors";
-@import "src/styles/types";
+@use "src/styles/colors" as *;
+@use "sass:color";
+@use "src/styles/types";
 
 @mixin button($color: $primary) {
   @if ($color == $primary) {
@@ -12,14 +13,14 @@
   padding: 16px 32px;
   border: none;
   border-radius: 5px;
-  font-size: $text;
+  font-size: types.$text;
   box-shadow: 2px 2px 5px 0px rgb(0, 0, 0, 0.1);
   -webkit-box-shadow: 2px 2px 5px 0px rgb(0, 0, 0, 0.1);
   transition: 0.15s;
   width: inherit;
   cursor: pointer;
   &:hover {
-    background-color: lighten($color, 5%);
+    background-color: color.adjust($color, $lightness: 5%);
   }
   &:active {
     transform: translate(0px, 2px);
@@ -27,7 +28,7 @@
     -webkit-box-shadow: none;
   }
   &:disabled {
-    background-color: lighten($color, 30);
+    background-color: color.adjust($color, $lightness: 30%);
     cursor: not-allowed;
   }
 }

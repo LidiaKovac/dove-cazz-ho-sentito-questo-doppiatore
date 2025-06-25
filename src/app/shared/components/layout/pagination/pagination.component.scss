@@ -1,5 +1,5 @@
-@import "src/styles/mixins";
-@import "src/styles/colors";
+@use "src/styles/mixins";
+@use "src/styles/colors" as *;
 :host {
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@
     flex: 1 0 20px;
     max-width: 55px;
     aspect-ratio: 1/1;
-    @include button;
+    @include mixins.button;
     padding: 5px 10px;
     &.current-page {
       background-color: $accent;
