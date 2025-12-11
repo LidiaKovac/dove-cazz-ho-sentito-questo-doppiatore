@@ -4,7 +4,7 @@
   [attr.placeholder]="placeholder"
   [attr.defaultValue]="defaultValue"
   [attr.name]="name"
-  (keyup)="onChange($event, dataSuggestionsVar)"
+  (input)="onChange($event, dataSuggestionsVar)"
   (blur)="onBlur(dataSuggestionsVar); validator(input)"
   [(ngModel)]="ngModel"
   [attr.autocomplete]="autocomplete"
@@ -16,6 +16,7 @@
   [attr.id]="id"
   [value]="value"
   [attr.autofocus]="autofocus"
+  [attr.list]="list"
   />
   @if (!isValid) {
     <small class="error">

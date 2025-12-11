@@ -3,9 +3,9 @@
   <div class="compare-card__chars">
     @for (char of characters; track char) {
       <app-single-character-card
-        [name]="char.character[0].name"
-        [img]="char.character[0].img"
-        [work]="char.title"
+        [name]="char.characterActor.name"
+        [img]="char.characterActor.img"
+        [work]="char.work.title"
       ></app-single-character-card>
     }
   </div>

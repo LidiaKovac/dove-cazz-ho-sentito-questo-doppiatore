@@ -9,91 +9,69 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class DoppiatoriService {
-  [key: string]: any;
-
   //compare
-  showOneQuery = new BehaviorSubject<string>('');
-  showTwoQuery = new BehaviorSubject<string>('');
+  workQuery = new BehaviorSubject<string>('');
+  compareToQuery = new BehaviorSubject<string>('');
   watchListQuery = new BehaviorSubject<string>('');
-  suggestionsOne = new BehaviorSubject<string[]>([]);
-  suggestionsTwo = new BehaviorSubject<string[]>([]);
-  suggestionsWatchList = new BehaviorSubject<string[]>([]);
 
   //user search && user compare
-  suggestions = new BehaviorSubject<string[]>([]);
-  query = new BehaviorSubject<string>('');
+  suggestions = new BehaviorSubject<{ id: string; title: string }[]>([]);
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router,
-    private readonly loadingSrv: LoadingService,
-  ) {}
+    private readonly loadingSrv: LoadingService
+  ) {
+    this.workQuery.pipe(switchMap((v) => this.getSuggestions(v))).subscribe();
+    this.compareToQuery.pipe(switchMap((v) => this.getSuggestions(v))).subscribe();
+  }
 
-  private getSuggestions(query: string, input: string) {
+  private getSuggestions(query: string) {
+    if (!query || query.length < 2) return of([]);
     return this.http
-      .get<string[]>(`${environment.url}works/suggestions?query=${encodeURI(query.toLowerCase())}`)
-      .pipe(tap((res) => this[input].next(res)));
+      .get<APIResponse<{ id: string; title: string }[]>>(
+        `${environment.url}works/suggestions?query=${encodeURI(query.toLowerCase())}`
+      )
+      .pipe(tap((sugg) => this.suggestions.next(sugg.data)));
   }
 
   public getComparison(title: string, title2: string) {
     this.loadingSrv.setLoading = true;
     return this.http
-      .get<ICompare[]>(`${environment.url}doppiatori/compare?work=${title}&compareTo=${title2}`)
+      .get<APIResponse<ICompare[]>>(
+        `${environment.url}doppiatori/compare?work=${encodeURI(title)}&compareTo=${encodeURI(
+          title2
+        )}`
+      )
       .pipe(
-        tap(() => {
+        map((res) => {
           this.loadingSrv.setLoading = false;
-        }),
+          return res.data;
+        })
       );
   }
 
   public getUserComparison(title: string) {
     this.loadingSrv.setLoading = true;
-    console.log(title);
     return this.http.get<IWork>(`${environment.url}works/name?name=${title}`).pipe(
-      switchMap(({ _id }) => {
-        return this.http.get<ICompare[]>(`${environment.url}doppiatori/user-compare/${_id}`);
-      }),
-      map((characters) => {
-        return characters.map((char) => {
-          return {
-            ...char,
-            characters: char.characters.filter((c) => c.character.length > 0),
-          };
-        });
+      //TODO move this to backend
+      switchMap(({ id }) => {
+        return this.http.get<ICompare[]>(`${environment.url}doppiatori/user-compare/${id}`);
       }),
       tap(() => {
         this.loadingSrv.setLoading = false;
-      }),
+      })
     );
-  }
-
-  public fetchSuggestions = (ev: Event, varName: string) => {
-    const target = ev.target as HTMLInputElement;
-    this[target.name].next(target.value);
-    if (this[target.name].getValue().length % 3 && target.value.length > 3) {
-      return this.getSuggestions(this[target.name].getValue(), varName);
-    } return of([])
-  };
-
-  emptySuggestions = (input: string) => {
-    setTimeout(() => {
-      this[input].next([]);
-    }, 300);
-  };
-
-  pickSuggestion({ target }: Event) {
-    const targetAsDiv = target as HTMLDivElement;
-    this[targetAsDiv.id].next(targetAsDiv.innerText);
-    return targetAsDiv.innerText;
   }
 
   navigateToComparison = () => {
     this.router.navigate(['/compare'], {
       queryParams: {
-        title: this.showOneQuery.getValue(),
-        compareTo: this.showTwoQuery.getValue(),
+        title: this.workQuery.getValue(),
+        compareTo: this.compareToQuery.getValue(),
       },
     });
   };
+
   navigateToUserComparison = () => {
     this.router.navigate(['/compare'], {
       queryParams: {

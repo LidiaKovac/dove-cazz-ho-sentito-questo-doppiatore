@@ -46,8 +46,8 @@ export class SearchComponent {
               queryParamsHandling: 'merge', // remove to replace all query params by provided
             });
           }
-          if (params.get('selected') && params.get('selected') !== this.selected?._id) {
-            this.worksSrv.setSelectedById(params.get('selected') ?? "");
+          if (params.get('selected') && params.get('selected') !== this.selected?.id) {
+            this.worksSrv.setSelectedById(params.get('selected') ?? '');
           }
           this.page = parseInt(params.get('page') ?? "1");
 

@@ -3,25 +3,29 @@
     <img src="../../../assets/titolo-lg.png" alt="" />
     <div class="landing__wrap-compare">
       <p>Cerca due serie per scoprire quali doppiatori hanno in comune</p>
-      <div class="landing__form">
+      <form class="landing__form" (submit)="navigateToComparison()">
         <app-suggestion-input
-          name="showOneQuery"
+          name="workQuery"
           dataSuggestionsVar="suggestionsOne"
           placeholder="Inserisci serie"
           [autocomplete]="'off'"
+          required
+          id="work"
           >
         </app-suggestion-input>
 
         <app-suggestion-input
-          name="showTwoQuery"
+          name="compareToQuery"
           dataSuggestionsVar="suggestionsTwo"
           placeholder="Inserisci serie"
           [autocomplete]="'off'"
+          required
+          id="compareTo"
           >
         </app-suggestion-input>
 
-        <app-button [onClick]="navigateToComparison">Cerca</app-button>
-      </div>
+        <app-button>Cerca</app-button>
+      </form>
       @if (isLogged) {
         <section>
           <p>

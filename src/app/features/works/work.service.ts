@@ -62,7 +62,7 @@ export class WorkService {
   optimisticToggleSeen(id: string) {
     const currentWorks = this.works.getValue();
     for (const work of currentWorks) {
-      if (work._id === id) {
+      if (work.id === id) {
         work.seen = !work.seen;
         this.alertSrv.addAlert(
           `Elemento ${work.seen ? 'aggiunto ' : 'rimosso d'}alla tua lista`,
@@ -101,13 +101,13 @@ export class WorkService {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        selected: work._id,
+        selected: work.id,
       },
       queryParamsHandling: 'merge',
       skipLocationChange: true,
     });
     this.selected.next(work); //optimistic
-    this.getWorkById(work._id).subscribe((res) => {
+    this.getWorkById(work.id).subscribe((res) => {
       this.selected.next(res);
       this.loadingSrv.setLoading = false;
       this.isDetailsLoading.next(false);

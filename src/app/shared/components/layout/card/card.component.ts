@@ -13,10 +13,10 @@ export class CardComponent {
   constructor(private readonly workSrv: WorkService) {}
 
   watchWork = () => {
-    this.workSrv.watchWork(this.work._id).subscribe();
+    this.workSrv.watchWork(this.work.id).subscribe();
   };
 
   unwatchWork = () => {
-    this.workSrv.unwatchWork(this.work._id).subscribe();
+    this.workSrv.unwatchWork(this.work.id).subscribe();
   };
 }

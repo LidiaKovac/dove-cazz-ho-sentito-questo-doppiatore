@@ -45,6 +45,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() accept!: string;
   @Input() id!: string;
   @Input() autofocus!: boolean;
+  @Input() list!: string;
 
   isValid = true;
 

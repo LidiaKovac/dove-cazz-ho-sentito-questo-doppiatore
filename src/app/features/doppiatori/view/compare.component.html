@@ -21,12 +21,12 @@
     <app-suggestion-input
       dataSuggestionsVar="suggestionsOne"
       placeholder="Inserisci serie"
-      name="showOneQuery"
+      name="workQuery"
       [autocomplete]="'off'"
       >
     </app-suggestion-input>
     <app-suggestion-input
-      name="showTwoQuery"
+      name="compareToQuery"
       dataSuggestionsVar="suggestionsTwo"
       placeholder="Inserisci serie"
       [autocomplete]="'off'"
@@ -57,7 +57,7 @@
   }"
     [style]="window.innerWidth > window.innerHeight ? 'max-height:' + gridRowEnd + 'px' : ''"
     >
-    @for (doppiatore of doppiatori; track doppiatore) {
+    @for (doppiatore of doppiatori; track doppiatore.name) {
       <app-compare-card
         [name]="doppiatore.name"
         [characters]="doppiatore.characters"

@@ -1,27 +1,33 @@
 //! API
 
+interface APIResponse<T> {
+  data: T;
+  status: 'SUCCESS' | 'ERROR';
+  message: string;
+}
+
 interface ICompare {
-  img: string
+  img: string;
   name: string;
   characters: ICompareWork[];
 }
 
 interface ICompareWork {
-  character: ICharacter[];
-  title: string;
+  characterActor: ICharacter;
+  work: IWork;
 }
 
 interface IImport {
-  amount: number
-  titles: string[]
+  amount: number;
+  titles: string[];
 }
 
 interface IWork {
-  _id: string;
+  id: string;
   title: string;
   originalTitle?: string;
   poster: string;
-  wikiSlug: string;
+  slug: string;
   doppiatori?: DoppiatoreCharacter[];
   seen?: boolean;
 }
@@ -38,10 +44,10 @@ interface DoppiatoreCharacter {
 }
 
 interface Doppiatore {
-  _id: string;
+  id: string;
   name: string;
   img: string;
-  wikiSlug: string;
+  slug: string;
 }
 
 //! AUTH
@@ -60,7 +66,7 @@ interface Signup {
 }
 
 interface User extends Signup {
-  _id: string;
+  id: string;
   avatar: string;
   role: 'USER' | 'ADMIN';
 
@@ -68,10 +74,10 @@ interface User extends Signup {
 }
 
 interface ICharacter {
-  _id: string,
-  name: string,
-  wikiSlug: string,
-  img: string
+  id: string;
+  name: string;
+  slug: string;
+  img: string;
 }
 
 

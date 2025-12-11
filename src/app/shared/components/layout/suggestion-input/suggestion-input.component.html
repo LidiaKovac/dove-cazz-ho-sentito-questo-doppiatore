@@ -1,28 +1,23 @@
 <app-input
   [name]="name"
-  dataSuggestionsVar="suggestions"
   placeholder="Serie, film o videogioco..."
   [onChange]="getSuggestions"
-  [onBlur]="emptySuggestions"
-  [autocomplete]="'off'"
-  [autofocus]="true"
   [id]="id"
+  [list]="'options'"
+  [autocomplete]="'off'"
   #appInput
-  >
-  <div class="search__suggestion" >
-    @if (shouldShow && suggestions.length < 1) {
-      <div class="search__suggestion--first">
-        Warming up the data...
-      </div>
-    }
-    @for (sugg of suggestions; track sugg) {
-      <div
+>
+  <div class="search__suggestion">
+
+    <datalist id="options" #datalist>
+      @for (sugg of suggestions; track sugg.id) {
+      <option
+        [value]="sugg.title"
         class="search__suggestion--first"
-        [id]="name"
-        (click)="pickSuggestion($event)"
-        >
-        {{ sugg }}
-      </div>
+      >
+
+      </option>
     }
+  </datalist>
   </div>
 </app-input>

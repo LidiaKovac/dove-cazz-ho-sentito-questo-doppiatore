@@ -14,10 +14,10 @@ import { AuthService } from '../../auth/auth.service';
 import { CompareCardComponent } from '../../characters/compare-card/compare-card.component';
 
 @Component({
-    selector: 'app-compare',
-    templateUrl: './compare.component.html',
-    styleUrls: ['./compare.component.scss'],
-    standalone: false
+  selector: 'app-compare',
+  templateUrl: './compare.component.html',
+  styleUrls: ['./compare.component.scss'],
+  standalone: false,
 })
 export class CompareComponent implements AfterViewInit {
   doppiatori: ICompare[] = [];
@@ -25,8 +25,8 @@ export class CompareComponent implements AfterViewInit {
   title: string = '';
   compareTo: string = '';
 
-  showOneQuery: string = '';
-  showTwoQuery: string = '';
+  workQuery: string = '';
+  compareToQuery: string = '';
   watchListQuery: string = '';
   showQuery: string = '';
 
@@ -43,14 +43,14 @@ export class CompareComponent implements AfterViewInit {
     private readonly doppiatoriSrv: DoppiatoriService,
     private readonly loadingSrv: LoadingService,
     private readonly authSrv: AuthService,
-    private readonly route: ActivatedRoute,
+    private readonly route: ActivatedRoute
   ) {
     this.route.queryParams
       .pipe(
         switchMap((qp) => {
-          this.showOneQuery = qp['title'];
+          this.workQuery = qp['title'];
           this.title = qp['title'];
-          this.showTwoQuery = qp['compareTo'];
+          this.compareToQuery = qp['compareTo'];
           this.compareTo = qp['compareTo'];
           this.watchListQuery = qp['query'];
           this.showQuery = qp['query'];
@@ -64,7 +64,7 @@ export class CompareComponent implements AfterViewInit {
         switchMap((res) => {
           this.doppiatori = res;
           return this.cards.changes;
-        }),
+        })
       )
       .subscribe((res) => {
         this.calculateSpan();
@@ -72,8 +72,8 @@ export class CompareComponent implements AfterViewInit {
     this.authSrv.recoverLoggedUser().subscribe((user) => {
       this.isLogged = !!user;
     });
-    this.doppiatoriSrv.showOneQuery.subscribe((res) => (this.showOneQuery = res));
-    this.doppiatoriSrv.showTwoQuery.subscribe((res) => (this.showTwoQuery = res));
+    this.doppiatoriSrv.workQuery.subscribe((res) => (this.workQuery = res));
+    this.doppiatoriSrv.compareToQuery.subscribe((res) => (this.compareToQuery = res));
     this.doppiatoriSrv.watchListQuery.subscribe((res) => (this.watchListQuery = res));
     this.loadingSrv.$loading.asObservable().subscribe((val) => (this.isLoading = val));
   }
@@ -83,8 +83,6 @@ export class CompareComponent implements AfterViewInit {
       this.calculateSpan();
     });
   }
-
-
 
   calculateTotalHeight(arr: CompareCardComponent[]) {
     return arr.reduce((acc, curr, i) => {
@@ -111,21 +109,17 @@ export class CompareComponent implements AfterViewInit {
     const secondHalf = [...this.cards].slice((this.cards.length - 1) / 2);
     const higher = Math.max(
       this.calculateTotalHeight(firstHalf),
-      this.calculateTotalHeight(secondHalf),
+      this.calculateTotalHeight(secondHalf)
     );
     this.gridRowEnd = Math.ceil(higher) + Math.ceil(this.averageCardHeight);
   }
 
-  getSuggestions = (ev: Event, varName: string) => {
-    this.doppiatoriSrv.fetchSuggestions(ev, varName);
-  };
-
-  emptySuggestions = (input: string) => {
-    this.doppiatoriSrv.emptySuggestions(input);
-  };
+  // emptySuggestions = (input: string) => {
+  //   this.doppiatoriSrv.emptySuggestions(input);
+  // };
 
   pickSuggestion(ev: Event) {
-    this.doppiatoriSrv.pickSuggestion(ev);
+    // this.doppiatoriSrv.pickSuggestion(ev);
   }
 
   navigateToComparison = () => {
