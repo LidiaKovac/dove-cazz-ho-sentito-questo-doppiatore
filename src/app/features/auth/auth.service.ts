@@ -20,16 +20,16 @@ export class AuthService {
   }
 
   login(data: FormData) {
-    return this.http.post<User>(`${environment.url}user/login`, data, { observe: 'response' }).pipe(
+    return this.http.post<User>(`${environment.url}auth/login`, data, { observe: 'response' }).pipe(
       tap((res) => {
-        this.$user?.next(res.body);
         this.router.navigate(['landing']);
-        localStorage.setItem('doppiatori', res.headers.get('Authorization') ?? "");
-      }),
+        this.$user?.next(res.body);
+        localStorage.setItem('doppiatori', res.headers.get('Authorization') ?? '');
+      })
     );
   }
   signup(data: FormData) {
-    return this.http.post<User>(`${environment.url}user/register`, data);
+    return this.http.post<User>(`${environment.url}auth/register`, data);
   }
 
   getMe() {

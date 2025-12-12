@@ -4,7 +4,6 @@
 
 @use "sass:color";
 
-
 .inset-shadow {
   box-shadow: inset 2px 2px 5px 0px rgb(0, 0, 0, 0.08) !important;
   -webkit-box-shadow: inset 2px 2px 5px 0px rgb(0, 0, 0, 0.08) !important;
@@ -59,7 +58,8 @@
       outline: 2px solid $accent;
     }
   }
-  button.toggle-password:has(ng-icon) {
+  button.toggle-password:has(i) {
+    font-size: 15pt;
     position: absolute;
     right: 10px;
 
@@ -67,11 +67,11 @@
     border: none;
     height: 100%;
     &:hover {
-      ng-icon {
+      i {
         color: color.adjust($primary, $lightness: 10%);
       }
     }
-    ng-icon {
+    i {
       width: 18px;
       height: 18px;
       color: $primary;

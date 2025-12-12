@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './views/auth/auth.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { ImportTutorialComponent } from './views/import-tutorial/import-tutorial.component';
+import { Logout } from './logout';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'user/tutorial',
     component: ImportTutorialComponent,
+  },
+  {
+    path: 'logout',
+    component: Logout,
   },
 ];
 

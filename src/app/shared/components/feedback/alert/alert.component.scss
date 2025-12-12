@@ -2,7 +2,7 @@
 @use "sass:color";
 
 .alert {
-  background-color: color.adjust(white,$alpha: 0.5);
+  background-color: rgb(white,0.5);
   backdrop-filter: blur(10px);
   padding: 20px;
   padding-top: 40px;
@@ -35,7 +35,7 @@
   }
 
   &--info {
-    background-color: color.adjust(white,$alpha: 0.5);
+    background-color: rgb(white,0.5);
     border-color: white;
     .close {
       background-color: white;
@@ -43,7 +43,7 @@
   }
 
   &--alert {
-    background-color: color.adjust($primary, $alpha: 0.5);
+    background-color: rgb($primary, 0.5);
     color: white;
     border-color: $primary;
     .close {
@@ -52,7 +52,7 @@
   }
 
   &--error {
-    background-color: color.adjust($accent, $alpha: 0.4, $lightness: 30%);
+    background-color: color.adjust(rgb($accent, 0.4), $lightness: 30%);
     border-color: $accent;
     .close {
       background-color: $accent;

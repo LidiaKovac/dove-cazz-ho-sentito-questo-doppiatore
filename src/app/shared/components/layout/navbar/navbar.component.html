@@ -14,8 +14,8 @@
     </form>
     }
   </div>
-  @if (!isLogged) {
   <div class="nav__user-area">
+    @if (!isLogged) {
     <a
       routerLink="auth"
       [queryParams]="{
@@ -32,10 +32,12 @@
       class="nav__item"
       id="signup"
     ></a>
+    } @else {
+    <a routerLink="auth/user" class="nav__item" id="profile"></a>
+    <a routerLink="auth/logout" class="nav__item" id="logout">Logout</a>
+
+    }
   </div>
-  } @else {
-  <a routerLink="auth/user" class="nav__item" id="profile"></a>
-  }
 
   <div class="nav--mobile">
     <button class="nav__toggle" (click)="openNav()">
@@ -43,8 +45,8 @@
     </button>
     <div class="nav--mobile-dropdown" #dropdown>
       <a class="nav__item" id="home" routerLink="/"></a>
-      @if(!isLogged) {
       <div class="nav__user-area">
+        @if(!isLogged) {
         <a
           routerLink="auth"
           [queryParams]="{
@@ -61,10 +63,11 @@
           class="nav__item"
           id="signup"
         ></a>
+        } @else {
+        <a routerLink="auth/user" class="nav__item" id="profile"></a>
+        <a routerLink="auth/logout" class="nav__item" id="logout">Logout</a>
+        }
       </div>
-      } @else {
-      <a routerLink="auth/user" class="nav__item" id="profile"></a>
-      }
     </div>
   </div>
 </nav>
