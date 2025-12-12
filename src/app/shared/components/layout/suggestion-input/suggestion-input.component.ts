@@ -18,7 +18,6 @@ export class SuggestionInputComponent implements OnInit {
   @Input() id!: string;
   @Input() name!: string;
 
-  @ViewChild('appInput') input!: InputComponent;
   @ViewChild('datalist') datalist!: HTMLDataListElement;
 
   suggestions: { id: string; title: string }[] = [];
@@ -40,5 +39,6 @@ export class SuggestionInputComponent implements OnInit {
     const id = (ev.target as HTMLInputElement).id;
     if (id == 'work') this.doppiatoriSrv.workQuery.next(value);
     if (id == 'compareTo') this.doppiatoriSrv.compareToQuery.next(value);
+    if (id == 'user-compare') this.doppiatoriSrv.watchListQuery.next(value);
   };
 }

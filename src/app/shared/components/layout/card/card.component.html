@@ -1,15 +1,15 @@
-<div class="card">
-  <div class="card__bg" [style]="'background-image: url(' + work.poster + ')'">
+<div class="card" >
+  <div class="card__bg">
     <img [src]="work.poster" [alt]="work.title" />
   </div>
   <div class="card__body">
     <h3>{{ work.title }}</h3>
     <div class="card__actions">
       @if (!work.seen) {
-        <!-- <app-button [onClick]="watchWork"> <ion-icon name="eye-outline"></ion-icon> Aggiungi alla mia lista </app-button> -->
+        <app-button [onClick]="watchWork"> <i class="bi bi-eye"></i> Aggiungi alla mia lista </app-button>
       }
       @if (work.seen) {
-        <!-- <app-button [onClick]="unwatchWork"> <ion-icon name="eye-off-outline"></ion-icon> Rimuovi dalla mia lista </app-button> -->
+        <app-button [onClick]="unwatchWork"> <i class="bi bi-eye-slash"></i> Rimuovi dalla mia lista </app-button>
       }
       <app-button (click)="clickFn(work)" (onkeydown)="clickFn(work)" [tabIndex]="0" > Vedi dettagli </app-button>
     </div>

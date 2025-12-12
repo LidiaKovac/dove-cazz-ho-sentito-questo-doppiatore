@@ -1,8 +1,8 @@
 @use "/src/styles/colors" as *;
 
 :host {
-  min-width: 550px;
-  flex: 1 1 calc(33% - 40px);
+  // min-width: 500px;
+  // flex: 1 1 calc(33% - 40px);
   display: block;
   container-type: inline-size;
 
@@ -19,37 +19,18 @@
     border-radius: 5px;
     position: relative;
 
-    display: flex;
-    align-items: center;
-
     h3 {
-      display: -webkit-box;
-      max-width: 100%;
-      text-wrap: wrap;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      min-height: 18px * 3;
       @container (max-width: 250px) {
         font-size: 16px;
       }
     }
-    &__bg {
-      min-width: 260px;
-      height: 100%;
-      aspect-ratio: 1/1;
-    }
     img {
-      height: 100%;
-      aspect-ratio: 1/1;
-      object-fit: contain;
-
-      backdrop-filter: blur(10px);
+      width: 100%;
     }
     &__body {
       padding: 20px;
       h3 {
-        margin: 0;
+        margin-block: 0px 10px;
       }
     }
     &__actions {
@@ -63,9 +44,8 @@
           align-items: center;
           gap: 5px;
           justify-content: center;
-          ion-icon {
-            width: 16px;
-            height: 16px;
+          i {
+           font-size: 16px;
           }
         }
       }

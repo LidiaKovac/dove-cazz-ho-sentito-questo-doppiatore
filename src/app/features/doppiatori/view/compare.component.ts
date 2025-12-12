@@ -19,7 +19,7 @@ import { CompareCardComponent } from '../../characters/compare-card/compare-card
   styleUrls: ['./compare.component.scss'],
   standalone: false,
 })
-export class CompareComponent implements AfterViewInit {
+export class CompareComponent {
   doppiatori: ICompare[] = [];
 
   title: string = '';
@@ -66,9 +66,7 @@ export class CompareComponent implements AfterViewInit {
           return this.cards.changes;
         })
       )
-      .subscribe((res) => {
-        this.calculateSpan();
-      });
+      .subscribe();
     this.authSrv.recoverLoggedUser().subscribe((user) => {
       this.isLogged = !!user;
     });
@@ -76,12 +74,6 @@ export class CompareComponent implements AfterViewInit {
     this.doppiatoriSrv.compareToQuery.subscribe((res) => (this.compareToQuery = res));
     this.doppiatoriSrv.watchListQuery.subscribe((res) => (this.watchListQuery = res));
     this.loadingSrv.$loading.asObservable().subscribe((val) => (this.isLoading = val));
-  }
-
-  ngAfterViewInit() {
-    this.cards.changes.subscribe((cards) => {
-      this.calculateSpan();
-    });
   }
 
   calculateTotalHeight(arr: CompareCardComponent[]) {
@@ -102,24 +94,6 @@ export class CompareComponent implements AfterViewInit {
         return acc + html.getBoundingClientRect().height;
       }, 0) / this.cards.length
     );
-  }
-
-  calculateSpan() {
-    const firstHalf = [...this.cards].slice(0, (this.cards.length - 1) / 2);
-    const secondHalf = [...this.cards].slice((this.cards.length - 1) / 2);
-    const higher = Math.max(
-      this.calculateTotalHeight(firstHalf),
-      this.calculateTotalHeight(secondHalf)
-    );
-    this.gridRowEnd = Math.ceil(higher) + Math.ceil(this.averageCardHeight);
-  }
-
-  // emptySuggestions = (input: string) => {
-  //   this.doppiatoriSrv.emptySuggestions(input);
-  // };
-
-  pickSuggestion(ev: Event) {
-    // this.doppiatoriSrv.pickSuggestion(ev);
   }
 
   navigateToComparison = () => {

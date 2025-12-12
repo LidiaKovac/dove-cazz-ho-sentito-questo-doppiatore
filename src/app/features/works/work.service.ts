@@ -29,14 +29,16 @@ export class WorkService {
   }
 
   getWorks(q: string, page: number = 1) {
-    return this.http.get<IWorkPaged>(`${environment.url}works?query=${q}&page=${page}`).pipe(
-      tap((res) => {
-        this.loadingSrv.setLoading = false;
-        this.total.next(res.total);
-        this.pages.next(Math.ceil(res.total / 10) + 1);
-      }),
-      map((res) => this.works.next(res.data)),
-    );
+    return this.http
+      .get<APIResponse<IWorkPaged>>(`${environment.url}works?query=${q}&page=${page}`)
+      .pipe(
+        tap((res) => {
+          this.loadingSrv.setLoading = false;
+          this.total.next(res.data.content.length);
+          this.pages.next(Math.ceil(res.data.content.length / 10) + 1);
+        }),
+        map((res) => this.works.next(res.data.content))
+      );
   }
 
   watchWork(id: string) {

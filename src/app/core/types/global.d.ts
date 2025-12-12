@@ -33,9 +33,9 @@ interface IWork {
 }
 
 interface IWorkPaged {
-  data: IWork[];
-  page: number;
-  total: number;
+  content: IWork[];
+  totalPages: number;
+  totalElements: number;
 }
 
 interface DoppiatoreCharacter {

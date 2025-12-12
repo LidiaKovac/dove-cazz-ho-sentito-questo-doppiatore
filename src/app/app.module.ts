@@ -10,6 +10,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { InputComponent } from './shared/components/layout/input/input.component';
 import { ButtonComponent } from './shared/components/layout/button/button.component';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, AlertComponent],
@@ -19,8 +20,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
     AppRoutingModule,
     InputComponent,
     ButtonComponent,
-    // NgIconsModule.withIcons({ ionHomeOutline, ionClose, ionSearch, ionEye, ionEyeOff, ionMenu }),
-    // IonicModule.forRoot({}),
+    BrowserAnimationsModule,
   ],
   providers: [
     {

@@ -7,7 +7,8 @@ import { CardComponent } from 'src/app/shared/components/layout/card/card.compon
 import { ButtonComponent } from 'src/app/shared/components/layout/button/button.component';
 import { PaginationComponent } from 'src/app/shared/components/layout/pagination/pagination.component';
 import { ModalComponent } from 'src/app/shared/components/layout/modal/modal.component';
-
+import { NgxMasonryModule } from 'ngx-masonry';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 const routes: Routes = [
   {
     path: '',
@@ -23,6 +24,7 @@ const routes: Routes = [
     SuggestionInputComponent,
     ButtonComponent,
     PaginationComponent,
+    NgxMasonryModule,
   ],
 })
 export class WorksModule {}

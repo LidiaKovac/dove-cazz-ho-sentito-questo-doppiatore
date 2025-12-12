@@ -23,6 +23,7 @@ export class DoppiatoriService {
   ) {
     this.workQuery.pipe(switchMap((v) => this.getSuggestions(v))).subscribe();
     this.compareToQuery.pipe(switchMap((v) => this.getSuggestions(v))).subscribe();
+    this.watchListQuery.pipe(switchMap((v) => this.getSuggestions(v))).subscribe();
   }
 
   private getSuggestions(query: string) {
@@ -52,15 +53,14 @@ export class DoppiatoriService {
 
   public getUserComparison(title: string) {
     this.loadingSrv.setLoading = true;
-    return this.http.get<IWork>(`${environment.url}works/name?name=${title}`).pipe(
-      //TODO move this to backend
-      switchMap(({ id }) => {
-        return this.http.get<ICompare[]>(`${environment.url}doppiatori/user-compare/${id}`);
-      }),
-      tap(() => {
-        this.loadingSrv.setLoading = false;
-      })
-    );
+    return this.http
+      .get<APIResponse<ICompare[]>>(`${environment.url}doppiatori/user-compare/${title}`)
+      .pipe(
+        map((res) => {
+          this.loadingSrv.setLoading = false;
+          return res.data;
+        })
+      );
   }
 
   navigateToComparison = () => {

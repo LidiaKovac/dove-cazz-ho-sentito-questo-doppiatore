@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { WorkService } from '../work.service';
 import { switchMap } from 'rxjs';
 import { LoadingService } from 'src/app/core/services/loading.service';
-
+import { NgxMasonryOptions } from 'ngx-masonry';
 @Component({
-    selector: 'app-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss'],
-    standalone: false
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
+  standalone: false,
 })
 export class SearchComponent {
   query!: string | null;
@@ -22,11 +22,17 @@ export class SearchComponent {
   selected!: IWork | null;
   openModal!: boolean;
 
+  masonryOptions: NgxMasonryOptions = {
+    gutter: 10,
+    resize: true,
+    initLayout: true,
+  };
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly worksSrv: WorkService,
-    private readonly loadingSrv: LoadingService,
+    private readonly loadingSrv: LoadingService
   ) {
     this.loadingSrv.$loading.subscribe((res) => {
       this.isLoading = res;
@@ -49,7 +55,7 @@ export class SearchComponent {
           if (params.get('selected') && params.get('selected') !== this.selected?.id) {
             this.worksSrv.setSelectedById(params.get('selected') ?? '');
           }
-          this.page = parseInt(params.get('page') ?? "1");
+          this.page = parseInt(params.get('page') ?? '1');
 
           this.query = params.get('query');
           if (this.query !== null) {
@@ -66,7 +72,7 @@ export class SearchComponent {
         switchMap((pages) => {
           this.pages = pages;
           return this.worksSrv.total;
-        }),
+        })
       )
       .subscribe((res) => {
         this.total = res;

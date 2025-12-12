@@ -6,10 +6,14 @@
 } @else {
   <app-pagination ></app-pagination>
   <div class="search">
-    <div class="cards">
-      @for (work of works; track work) {
-        <app-card [clickFn]="setSelected" [work]="work"> </app-card>
+    <div class="cards" >
+      <ngx-masonry [options]="masonryOptions">
+      @for (work of works; track work.id) {
+        <div class="masonry-item" ngxMasonryItem>
+          <app-card  [clickFn]="setSelected" [work]="work"> </app-card>
+        </div>
       }
+      </ngx-masonry>
     </div>
     @if (openModal && selected) {
       <app-modal> </app-modal>
