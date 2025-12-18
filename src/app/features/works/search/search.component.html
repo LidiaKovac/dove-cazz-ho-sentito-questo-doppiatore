@@ -7,13 +7,12 @@
   <app-pagination ></app-pagination>
   <div class="search">
     <div class="cards" >
-      <ngx-masonry [options]="masonryOptions">
+      <!-- <ngx-masonry [options]="masonryOptions"> -->
       @for (work of works; track work.id) {
-        <div class="masonry-item" ngxMasonryItem>
+        <!-- <div class="masonry-item" ngxMasonryItem> -->
           <app-card  [clickFn]="setSelected" [work]="work"> </app-card>
-        </div>
       }
-      </ngx-masonry>
+      <!-- </ngx-masonry> -->
     </div>
     @if (openModal && selected) {
       <app-modal> </app-modal>
