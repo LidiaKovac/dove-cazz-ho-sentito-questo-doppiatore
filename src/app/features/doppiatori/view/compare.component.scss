@@ -45,29 +45,8 @@
 
     padding-bottom: 50px;
 
-    &.row {
-      flex-direction: row;
-      > * {
-        flex: 1 1 calc(50% - 20px);
-      }
-    }
-
-    &.col {
-      display: flex;
-      flex-direction: column;
-
-      > * {
-        flex: 1 1 500px;
-        max-width: 50%;
-        height: fit-content;
-      }
-      @media screen and (orientation: portrait) {
-        > * {
-          max-width: unset;
-          max-height: unset!important;
-          flex-basis: 400px;
-        }
-      }
+    &>* {
+      flex: 1 1 calc(50% - 20px);
     }
 
   }

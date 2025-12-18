@@ -51,10 +51,7 @@
   <div
     class="compare__wrap"
     #grid
-  [ngClass]="{
-    row: doppiatori.length <= 2,
-    col: doppiatori.length > 2,
-  }"
+  
     [style]="window.innerWidth > window.innerHeight ? 'max-height:' + gridRowEnd + 'px' : ''"
     >
     @for (doppiatore of doppiatori; track doppiatore.name) {

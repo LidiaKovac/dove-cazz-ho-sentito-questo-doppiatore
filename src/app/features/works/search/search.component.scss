@@ -15,8 +15,34 @@
   .masonry-item {
     margin-bottom: 10px;
   width: calc(33.3% - 30px);
-
   }
+
+  @media screen and (max-width: 1080px) {
+    .masonry-item {
+      position: static!important;
+      width: 30%;
+    }
+    ngx-masonry {
+      // height: 200vh!important;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+
+@media screen and (max-width: 950px) {
+    .masonry-item {
+      position: static!important;
+      width: calc(50% - 10px);
+    }
+    ngx-masonry {
+      height: unset!important;
+      flex-direction: row;
+      align-items: stretch
+    }
+  }
+
   ngx-masonry {
     // width: 100%;
     margin: auto
